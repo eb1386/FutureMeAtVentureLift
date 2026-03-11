@@ -113,11 +113,14 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 .hero {
   position:relative; height:100svh; width:100%;
   display:flex; flex-direction:column;
-  align-items:center; justify-content:center; overflow:hidden;
+  align-items:center; justify-content:center;
+  /* No overflow:hidden here — it clips sub-logos as hero scrolls up.
+     The bg scale animation is contained by its own overflow below. */
 }
 .hero-bg {
   position:absolute; inset:0;
   background:url('./Background.png') center/cover; z-index:0;
+  overflow:hidden; /* contains the scale:1.08 entrance animation */
 }
 .hero-bg::after {
   content:''; position:absolute; inset:0;
@@ -140,6 +143,28 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 .logo-venture { height:clamp(68px,13vw,128px); width:auto; transition:opacity .25s; }
 .logo-saint:hover, .logo-venture:hover { opacity:.75; }
 .sub-logos-divider { width:1px; height:clamp(36px,7vw,66px); background:rgba(255,255,255,.32); }
+.hero-top-text {
+  position:absolute; top:clamp(20px,4.2vw,40px);
+  text-align:center; font-size:clamp(0.55rem,1.6vw,0.8rem); z-index:10;
+  line-height:1.6; color:rgba(255,255,255,.9); font-weight:700;
+  padding:0 clamp(16px,4vw,40px); width:100%;
+}
+.hero-bottom-links {
+  position:absolute; bottom:clamp(20px,4.2vw,40px);
+  display:flex; gap:clamp(10px,3vw,40px);
+  font-size:clamp(0.55rem,1.5vw,0.8rem); z-index:10;
+  justify-content:center; padding:0 clamp(12px,3vw,20px);
+  width:100%; flex-wrap:nowrap;
+}
+.hero-bottom-links a {
+  color:#fff; text-decoration:none; font-weight:700;
+  display:inline-flex; align-items:center; gap:4px;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+  white-space:nowrap;
+}
+.link-left:hover  { transform:translateX(-6px); }
+.link-down:hover  { transform:translateY(6px); }
+.link-right:hover { transform:translateX(6px); }
 .scroll-cue {
   position:absolute; bottom:clamp(20px,3.5vw,36px); left:50%; transform:translateX(-50%);
   z-index:10; display:flex; flex-direction:column; align-items:center; gap:6px;
@@ -434,6 +459,11 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   <!-- HERO -->
   <section id="hero" class="hero">
     <div class="hero-bg"></div>
+    <div class="hero-top-text">
+      Introducing Your Personal Finance Summer Program<br>
+      Designed Around Life's Biggest Milestones &amp; Challenges<br>
+      By St. George's School &bull; Now Calling All Ambitious Youth Grades 7–9 Everywhere
+    </div>
     <div class="logo-container">
       <div class="red-box">
         <img src="future.png" alt="FutureMe at VentureLift" class="hero-logo">
@@ -444,9 +474,9 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         <a href="https://www.venturelift.org/#intro"><img src="venture.png" alt="VentureLift" class="logo-venture"></a>
       </div>
     </div>
-    <div class="scroll-cue" id="scrollCue" onclick="smoothScrollTo('intro')">
-      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      <span>Scroll</span>
+    <div class="hero-bottom-links">
+      <a href="https://www.venturelift.org/program" class="link-left">← Read the Official Announcement</a>
+      <a href="https://pci.jotform.com/form/253202199664258" class="link-right">Send in Your Application Today →</a>
     </div>
   </section>
 
@@ -720,25 +750,13 @@ function smoothScrollTo(id) {
    HERO ENTRANCE
 ════════════════════════════════════════════════ */
 gsap.timeline({ defaults:{ ease:'power3.out' } })
-  .from('.hero-bg',    { scale:1.08, duration:2.8, ease:'power2.out' })
-  .from('.red-box',    { scaleY:0, transformOrigin:'bottom center', duration:1.6, ease:'expo.inOut' }, '-=2.3')
-  .from('.hero-logo',  { y:40, opacity:0, duration:1.4, ease:'back.out(1.2)' }, '-=1.0')
-  .from('.sub-logos',  { y:16, opacity:0, duration:1.0 }, '-=0.75')
-  .from('.scroll-cue', { opacity:0, duration:0.8 }, '-=0.4');
+  .from('.hero-bg',              { scale:1.08, duration:2.8, ease:'power2.out' })
+  .from('.red-box',              { scaleY:0, transformOrigin:'bottom center', duration:1.6, ease:'expo.inOut' }, '-=2.3')
+  .from('.hero-logo',            { y:40, opacity:0, duration:1.4, ease:'back.out(1.2)' }, '-=1.0')
+  .from('.sub-logos',            { y:16, opacity:0, duration:1.0 }, '-=0.75')
+  .from(['.hero-top-text','.hero-bottom-links'], { y:18, opacity:0, duration:1.4, stagger:0.3 }, '-=1.0');
 
-/* Hide scroll cue after first scroll */
-homeEl.addEventListener('scroll', function onFirstScroll() {
-  if (this.scrollTop > 40) {
-    gsap.to('#scrollCue', {
-      opacity:0, duration:0.5,
-      onComplete: () => {
-        const el = document.getElementById('scrollCue');
-        if (el) el.style.pointerEvents = 'none';
-      }
-    });
-    this.removeEventListener('scroll', onFirstScroll);
-  }
-}, { passive:true });
+
 
 /* ════════════════════════════════════════════════
    TICKER + QUESTIONS
