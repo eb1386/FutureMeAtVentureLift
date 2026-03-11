@@ -90,24 +90,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
      is what causes the double-flash / jump */
 }
 
-/* Workshop cards/header pre-hidden via CSS so GSAP snap at call-time
-   never causes a visible flash. The .ws-ready class is added by JS
-   immediately before the animation starts, handing control to GSAP. */
-#workshopsHeader,
-#wRow1 .workshop-card,
-#wRow2 .workshop-card,
-#wRow3 .workshop-card {
-  opacity: 0;
-  transform: translateY(44px);
-  transition: none; /* GSAP controls this, not CSS */
-}
-/* Once JS takes over, clear the CSS initial state */
-.ws-ready #workshopsHeader,
-.ws-ready #wRow1 .workshop-card,
-.ws-ready #wRow2 .workshop-card,
-.ws-ready #wRow3 .workshop-card {
-  /* GSAP inline styles take over — nothing needed here */
-}
+
 
 /* ─── HERO ─────────────────────────────────────── */
 .hero {
@@ -150,20 +133,23 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   padding:0 clamp(16px,4vw,40px); width:100%;
 }
 .hero-bottom-links {
-  position:absolute; bottom:clamp(20px,4.2vw,40px);
-  display:flex; gap:clamp(10px,3vw,40px);
+  position:absolute;
+  /* nav bar is 46px fixed at top; hero fills 100svh below it.
+     bottom:0 of the hero = bottom of viewport. Add enough room. */
+  bottom:clamp(56px,7vw,72px);
+  display:flex; gap:0;
   font-size:clamp(0.55rem,1.5vw,0.8rem); z-index:10;
-  justify-content:center; padding:0 clamp(12px,3vw,20px);
+  justify-content:space-between; padding:0 clamp(24px,5vw,60px);
   width:100%; flex-wrap:nowrap;
 }
 .hero-bottom-links a {
   color:#fff; text-decoration:none; font-weight:700;
   display:inline-flex; align-items:center; gap:4px;
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
-  white-space:nowrap;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1), opacity .2s;
+  white-space:nowrap; opacity:.82;
 }
+.hero-bottom-links a:hover { opacity:1; }
 .link-left:hover  { transform:translateX(-6px); }
-.link-down:hover  { transform:translateY(6px); }
 .link-right:hover { transform:translateX(6px); }
 .scroll-cue {
   position:absolute; bottom:clamp(20px,3.5vw,36px); left:50%; transform:translateX(-50%);
@@ -202,29 +188,40 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   position:relative; overflow:hidden;
 }
 .ticker-wrap {
-  position:absolute; top:0; left:0; right:0; height:52px;
-  overflow:hidden; background:rgba(0,0,0,.18);
-  display:flex; align-items:center; z-index:100;
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%);
-          mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%);
+  /* Vertical bar on the right side */
+  position:absolute; right:0; top:0; bottom:0; width:54px;
+  overflow:hidden; background:rgba(0,0,0,.22);
+  display:flex; justify-content:center; align-items:stretch; z-index:100;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 12%,#000 88%,transparent 100%);
+          mask-image:linear-gradient(to bottom,transparent 0%,#000 12%,#000 88%,transparent 100%);
 }
-.ticker-track { display:flex; align-items:center; white-space:nowrap; will-change:transform; }
+.ticker-track {
+  display:flex; flex-direction:column; align-items:center;
+  will-change:transform;
+}
 .ticker-item {
-  font-size:clamp(.78rem,1.1vw,.92rem); font-weight:800; letter-spacing:.2em;
-  color:rgba(255,255,255,.25); padding:0 clamp(22px,3.5vw,48px);
-  text-transform:uppercase; white-space:nowrap; display:inline-block; flex-shrink:0;
-  transition:color .5s, text-shadow .5s, transform .5s;
+  font-size:clamp(.58rem,.75vw,.72rem); font-weight:800; letter-spacing:.18em;
+  color:rgba(255,255,255,.22);
+  padding:clamp(16px,2.2vh,26px) 0;
+  text-transform:uppercase; white-space:nowrap;
+  writing-mode:vertical-rl; text-orientation:mixed;
+  display:block; flex-shrink:0;
+  transition:color .45s, text-shadow .45s, transform .45s;
 }
 .ticker-item.lit {
   color:#fff;
-  text-shadow:0 0 24px rgba(255,255,255,.9), 0 0 56px rgba(255,110,110,.5);
-  transform:scale(1.1);
+  text-shadow:0 0 18px rgba(255,255,255,.95), 0 0 44px rgba(255,110,110,.5);
+  transform:scale(1.12);
 }
-.ticker-sep { color:rgba(255,255,255,.12); font-size:.5rem; padding:0 4px; user-select:none; display:inline-block; flex-shrink:0; }
+.ticker-sep {
+  color:rgba(255,255,255,.1); font-size:.38rem;
+  padding:3px 0; user-select:none;
+  writing-mode:vertical-rl; display:block; flex-shrink:0;
+}
 .question-stage {
   position:absolute; inset:0; overflow:hidden; pointer-events:none;
   display:flex; align-items:center; justify-content:flex-start;
-  padding:64px clamp(20px,7vw,90px) 20px clamp(20px,5vw,52px);
+  padding:64px 70px 20px clamp(20px,5vw,52px); /* 70px right clears the vertical ticker bar */
 }
 #questionText {
   font-size:clamp(2rem,7.5vw,8rem); font-weight:900; line-height:1.04;
@@ -376,6 +373,20 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 
 /* ─── APPLY SECTION ────────────────────────────── */
 .apply-section { position:relative; background:var(--dark); width:100%; overflow:hidden; }
+
+/* ─── EXTRA ANIMATION CLASSES ───────────────────── */
+.content-section::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:rgba(255,255,255,.15);
+  transform:scaleY(0); transform-origin:top center;
+  transition:transform 1.2s cubic-bezier(.16,1,.3,1);
+}
+.content-section.in-view::before { transform:scaleY(1); }
+.intro-particle {
+  position:absolute; border-radius:50%;
+  background:rgba(255,255,255,.06);
+  pointer-events:none; will-change:transform;
+}
 .apply-section::before {
   content:''; position:absolute; inset:0; z-index:0;
   background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px); background-size:32px 32px;
@@ -476,6 +487,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
     </div>
     <div class="hero-bottom-links">
       <a href="https://www.venturelift.org/program" class="link-left">← Read the Official Announcement</a>
+      <a href="#introWrapper" class="link-down" onclick="event.preventDefault();(function(){var w=document.getElementById('introWrapper');var room=w.offsetHeight-window.innerHeight;homeEl.scrollTo({top:w.offsetTop+room*0.08,behavior:'smooth'});})();">Learn More ↓</a>
       <a href="https://pci.jotform.com/form/253202199664258" class="link-right">Send in Your Application Today →</a>
     </div>
   </section>
@@ -791,12 +803,12 @@ const copy1Items = Array.from(track.querySelectorAll('.ticker-item[data-copy="1"
 
 /* Wait for fonts + layout */
 requestAnimationFrame(() => requestAnimationFrame(() => {
-  const wrapMid = track.parentElement.offsetWidth / 2;
-  const trackW  = track.scrollWidth / 4;
-  const centreX = copy1Items.map(el => wrapMid - (el.offsetLeft + el.offsetWidth / 2));
+  const wrapMid = track.parentElement.offsetHeight / 2;
+  const trackH  = track.scrollHeight / 4;
+  const centreX = copy1Items.map(el => wrapMid - (el.offsetTop + el.offsetHeight / 2));
 
-  /* Phase 1 initial position — updated live in onScroll below */
-  gsap.set(track, { x: centreX[0] + trackW * 0.55 });
+  /* Phase 1 initial position */
+  gsap.set(track, { y: centreX[0] + trackH * 0.4 });
 
   /* Phase 2: sticky scroll — no GSAP pin, no DOM mutations, no layout jump.
      #intro is position:sticky inside #introWrapper which is tall enough
@@ -817,8 +829,8 @@ requestAnimationFrame(() => requestAnimationFrame(() => {
     /* Phase 1 override: before wrapper, also drive hero ticker */
     if (homeEl.scrollTop < wrapTop) {
       const heroProgress = Math.max(0, Math.min(1, homeEl.scrollTop / wrapTop));
-      const startX = centreX[0] + trackW * 0.55;
-      gsap.set(track, { x: startX + (centreX[0] - startX) * heroProgress });
+      const startY = centreX[0] + trackH * 0.4;
+      gsap.set(track, { y: startY + (centreX[0] - startY) * heroProgress });
     }
 
     if (progress <= 0) {
@@ -837,7 +849,7 @@ requestAnimationFrame(() => requestAnimationFrame(() => {
     const hi  = Math.min(lo + 1, TOTAL - 1);
     const frac = t - lo;
 
-    gsap.set(track, { x: centreX[lo] + (centreX[hi] - centreX[lo]) * frac });
+    gsap.set(track, { y: centreX[lo] + (centreX[hi] - centreX[lo]) * frac });
 
     const textIdx = lo === TOTAL - 1 ? TOTAL - 1 : lo;
 
@@ -877,6 +889,106 @@ requestAnimationFrame(() => requestAnimationFrame(() => {
   onScroll();
 }));
 
+/* ── Extra animations ── */
+
+/* 1. Floating particles in the red intro section */
+(function() {
+  const intro = document.querySelector('.sticky-visuals');
+  for (let i = 0; i < 9; i++) {
+    const p = document.createElement('div');
+    p.className = 'intro-particle';
+    const size = 6 + Math.random() * 18;
+    p.style.cssText = `width:${size}px;height:${size}px;
+      left:${5 + Math.random()*85}%;top:${10+Math.random()*75}%;`;
+    intro.appendChild(p);
+    gsap.to(p, {
+      y: -30 - Math.random()*50, x: (Math.random()-.5)*30,
+      opacity: 0,
+      duration: 3 + Math.random()*4, ease:'power1.inOut',
+      repeat:-1, yoyo:true, delay: Math.random()*4
+    });
+  }
+})();
+
+/* 2. Subtle parallax on hero background */
+homeEl.addEventListener('scroll', () => {
+  const bg = document.querySelector('.hero-bg');
+  if (bg) bg.style.transform = `translateY(${homeEl.scrollTop * 0.18}px)`;
+}, { passive:true });
+
+/* 3. Stagger-reveal the apply section words */
+ScrollTrigger.create({
+  scroller: homeEl,
+  trigger: '#apply-home', start:'top 80%',
+  once: true,
+  onEnter: () => {
+    gsap.from('.apply-word-apply', { x:-30, opacity:0, duration:0.9, ease:'power3.out' });
+    gsap.from('.apply-word-now',   { x:30,  opacity:0, duration:0.9, ease:'power3.out', delay:0.12 });
+  }
+});
+
+/* 4. Red accent line on copy section */
+ScrollTrigger.create({
+  scroller: homeEl,
+  trigger: '#copy-section', start:'top 75%',
+  once: true,
+  onEnter: () => document.querySelector('.content-section')?.classList.add('in-view')
+});
+
+/* 5. Subtle red-glow pulse on the red-box in the hero */
+gsap.to('.red-box', {
+  boxShadow:'0 0 60px 12px rgba(204,9,47,.45)', duration:2.2,
+  ease:'sine.inOut', repeat:-1, yoyo:true, delay:1.5
+});
+
+/* 6. Hero top-text subtle shimmer — letters drift very slightly */
+gsap.to('.hero-top-text', {
+  y: -4, opacity:0.75, duration:3.5,
+  ease:'sine.inOut', repeat:-1, yoyo:true, delay:2
+});
+
+/* 7. Separator lines pulse gently */
+gsap.to('.sep', {
+  opacity:0.4, duration:2, ease:'sine.inOut',
+  repeat:-1, yoyo:true, stagger:0.6, delay:1
+});
+
+/* 8. Sub-logos gentle float */
+gsap.to('.sub-logos', {
+  y: -5, duration:3.2,
+  ease:'sine.inOut', repeat:-1, yoyo:true, delay:0.8
+});
+
+/* 9. Scroll-linked hero content fade — everything gently fades as user scrolls away */
+homeEl.addEventListener('scroll', () => {
+  const heroH  = document.getElementById('hero').offsetHeight;
+  const fade   = Math.max(0, 1 - homeEl.scrollTop / (heroH * 0.55));
+  const logoC  = document.querySelector('.logo-container');
+  const topTxt = document.querySelector('.hero-top-text');
+  const botLnk = document.querySelector('.hero-bottom-links');
+  if (logoC)  logoC.style.opacity  = fade;
+  if (topTxt) topTxt.style.opacity = fade;
+  if (botLnk) botLnk.style.opacity = fade;
+}, { passive:true });
+
+/* 10. Intro question text — subtle scale pulse on each new question */
+const _origOnScroll = onScroll;
+// Augment: after question changes, do a tiny scale pop on questionText
+let _lastTextForPop = -1;
+homeEl.addEventListener('scroll', () => {
+  const wrapper    = document.getElementById('introWrapper');
+  if (!wrapper) return;
+  const wrapTop    = wrapper.offsetTop;
+  const scrollRoom = PIN_EXTRA * window.innerHeight;
+  const progress   = Math.max(0, Math.min(1, (homeEl.scrollTop - wrapTop) / scrollRoom));
+  const t          = progress * (TOTAL - 1);
+  const textIdx    = Math.min(Math.floor(t), TOTAL - 1);
+  if (textIdx !== _lastTextForPop && progress > 0) {
+    _lastTextForPop = textIdx;
+    gsap.fromTo('#questionText', { scale:1.04 }, { scale:1, duration:0.5, ease:'power2.out' });
+  }
+}, { passive:true });
+
 /* ════════════════════════════════════════════════
    HOME SCROLL ANIMATIONS
 ════════════════════════════════════════════════ */
@@ -901,20 +1013,12 @@ ScrollTrigger.create({
 /* ════════════════════════════════════════════════
    WORKSHOPS ENTRY ANIMATION (runs once on first open)
 ════════════════════════════════════════════════ */
-let workshopsAnimated = false;
 function animateWorkshops() {
-  if (workshopsAnimated) return;
-  workshopsAnimated = true;
+  /* Kill any running tweens, snap to start, then animate in fresh every time */
+  gsap.killTweensOf(['#workshopsHeader','#wRow1 .workshop-card','#wRow2 .workshop-card','#wRow3 .workshop-card']);
+  gsap.set('#workshopsHeader', { opacity:0, y:28 });
+  gsap.set(['#wRow1 .workshop-card','#wRow2 .workshop-card','#wRow3 .workshop-card'], { opacity:0, y:44 });
 
-  /* Hand control from CSS to GSAP — add class so CSS initial-state rules
-     no longer interfere, then GSAP sets its own inline opacity/transform */
-  document.querySelector('.workshops-section').closest('#view-workshops').classList.add('ws-ready');
-
-  /* gsap.set syncs GSAP's state with where CSS left elements (opacity:0, y:44) */
-  gsap.set('#workshopsHeader', { opacity:0, y:28, clearProps:'none' });
-  gsap.set(['#wRow1 .workshop-card','#wRow2 .workshop-card','#wRow3 .workshop-card'], { opacity:0, y:44, clearProps:'none' });
-
-  /* Now animate in */
   gsap.to('#workshopsHeader',      { opacity:1, y:0, duration:0.7, ease:'power3.out', delay:0.05 });
   gsap.to('#wRow1 .workshop-card', { opacity:1, y:0, duration:0.8, ease:'power3.out', delay:0.18 });
   gsap.to('#wRow2 .workshop-card', { opacity:1, y:0, duration:0.8, ease:'power3.out', stagger:0.13, delay:0.30 });
