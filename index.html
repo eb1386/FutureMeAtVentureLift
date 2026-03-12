@@ -59,6 +59,11 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   transition:background .2s, transform .2s;
 }
 .nav-apply-btn:hover { background:#a8021f; transform:translateY(-1px); }
+@media(max-width:600px) {
+  #topnav { justify-content:center; }
+  .nav-tabs { flex:0 0 auto; }
+  .nav-tab { padding:0 clamp(10px,4vw,20px); font-size:.52rem; }
+}
 
 /* ─── VIEW SYSTEM ─────────────────────────────── */
 .view {
@@ -142,11 +147,10 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 .link-right:hover { transform:translateX(6px); }
 @media(max-width:768px) { .hero-bottom-links { display:none; } }
 
-/* ─── INTRO / TICKER ───────────────────────────── */
+/* ─── INTRO ──────────────────────────────────────── */
 .intro-wrapper {
   background:var(--red);
   position:relative;
-  /* No z-index here — let content-section sit flush below it */
 }
 .intro-section {
   position:sticky; top:0;
@@ -161,64 +165,36 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   position:relative;
 }
 
-/* Ticker: vertical on desktop, horizontal at bottom on mobile */
-.ticker-wrap {
-  position:absolute; right:0; top:0; bottom:0; width:54px;
-  overflow:hidden;
-  background:rgba(0,0,0,.22); /* dark strip on the red bg — fine */
-  display:flex; justify-content:center; align-items:stretch; z-index:100;
-  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 12%,#000 88%,transparent 100%);
-          mask-image:linear-gradient(to bottom,transparent 0%,#000 12%,#000 88%,transparent 100%);
+/* ─── HYPHEN INDICATOR ──────────────────────────── */
+.hyphen-indicator {
+  position:absolute; right:clamp(20px,4vw,52px); top:50%; transform:translateY(-50%);
+  display:flex; flex-direction:column; align-items:flex-end;
+  gap:clamp(10px,1.6vh,18px); z-index:100; pointer-events:none;
 }
-.ticker-track {
-  display:flex; flex-direction:column; align-items:center;
-  will-change:transform;
+.hyphen-indicator span {
+  display:block;
+  width:clamp(14px,2.2vw,26px); height:2px;
+  background:rgba(255,255,255,.22);
+  border-radius:2px;
+  transform-origin:right center;
+  transition:width .45s cubic-bezier(.34,1.56,.64,1), background .45s;
 }
-.ticker-item {
-  font-size:clamp(.52rem,.75vw,.72rem); font-weight:800; letter-spacing:.18em;
-  color:rgba(255,255,255,.22);
-  padding:clamp(14px,2.2vh,26px) 0;
-  text-transform:uppercase; white-space:nowrap;
-  writing-mode:vertical-rl; text-orientation:mixed;
-  display:block; flex-shrink:0;
-  transition:color .45s, text-shadow .45s, transform .45s;
+.hyphen-indicator span.active {
+  width:clamp(28px,4.5vw,52px);
+  background:#fff;
 }
-.ticker-item.lit {
-  color:#fff;
-  text-shadow:0 0 18px rgba(255,255,255,.95), 0 0 44px rgba(255,110,110,.5);
-  transform:scale(1.12);
-}
-.ticker-sep {
-  color:rgba(255,255,255,.1); font-size:.38rem;
-  padding:3px 0; user-select:none;
-  writing-mode:vertical-rl; display:block; flex-shrink:0;
-}
-
-/* Mobile ticker: horizontal strip at bottom */
 @media(max-width:600px) {
-  .ticker-wrap {
-    right:0; left:0; top:auto; bottom:0;
-    width:100%; height:40px;
-    flex-direction:row; align-items:center;
-    -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
-            mask-image:linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
-    overflow:hidden;
-  }
-  .ticker-track { flex-direction:row; align-items:center; }
-  .ticker-item { writing-mode:horizontal-tb; padding:0 clamp(12px,3vw,20px); font-size:.5rem; }
-  .ticker-sep  { writing-mode:horizontal-tb; padding:0 4px; }
+  .hyphen-indicator { display:none; }
 }
 
 .question-stage {
   position:absolute; inset:0; overflow:hidden; pointer-events:none;
   display:flex; align-items:center; justify-content:flex-start;
-  /* On mobile leave room at bottom for ticker strip, reduce right padding */
-  padding:clamp(16px,5vw,64px) clamp(16px,8vw,70px) clamp(56px,8vw,20px) clamp(16px,5vw,52px);
+  padding:clamp(16px,5vw,64px) clamp(16px,8vw,70px) clamp(16px,8vw,20px) clamp(16px,5vw,52px);
 }
 @media(max-width:600px) {
   .question-stage {
-    /* Extra bottom padding for horizontal ticker */
-    padding:20px 16px 56px 16px;
+    padding:20px 16px 20px 16px;
     align-items:center;
     justify-content:center;
     text-align:center;
@@ -265,7 +241,6 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   letter-spacing:.14em; text-transform:uppercase; font-family:var(--font);
   background:transparent; cursor:pointer; align-self:flex-start;
   margin-top:clamp(4px,1vw,12px); transition:background .2s, border-color .2s;
-  /* Bigger tap target on mobile */
   min-height:44px;
 }
 .copy-workshops-btn:hover { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.5); }
@@ -354,7 +329,6 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   transition:filter .5s;
 }
 .workshop-card:hover .workshop-photo { filter:grayscale(0%) brightness(1); }
-/* Explicitly enforce portrait 4:5 on every screen size — beats any inline styles */
 @media(max-width:768px) {
   .workshop-photo { aspect-ratio:4/5 !important; }
   .workshop-photo-placeholder { aspect-ratio:4/5 !important; }
@@ -466,7 +440,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   letter-spacing:.1em; text-transform:uppercase;
   padding:clamp(13px,1.8vw,18px) clamp(24px,4.5vw,56px);
   transition:background .22s, color .22s, transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
-  min-height:48px; /* tap target */
+  min-height:48px;
 }
 .apply-btn:hover { background:var(--red); color:#fff; transform:translateY(-3px); box-shadow:0 14px 40px rgba(204,9,47,.4); }
 .apply-btn svg { width:14px; height:14px; stroke:currentColor; stroke-width:2.5; fill:none; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
@@ -531,7 +505,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
     <div class="hero-top-text">
       Introducing Your <strong>Three-Day</strong> Personal Finance Summer Program<br>
       Designed Around Life's Biggest Milestones &amp; Challenges<br>
-      By St. George's School &bull; Now Calling All Ambitious Rising Grades 8–10 Everywhere<br>
+      By St. George's School &bull; Now Calling All Ambitious Rising Grades 8–11 Everywhere<br>
       Program fee: $25 to apply - $799 + GST per student &nbsp;&bull;&nbsp; Spaces are limited — apply early
     </div>
     <div class="logo-container">
@@ -554,8 +528,8 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   <div class="intro-wrapper" id="introWrapper">
     <section id="intro" class="intro-section">
       <div class="sticky-visuals">
-        <div class="ticker-wrap"><div class="ticker-track" id="tickerTrack"></div></div>
         <div class="question-stage"><div id="questionText"></div></div>
+        <div class="hyphen-indicator" id="hyphenIndicator"></div>
       </div>
     </section>
   </div>
@@ -580,7 +554,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         <span class="apply-word-apply">Apply</span>
         <span class="apply-word-now">Now.</span>
       </div>
-      <p class="apply-sub" id="applySub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8–10, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
+      <p class="apply-sub" id="applySub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8–11, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
       <p class="apply-cost" id="applyCost">Program fee: $25 to apply - $799 + GST per student — early applications are encouraged.</p>
       <a href="https://pci.jotform.com/form/253202199664258" class="apply-btn" id="applyBtn">
         Send In Your Application
@@ -713,7 +687,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         <span class="apply-word-apply">Apply</span>
         <span class="apply-word-now">Now.</span>
       </div>
-      <p class="apply-sub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8–10, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
+      <p class="apply-sub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8–11, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
       <p class="apply-cost">Program fee: $25 to apply - $799 + GST per student &nbsp;&bull;&nbsp; Spaces are limited — early applications are encouraged.</p>
       <a href="https://pci.jotform.com/form/253202199664258" class="apply-btn">
         Send In Your Application
@@ -803,9 +777,7 @@ gsap.timeline({ defaults:{ ease:'power3.out' } })
   .from('.hero-bottom-links', { opacity:0, duration:0.9 }, '-=0.7');
 
 /* ═══════════════════════════════════════════
-   TICKER + QUESTIONS
-   - Desktop: vertical ticker on right, text left-aligned
-   - Mobile:  horizontal ticker at bottom, text centered
+   QUESTIONS + HYPHEN INDICATOR
 ═══════════════════════════════════════════ */
 const QUESTIONS = [
   { label:'NEW CAR',     text:'How do I save up for a new car?' },
@@ -816,70 +788,31 @@ const QUESTIONS = [
   { label:'MORTGAGE',    text:'Is right now even a good time to get a mortgage?' },
 ];
 const TOTAL     = QUESTIONS.length;
-const PIN_EXTRA = TOTAL * 0.28;
+const PIN_EXTRA = TOTAL * 0.22;
+const qEl       = document.getElementById('questionText');
 
-const track = document.getElementById('tickerTrack');
-const qEl   = document.getElementById('questionText');
+/* Build hyphen indicators — desktop only */
+const hyphenEl = document.getElementById('hyphenIndicator');
+if (!isMobile()) {
+  QUESTIONS.forEach(() => {
+    const s = document.createElement('span');
+    hyphenEl.appendChild(s);
+  });
+}
+const hyphens = Array.from(hyphenEl.querySelectorAll('span'));
 
-/* Build ticker HTML */
-(function() {
-  let h = '';
-  for (let copy = 0; copy < 4; copy++) {
-    QUESTIONS.forEach((q, i) => {
-      h += `<span class="ticker-item" data-idx="${i}" data-copy="${copy}">${q.label}</span>`;
-      h += `<span class="ticker-sep">&mdash;</span>`;
-    });
-  }
-  track.innerHTML = h;
-})();
-
-/* ─── Shared scroll logic ─── */
-function initTickerScroll() {
-  const mobile = isMobile();
-  const copy1Items = Array.from(track.querySelectorAll('.ticker-item[data-copy="1"]'));
-
+(function initQuestionScroll() {
   requestAnimationFrame(() => requestAnimationFrame(() => {
     const wrapper    = document.getElementById('introWrapper');
     const scrollRoom = PIN_EXTRA * window.innerHeight;
-    /* Wrapper = viewport height (for the sticky pin) + extra scroll room for questions */
     wrapper.style.height = (window.innerHeight + scrollRoom) + 'px';
-
-    /* For mobile: measure offsetLeft, for desktop: offsetTop */
-    const wrapSize = mobile
-      ? track.parentElement.offsetWidth / 2
-      : track.parentElement.offsetHeight / 2;
-
-    const trackTotal = mobile
-      ? track.scrollWidth / 4
-      : track.scrollHeight / 4;
-
-    const centres = copy1Items.map(el => mobile
-      ? wrapSize - (el.offsetLeft + el.offsetWidth / 2)
-      : wrapSize - (el.offsetTop  + el.offsetHeight / 2)
-    );
-
-    /* Set initial position */
-    if (mobile) {
-      gsap.set(track, { x: centres[0] + trackTotal * 0.4, y: 0 });
-    } else {
-      gsap.set(track, { y: centres[0] + trackTotal * 0.4, x: 0 });
-    }
 
     let lastIdx = -1;
 
     function onScroll() {
-      const wrapTop    = wrapper.offsetTop;
-      const scrolled   = homeEl.scrollTop - wrapTop;
-      const progress   = Math.max(0, Math.min(1, scrolled / scrollRoom));
-
-      /* Before wrapper: parallax drive */
-      if (homeEl.scrollTop < wrapTop) {
-        const heroProgress = Math.max(0, Math.min(1, homeEl.scrollTop / wrapTop));
-        const startVal = centres[0] + trackTotal * 0.4;
-        const val = startVal + (centres[0] - startVal) * heroProgress;
-        if (mobile) gsap.set(track, { x: val });
-        else        gsap.set(track, { y: val });
-      }
+      const wrapTop  = wrapper.offsetTop;
+      const scrolled = homeEl.scrollTop - wrapTop;
+      const progress = Math.max(0, Math.min(1, scrolled / scrollRoom));
 
       if (progress <= 0) {
         if (lastIdx !== -1) {
@@ -887,28 +820,15 @@ function initTickerScroll() {
           qEl.style.transition = 'none';
           qEl.style.opacity = '0';
           qEl.textContent = '';
-          track.querySelectorAll('.ticker-item').forEach(el => el.classList.remove('lit'));
+          hyphens.forEach(h => h.classList.remove('active'));
         }
         return;
       }
 
-      const t      = progress * (TOTAL - 1);
-      const lo     = Math.floor(t);
-      const hi     = Math.min(lo + 1, TOTAL - 1);
-      const frac   = t - lo;
+      const textIdx = Math.min(Math.floor(progress * TOTAL), TOTAL - 1);
 
-      const posLo = centres[lo];
-      const posHi = centres[hi];
-      const val   = posLo + (posHi - posLo) * frac;
-
-      if (mobile) gsap.set(track, { x: val });
-      else        gsap.set(track, { y: val });
-
-      const textIdx = lo === TOTAL - 1 ? TOTAL - 1 : lo;
-
-      track.querySelectorAll('.ticker-item').forEach(el =>
-        el.classList.toggle('lit', +el.dataset.idx === textIdx)
-      );
+      /* Update hyphen indicator */
+      hyphens.forEach((h, i) => h.classList.toggle('active', i === textIdx));
 
       if (textIdx !== lastIdx) {
         const prev = lastIdx;
@@ -935,30 +855,14 @@ function initTickerScroll() {
             qEl.style.filter = 'blur(0px)';
           }, 120);
         }
-
-        /* Scale pop on question change */
         gsap.fromTo('#questionText', { scale:1.04 }, { scale:1, duration:0.5, ease:'power2.out' });
       }
     }
 
-    homeEl.addEventListener('scroll', onScroll, { passive: true });
+    homeEl.addEventListener('scroll', onScroll, { passive:true });
     onScroll();
   }));
-}
-
-initTickerScroll();
-
-/* Re-init on resize crossing the mobile breakpoint */
-let _lastMobile = isMobile();
-window.addEventListener('resize', () => {
-  const nowMobile = isMobile();
-  if (nowMobile !== _lastMobile) {
-    _lastMobile = nowMobile;
-    /* Reset track transform, let initTickerScroll re-measure */
-    gsap.set(track, { x:0, y:0 });
-    initTickerScroll();
-  }
-});
+})();
 
 /* ═══════════════════════════════════════════
    EXTRA AMBIENT ANIMATIONS
@@ -967,7 +871,7 @@ window.addEventListener('resize', () => {
 /* Floating particles in sticky section */
 (function() {
   const intro = document.querySelector('.sticky-visuals');
-  const count = isMobile() ? 5 : 9; /* fewer on mobile for perf */
+  const count = isMobile() ? 5 : 9;
   for (let i = 0; i < count; i++) {
     const p = document.createElement('div');
     p.className = 'intro-particle';
@@ -984,7 +888,7 @@ window.addEventListener('resize', () => {
   }
 })();
 
-/* Parallax on hero background — reduced on mobile */
+/* Parallax on hero background */
 homeEl.addEventListener('scroll', () => {
   const bg = document.querySelector('.hero-bg');
   if (bg) {
