@@ -218,6 +218,87 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 #questionText::after { content:'|'; display:inline-block; color:rgba(255,255,255,.38); animation:blink .85s step-end infinite; margin-left:6px; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
+/* ─── KEYNOTE SECTION ───────────────────────────── */
+/*
+  Change --kp to adjust all gaps equally (edge + centre).
+  60px = current. Bigger = more breathing room.
+*/
+:root { --kp: 60px; }
+
+.keynote-section {
+  position:relative; background:var(--dark); width:100%; z-index:4; overflow:hidden;
+}
+.keynote-section::before {
+  content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.keynote-inner {
+  position:relative; z-index:1;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:var(--kp);
+  padding:var(--kp);
+  align-items:start;
+}
+.keynote-inner {
+  position:relative; z-index:1;
+  display:grid;
+  grid-template-columns:2fr 3fr;
+  gap:var(--kp);
+  padding:var(--kp);
+  align-items:center;
+}
+.keynote-photo-wrap {
+  position:relative; overflow:hidden;
+}
+.keynote-photo {
+  width:100%; height:auto; display:block;
+  object-position:center top;
+  filter:grayscale(10%) brightness(.9);
+  border-radius:2px;
+}
+.keynote-text {
+  display:flex; flex-direction:column; gap:clamp(6px,1vw,10px);
+  justify-content:center;
+  padding-right:clamp(48px,7vw,100px);
+}
+.keynote-eyebrow-line1 {
+  font-family:'Inter', sans-serif; font-size:.62rem; font-weight:700;
+  letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.45);
+  display:block;
+}
+.keynote-eyebrow-line1 .red { color:var(--red); }
+.keynote-eyebrow-line2 {
+  font-family:'Inter', sans-serif; font-size:.62rem; font-weight:700;
+  letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.35);
+  display:block;
+}
+.keynote-name {
+  font-family:'Abril Fatface', serif; font-weight:400;
+  font-size:clamp(1.6rem,3vw,3rem);
+  line-height:1.05; color:#fff; margin:0; letter-spacing:-.01em;
+  margin-top:clamp(8px,1.2vw,16px);
+}
+.keynote-role {
+  font-family:'Inter', sans-serif; font-size:clamp(.65rem,.82vw,.78rem);
+  font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+  color:rgba(255,255,255,.4); line-height:1.55;
+}
+.keynote-divider {
+  width:32px; height:1px; background:rgba(255,255,255,.18);
+  margin:clamp(8px,1.2vw,16px) 0;
+}
+.keynote-bio {
+  font-family:'Inter', sans-serif; font-size:clamp(.78rem,1vw,.9rem);
+  font-weight:400; line-height:1.85; color:rgba(255,255,255,.5);
+}
+.keynote-bio + .keynote-bio { margin-top:clamp(6px,.8vw,10px); }
+@media(max-width:680px) {
+  .keynote-inner { grid-template-columns:1fr; gap:calc(var(--kp) * 0.6); padding:calc(var(--kp) * 0.6); }
+  .keynote-photo-wrap { min-height:clamp(260px,60vw,380px); }
+}
+
 /* ─── COPY SECTION ─────────────────────────────── */
 .content-section {
   position:relative; background:var(--red); width:100%; z-index:4; overflow:hidden;
@@ -228,12 +309,19 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   padding:clamp(48px,10vw,130px) clamp(20px,7vw,80px);
 }
 .copy-left { display:flex; flex-direction:column; justify-content:center; gap:clamp(18px,2.8vw,36px); }
-.copy-eyebrow { font-size:.6rem; font-weight:800; letter-spacing:.28em; text-transform:uppercase; color:rgba(255,255,255,.35); }
-.copy-headline {
-  font-family:'Abril Fatface',serif; font-weight:400;
-  font-size:clamp(1.5rem,3.8vw,4.6rem); line-height:1.05; letter-spacing:-.02em; color:#fff;
+.copy-eyebrow {
+  font-family:'Inter', sans-serif; font-size:.62rem; font-weight:700;
+  letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.45);
+  display:block;
 }
-.copy-body { font-size:clamp(.9rem,1.4vw,1.15rem); font-weight:400; line-height:1.85; color:rgba(255,255,255,.6); }
+.copy-headline {
+  font-family:'Playfair Display', serif; font-style:italic; font-weight:700;
+  font-size:clamp(1.6rem,3.6vw,4.2rem); line-height:1.12; letter-spacing:-.01em; color:#fff;
+}
+.copy-body {
+  font-family:'Inter', sans-serif; font-size:clamp(.92rem,1.3vw,1.12rem);
+  font-weight:400; line-height:1.9; color:rgba(255,255,255,.58);
+}
 .copy-workshops-btn {
   display:inline-flex; align-items:center; gap:8px;
   border:1px solid rgba(255,255,255,.25); border-radius:2px;
@@ -279,29 +367,24 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 .workshops-title { font-family:'Abril Fatface',serif; font-weight:400; font-size:clamp(2rem,5vw,5.5rem); line-height:.95; letter-spacing:-.02em; color:#fff; }
 .workshops-title em { font-family:'Playfair Display',serif; font-style:italic; color:var(--red); }
 
-/* Card grid — 1 / 3 / 2 layout on desktop */
+/* Card grid — 2 rows of 3 equal columns */
 .workshops-row {
   display:flex; justify-content:center; gap:clamp(10px,2vw,24px);
   margin-bottom:clamp(10px,2vw,24px); flex-wrap:wrap;
 }
-.workshops-row.row-1 .workshop-card { max-width:480px; width:100%; }
-.workshops-row.row-2 .workshop-card { flex:1 1 260px; max-width:380px; }
-.workshops-row.row-3 .workshop-card { flex:1 1 260px; max-width:420px; }
+.workshops-row .workshop-card { flex:1 1 260px; max-width:380px; }
 
-/* Mobile: every card goes full-width, single column, photo landscape */
 @media(max-width:768px) {
   .workshops-row,
   .workshops-row.row-1,
-  .workshops-row.row-2,
-  .workshops-row.row-3 {
+  .workshops-row.row-2 {
     flex-direction:column;
     align-items:stretch;
     flex-wrap:nowrap;
   }
   .workshops-row .workshop-card,
   .workshops-row.row-1 .workshop-card,
-  .workshops-row.row-2 .workshop-card,
-  .workshops-row.row-3 .workshop-card {
+  .workshops-row.row-2 .workshop-card {
     max-width:100%;
     width:100%;
     flex:none;
@@ -426,11 +509,8 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   color:rgba(255,255,255,.42); max-width:520px; margin-bottom:clamp(14px,2vw,20px);
 }
 .apply-cost {
-  font-size:clamp(.82rem,1.2vw,1rem); line-height:1.7;
-  color:rgba(255,255,255,.55); max-width:520px; margin-bottom:clamp(28px,4.5vw,52px);
-  border:1px solid rgba(255,255,255,.14); border-radius:2px;
-  padding:clamp(12px,1.5vw,16px) clamp(16px,2vw,22px);
-  background:rgba(255,255,255,.04);
+  font-size:clamp(.8rem,1.1vw,.95rem); line-height:1.8;
+  color:rgba(255,255,255,.45); max-width:480px; margin-bottom:clamp(28px,4.5vw,52px);
 }
 .apply-cost strong { color:#fff; font-weight:800; }
 .apply-btn {
@@ -503,10 +583,10 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   <section id="hero" class="hero">
     <div class="hero-bg"></div>
     <div class="hero-top-text">
-      Introducing Your <strong>Three-Day</strong> Personal Finance Summer Program<br>
-      Designed Around Life's Biggest Milestones &amp; Challenges<br>
-      By St. George's School &bull; Now Calling All Ambitious Students in Grades 8-10 Everywhere<br>
-      Program fee: $25 to apply - $799 + GST per student &nbsp;&bull;&nbsp; Spaces are limited — apply early
+      A <strong>Three-Day</strong> Personal Finance Program for Rising Grades 8–10<br>
+      Learn the real costs of buying a car, a home, and understanding your first paycheque<br>
+      <strong>June 23–25 &nbsp;&bull;&nbsp; 8:00 AM – 3:00 PM</strong> &nbsp;&bull;&nbsp; St. George's School, Vancouver<br>
+      $25 application fee &nbsp;&bull;&nbsp; $799 + GST program fee &nbsp;&bull;&nbsp; Spaces are limited — apply early
     </div>
     <div class="logo-container">
       <div class="red-box">
@@ -519,7 +599,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
       </div>
     </div>
     <div class="hero-bottom-links">
-      <a href="https://www.venturelift.org/program" class="link-left">← Read the Official Announcement</a>
+      <a href="https://www.stgeorges.bc.ca" class="link-left">← St. George's School</a>
       <a href="#introWrapper" class="link-down" onclick="event.preventDefault();(function(){var w=document.getElementById('introWrapper');var room=w.offsetHeight-window.innerHeight;homeEl.scrollTo({top:w.offsetTop+room*0.08,behavior:'smooth'});})();">Learn More ↓</a>
       <a href="https://pci.jotform.com/form/253202199664258" class="link-right">Send in Your Application Today →</a>
     </div>
@@ -539,11 +619,32 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
       <div class="copy-left" id="copyLeft">
         <span class="copy-eyebrow" id="copyEyebrow">Why It Matters</span>
         <p class="copy-headline" id="copyHeadline">These are all questions about personal finance that seem daunting to someone who's just starting to handle being self-reliant for the first time.</p>
-        <p class="copy-body" id="copyBody">And they're important questions too — financial freedom is a skill that needs to be trained from very early on — far before you ever land a job or get your first cheque.</p>
+        <p class="copy-body" id="copyBody">Life after graduation comes with opportunities — and price tags. Does your child know the real costs, fine print, and hidden expenses behind buying a car or a home? When they land their first job, would you like them to understand how a paycheque really works?</p>
         <button class="copy-workshops-btn" id="copyBtn" onclick="showView('workshops')">
           Workshop Leaders
           <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="keynote-section" class="keynote-section">
+    <div class="keynote-inner" id="keynoteInner">
+      <div class="keynote-photo-wrap">
+        <img src="jeff-maclean.png" alt="Jeff MacLean" class="keynote-photo">
+      </div>
+      <div class="keynote-text">
+        <span class="keynote-eyebrow-line1">Announcing our <span class="red">Keynote Speaker</span></span>
+        <span class="keynote-eyebrow-line2">7:00 P.M. &nbsp;&bull;&nbsp; Wednesday, June 24th</span>
+        <h3 class="keynote-name">Jeff MacLean</h3>
+        <div class="keynote-role">
+          Senior Vice President of Manufacturing, The Shaw Group<br>
+          Former President, Michelin North America (Canada) Inc.
+        </div>
+        <div class="keynote-divider"></div>
+        <p class="keynote-bio">A seasoned industrial leader, Jeff MacLean brings over 30 years of global manufacturing and corporate governance experience to his role. As Senior Vice President of Manufacturing for The Shaw Group, he provides strategic oversight for eight divisions within one of Eastern Canada's leading community developers, residential builders and natural resource manufacturers.</p>
+        <p class="keynote-bio">A former President of Michelin North America (Canada) Inc., Mr. MacLean's career began in engineering as a co-op student in 1988 and expanded into international executive leadership in North America and Europe. He is an alumnus of Halifax's Saint Mary's University (Bachelor of Science) and Dalhousie University, where he completed his Engineering degree.</p>
+        <p class="keynote-bio">Beyond his professional life, Jeff remains deeply committed to his community, known for coaching youth sports, serving as Chair of Nova Scotia Business Inc., and as a passionate supporter of the Special Olympics. In his leisure time, he enjoys fishing and mountain biking.</p>
       </div>
     </div>
   </section>
@@ -554,8 +655,8 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         <span class="apply-word-apply">Apply</span>
         <span class="apply-word-now">Now.</span>
       </div>
-      <p class="apply-sub" id="applySub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students in Grades 8–10, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
-      <p class="apply-cost" id="applyCost">Program fee: $25 to apply - $799 + GST per student — early applications are encouraged.</p>
+      <p class="apply-sub" id="applySub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8–10, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
+      <p class="apply-cost" id="applyCost"><strong>$25</strong> to apply &nbsp;&bull;&nbsp; <strong>$799 + GST</strong> program fee upon acceptance &nbsp;&bull;&nbsp; Spaces are limited</p>
       <a href="https://pci.jotform.com/form/253202199664258" class="apply-btn" id="applyBtn">
         Send In Your Application
         <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -594,9 +695,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
           <img src="jee-woon.png" alt="Mr. Jee-Woon" class="workshop-photo" style="object-position:center 12%;">
           <div class="workshop-info">
             <span class="workshop-tag">Financial Literacy Counsel</span>
-            <div class="workshop-name-row">
-              <span class="workshop-name">Mr. Jee-Woon</span>
-            </div>
+            <div class="workshop-name-row"><span class="workshop-name">Mr. Jee-Woon</span></div>
             <div class="workshop-role">Financial Advisor &amp; Investment Specialist</div>
             <p class="workshop-desc">Jee-Woon brings specialized experience having provided financial education to Olympic athletes, the UBC School of Medicine, and major healthcare organizations. He empowers young professionals to master foundational money principles, helping them regain total control over their time and energy. A recognized voice in the industry, he has appeared in The Globe and Mail and amassed over half a million views for his digital content on financial literacy.</p>
             <div class="workshop-card-footer">
@@ -604,30 +703,14 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="workshops-row row-2" id="wRow2">
-        <div class="workshop-card">
-          <div class="workshop-photo-placeholder"><span>TBC</span></div>
-          <div class="workshop-info">
-            <span class="workshop-tag">In-depth Research</span>
-            <div class="workshop-name-row">
-              <span class="workshop-name">To Be Confirmed</span>
-            </div>
-            <div class="workshop-role">Workshop Leader</div>
-            <p class="workshop-desc">This workshop will cover the true costs of buying a car, from financing and insurance to depreciation and hidden fees, helping you make a confident and informed decision.</p>
-          </div>
-        </div>
 
         <div class="workshop-card">
           <img src="rosa.png" alt="Rosa Lenihan" class="workshop-photo" style="object-position:center 8%;">
           <div class="workshop-info">
             <span class="workshop-tag">Budget Formatting</span>
-            <div class="workshop-name-row">
-              <span class="workshop-name">Rosa Lenihan</span>
-            </div>
+            <div class="workshop-name-row"><span class="workshop-name">Rosa Lenihan</span></div>
             <div class="workshop-role">Founder / Owner &middot; Quantum Academy &amp; Quantum College</div>
-            <p class="workshop-desc">Born into a family of educators in Taiwan and a scholarship recipient at SUNY Buffalo, Rosa founded Quantum Academy in 2009 after building a reputation for high standards in Richmond and Vancouver. Her philosophy — that rigorous academics and community responsibility are inseparable — shaped an institution focused on university preparation alongside deep civic engagement.</p>
+            <p class="workshop-desc">Born into a family of educators in Taiwan and a scholarship recipient at SUNY Buffalo, Rosa founded Quantum Academy in 2009 after building a reputation for high standards in Richmond and Vancouver. Her philosophy, that rigorous academics and community responsibility are inseparable, shaped an institution focused on university preparation alongside deep civic engagement.</p>
             <div class="workshop-card-footer">
               <img src="logo-quantum.png" alt="Quantum Academy" class="workshop-company-logo">
             </div>
@@ -635,29 +718,10 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         </div>
 
         <div class="workshop-card">
-          <img src="jerry.png" alt="Jerry Hu" class="workshop-photo" style="object-position:center 8%;">
-          <div class="workshop-info">
-            <span class="workshop-tag">Tax &amp; Finance</span>
-            <div class="workshop-name-row">
-              <span class="workshop-name">Jerry Hu</span>
-            </div>
-            <div class="workshop-role">CPA &middot; Co-founder, Everplus CPA Ltd.</div>
-            <p class="workshop-desc">With nearly a decade of public practice experience including time at Ernst &amp; Young, Jerry advises individuals and small businesses on tax compliance, financial reporting, and estate planning. A 2023 graduate of the CPA In-Depth Tax Program, he specializes in Canadian corporate and personal tax planning, regularly supporting corporate reorganizations and succession planning for entrepreneurs and high-net-worth individuals.</p>
-            <div class="workshop-card-footer">
-              <img src="logo-everplus.png" alt="Everplus CPA Ltd." class="workshop-company-logo">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="workshops-row row-3" id="wRow3">
-        <div class="workshop-card">
           <img src="paisley.png" alt="Paisley Agnesini" class="workshop-photo" style="object-position:center 6%;">
           <div class="workshop-info">
             <span class="workshop-tag">Buying a House</span>
-            <div class="workshop-name-row">
-              <span class="workshop-name">Paisley Agnesini</span>
-            </div>
+            <div class="workshop-name-row"><span class="workshop-name">Paisley Agnesini</span></div>
             <div class="workshop-role">REALTOR&reg; &middot; RE/MAX City Realty</div>
             <p class="workshop-desc">Raised in New Westminster within a real estate family, Paisley developed hands-on mastery of property management long before earning her licence from the UBC Sauder School of Business. By 21 she had purchased her first home and successfully house hacked to build early equity. With a background in high-stakes contract negotiation from Vancouver's film industry, she now helps clients build long-term wealth through smart and transparent real estate decisions.</p>
             <div class="workshop-card-footer">
@@ -665,16 +729,39 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="workshops-row row-2" id="wRow2">
+        <div class="workshop-card">
+          <img src="jerry.png" alt="Jerry Hu" class="workshop-photo" style="object-position:center 8%;">
+          <div class="workshop-info">
+            <span class="workshop-tag">Tax &amp; Finance</span>
+            <div class="workshop-name-row"><span class="workshop-name">Jerry Hu</span></div>
+            <div class="workshop-role">CPA &middot; Co-founder, Everplus CPA Ltd.</div>
+            <p class="workshop-desc">With nearly a decade of public practice experience including time at Ernst &amp; Young, Jerry advises individuals and small businesses on tax compliance, financial reporting, and estate planning. A 2023 graduate of the CPA In-Depth Tax Program, he specializes in Canadian corporate and personal tax planning, regularly supporting corporate reorganizations and succession planning for entrepreneurs and high-net-worth individuals.</p>
+            <div class="workshop-card-footer">
+              <img src="logo-everplus.png" alt="Everplus CPA Ltd." class="workshop-company-logo">
+            </div>
+          </div>
+        </div>
+
+        <div class="workshop-card">
+          <div class="workshop-photo-placeholder"><span>TBC</span></div>
+          <div class="workshop-info">
+            <span class="workshop-tag">Buying a Car</span>
+            <div class="workshop-name-row"><span class="workshop-name">To Be Confirmed</span></div>
+            <div class="workshop-role">Workshop Leader</div>
+            <p class="workshop-desc">An in-depth look at what it really costs to own a vehicle, comparing new vs. used, lease vs. finance, and walking through insurance, maintenance, and depreciation curves.</p>
+          </div>
+        </div>
 
         <div class="workshop-card">
           <div class="workshop-photo-placeholder"><span>TBC</span></div>
           <div class="workshop-info">
             <span class="workshop-tag">In-depth Research</span>
-            <div class="workshop-name-row">
-              <span class="workshop-name">To Be Confirmed</span>
-            </div>
+            <div class="workshop-name-row"><span class="workshop-name">To Be Confirmed</span></div>
             <div class="workshop-role">Workshop Leader</div>
-            <p class="workshop-desc">This workshop will cover the true costs of buying a car, from financing and insurance to depreciation and hidden fees, helping you make a confident and informed decision.</p>
+            <p class="workshop-desc">This workshop covers the true costs of buying a car, from financing and insurance to depreciation and hidden fees, helping students make a confident and informed decision.</p>
           </div>
         </div>
       </div>
@@ -687,8 +774,8 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         <span class="apply-word-apply">Apply</span>
         <span class="apply-word-now">Now.</span>
       </div>
-      <p class="apply-sub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students in Grades 8–10, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
-      <p class="apply-cost">Program fee: $25 to apply - $799 + GST per student &nbsp;&bull;&nbsp; Spaces are limited — early applications are encouraged.</p>
+      <p class="apply-sub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8–10, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
+      <p class="apply-cost"><strong>$25</strong> to apply &nbsp;&bull;&nbsp; <strong>$799 + GST</strong> program fee upon acceptance &nbsp;&bull;&nbsp; Spaces are limited</p>
       <a href="https://pci.jotform.com/form/253202199664258" class="apply-btn">
         Send In Your Application
         <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -908,6 +995,14 @@ ScrollTrigger.create({
   }
 });
 
+gsap.set('#keynoteInner', { opacity:0, y:28 });
+ScrollTrigger.create({
+  scroller: homeEl,
+  trigger: '#keynote-section', start:'top 80%',
+  once: true,
+  onEnter: () => gsap.to('#keynoteInner', { opacity:1, y:0, duration:0.85, ease:'power3.out' })
+});
+
 /* Red accent line on copy section */
 ScrollTrigger.create({
   scroller: homeEl,
@@ -947,14 +1042,13 @@ ScrollTrigger.create({
    WORKSHOPS ENTRY ANIMATION
 ═══════════════════════════════════════════ */
 function animateWorkshops() {
-  gsap.killTweensOf(['#workshopsHeader','#wRow1 .workshop-card','#wRow2 .workshop-card','#wRow3 .workshop-card']);
+  gsap.killTweensOf(['#workshopsHeader','#wRow1 .workshop-card','#wRow2 .workshop-card']);
   gsap.set('#workshopsHeader', { opacity:0, y:28 });
-  gsap.set(['#wRow1 .workshop-card','#wRow2 .workshop-card','#wRow3 .workshop-card'], { opacity:0, y:44 });
+  gsap.set(['#wRow1 .workshop-card','#wRow2 .workshop-card'], { opacity:0, y:44 });
 
   gsap.to('#workshopsHeader',      { opacity:1, y:0, duration:0.7, ease:'power3.out', delay:0.05 });
-  gsap.to('#wRow1 .workshop-card', { opacity:1, y:0, duration:0.8, ease:'power3.out', delay:0.18 });
-  gsap.to('#wRow2 .workshop-card', { opacity:1, y:0, duration:0.8, ease:'power3.out', stagger:0.13, delay:0.30 });
-  gsap.to('#wRow3 .workshop-card', { opacity:1, y:0, duration:0.8, ease:'power3.out', stagger:0.13, delay:0.50 });
+  gsap.to('#wRow1 .workshop-card', { opacity:1, y:0, duration:0.8, ease:'power3.out', stagger:0.1, delay:0.18 });
+  gsap.to('#wRow2 .workshop-card', { opacity:1, y:0, duration:0.8, ease:'power3.out', stagger:0.1, delay:0.38 });
 }
 </script>
 </body>
