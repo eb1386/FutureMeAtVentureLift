@@ -78,6 +78,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 }
 #view-home      { z-index:10; }
 #view-workshops { z-index:9; }
+#view-schedule  { z-index:9; }
 
 .view--hidden {
   opacity:0;
@@ -479,6 +480,82 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   color:rgba(255,255,255,.7);
 }
 
+/* ─── SCHEDULE VIEW ────────────────────────────── */
+.schedule-section {
+  position:relative; background:var(--dark); width:100%; overflow:hidden;
+  padding-bottom:clamp(60px,8vw,100px);
+}
+.schedule-inner {
+  position:relative; z-index:1;
+  padding:clamp(48px,8vw,100px) clamp(14px,5vw,80px) 0;
+  max-width:1100px; margin:0 auto;
+}
+@media(max-width:768px) {
+  .schedule-inner { padding-left:14px; padding-right:14px; }
+}
+.schedule-header { margin-bottom:clamp(28px,4vw,52px); text-align:center; }
+.schedule-eyebrow {
+  display:block; font-size:.6rem; font-weight:800; letter-spacing:.28em; text-transform:uppercase;
+  color:rgba(255,255,255,.3); margin-bottom:clamp(10px,1.8vw,18px);
+}
+.schedule-title {
+  font-family:'Abril Fatface',serif; font-weight:400;
+  font-size:clamp(2rem,5vw,5.5rem); line-height:.95; letter-spacing:-.02em; color:#fff;
+}
+.schedule-title em { font-family:'Playfair Display',serif; font-style:italic; color:var(--red); }
+
+/* Plain disclaimer text, no box */
+.schedule-disclaimer {
+  max-width:680px; margin:0 auto clamp(36px,5vw,56px);
+  font-family:var(--font);
+  font-size:clamp(.78rem,.95vw,.88rem);
+  line-height:1.7; color:rgba(255,255,255,.5);
+  text-align:center;
+}
+
+/* Chart: 3 columns, one per day */
+.schedule-chart {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:clamp(20px,3vw,40px);
+}
+@media(max-width:768px) {
+  .schedule-chart { grid-template-columns:1fr; gap:clamp(20px,4vw,32px); }
+}
+.schedule-day-block {
+  border-top:1px solid rgba(255,255,255,.18);
+  padding-top:clamp(16px,1.8vw,22px);
+}
+.schedule-day-title {
+  font-family:var(--font);
+  font-size:clamp(.92rem,1.15vw,1.05rem);
+  font-weight:700; color:#fff;
+  margin-bottom:clamp(14px,1.6vw,20px);
+  letter-spacing:.01em;
+}
+.schedule-row {
+  display:flex; flex-direction:column;
+  gap:3px;
+  padding:clamp(10px,1vw,14px) 0;
+  font-family:var(--font);
+}
+.schedule-row + .schedule-row {
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.schedule-row-time {
+  font-size:clamp(.7rem,.82vw,.78rem);
+  font-weight:600;
+  color:rgba(255,255,255,.5);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.02em;
+}
+.schedule-row-label {
+  font-size:clamp(.82rem,.95vw,.9rem);
+  font-weight:500;
+  color:rgba(255,255,255,.85);
+  line-height:1.45;
+}
+
 /* ─── APPLY SECTION ────────────────────────────── */
 .apply-section { position:relative; background:var(--dark); width:100%; overflow:hidden; }
 .apply-section::before {
@@ -573,6 +650,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   <div class="nav-tabs">
     <div class="nav-tab active" id="tab-home"      onclick="showView('home')">Home</div>
     <div class="nav-tab"        id="tab-workshops" onclick="showView('workshops')">Workshop Leaders</div>
+    <div class="nav-tab"        id="tab-schedule"  onclick="showView('schedule')">Schedule</div>
   </div>
   <a href="https://pci.jotform.com/form/253202199664258" class="nav-apply-btn">Apply</a>
 </nav>
@@ -705,10 +783,10 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         </div>
 
         <div class="workshop-card">
-          <img src="rosa.png" alt="Ms. Rosa Lenihan" class="workshop-photo" style="object-position:center 8%;">
+          <img src="rosa.png" alt="Rosa Lenihan" class="workshop-photo" style="object-position:center 8%;">
           <div class="workshop-info">
             <span class="workshop-tag">Budget Formatting</span>
-            <div class="workshop-name-row"><span class="workshop-name">Ms. Rosa Lenihan</span></div>
+            <div class="workshop-name-row"><span class="workshop-name">Rosa Lenihan</span></div>
             <div class="workshop-role">Founder / Owner &middot; Quantum Academy &amp; Quantum College</div>
             <p class="workshop-desc">Born into a family of educators in Taiwan and a scholarship recipient at SUNY Buffalo, Rosa founded Quantum Academy in 2009 after building a reputation for high standards in Richmond and Vancouver. Her philosophy, that rigorous academics and community responsibility are inseparable, shaped an institution focused on university preparation alongside deep civic engagement.</p>
             <div class="workshop-card-footer">
@@ -718,10 +796,10 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         </div>
 
         <div class="workshop-card">
-          <img src="paisley.png" alt="Ms. Paisley Agnesini" class="workshop-photo" style="object-position:center 6%;">
+          <img src="paisley.png" alt="Paisley Agnesini" class="workshop-photo" style="object-position:center 6%;">
           <div class="workshop-info">
             <span class="workshop-tag">Buying a House</span>
-            <div class="workshop-name-row"><span class="workshop-name">Ms. Paisley Agnesini</span></div>
+            <div class="workshop-name-row"><span class="workshop-name">Paisley Agnesini</span></div>
             <div class="workshop-role">REALTOR&reg; &middot; RE/MAX City Realty</div>
             <p class="workshop-desc">Raised in New Westminster within a real estate family, Paisley developed hands-on mastery of property management long before earning her licence from the UBC Sauder School of Business. By 21 she had purchased her first home and successfully house hacked to build early equity. With a background in high-stakes contract negotiation from Vancouver's film industry, she now helps clients build long-term wealth through smart and transparent real estate decisions.</p>
             <div class="workshop-card-footer">
@@ -733,10 +811,10 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 
       <div class="workshops-row row-2" id="wRow2">
         <div class="workshop-card">
-          <img src="jerry.png" alt="Mr. Jerry Hu" class="workshop-photo" style="object-position:center 8%;">
+          <img src="jerry.png" alt="Jerry Hu" class="workshop-photo" style="object-position:center 8%;">
           <div class="workshop-info">
             <span class="workshop-tag">Tax &amp; Finance</span>
-            <div class="workshop-name-row"><span class="workshop-name">Mr. Jerry Hu</span></div>
+            <div class="workshop-name-row"><span class="workshop-name">Jerry Hu</span></div>
             <div class="workshop-role">CPA &middot; Co-founder, Everplus CPA Ltd.</div>
             <p class="workshop-desc">With nearly a decade of public practice experience including time at Ernst &amp; Young, Jerry advises individuals and small businesses on tax compliance, financial reporting, and estate planning. A 2023 graduate of the CPA In-Depth Tax Program, he specializes in Canadian corporate and personal tax planning, regularly supporting corporate reorganizations and succession planning for entrepreneurs and high-net-worth individuals.</p>
             <div class="workshop-card-footer">
@@ -746,20 +824,20 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         </div>
 
         <div class="workshop-card">
-          <img src="tracey.png" alt="Ms. Tracey Lee" class="workshop-photo" style="object-position:center 20%;">
+          <img src="tracey.png" alt="Tracey Lee" class="workshop-photo" style="object-position:center 20%;">
           <div class="workshop-info">
             <span class="workshop-tag">In-depth Research</span>
-            <div class="workshop-name-row"><span class="workshop-name">Ms. Tracey Lee</span></div>
+            <div class="workshop-name-row"><span class="workshop-name">Tracey Lee</span></div>
             <div class="workshop-role">M.Ed &middot; Registered Clinical Counsellor</div>
             <p class="workshop-desc">Tracey is a registered clinical counsellor with over 30 years of experience supporting youth and mentoring emerging professionals. Her extensive background in BC's public and independent schools is bolstered by her ability to teach in-depth research from diverse perspectives. Tracey has designed K&ndash;12 wellness programs, supervises university interns, and remains a dedicated advocate for student mental health. Beyond her clinical practice, Tracey is a lifelong mentor and elite debate coach, having led Team Canada to a World Schools Debate Championship in 2010. Her community impact has earned her the CSDF McLeese Award, the Vancouver Quadra Hidden Heroes Award, and Stanford University's J.E. Wallace Sterling Award.</p>
           </div>
         </div>
 
         <div class="workshop-card">
-          <img src="jeffrey.png" alt="Mr. Jeffrey Nelson" class="workshop-photo" style="object-position:center 15%;">
+          <img src="jeffrey.png" alt="Jeffrey Nelson" class="workshop-photo" style="object-position:center 15%;">
           <div class="workshop-info">
             <span class="workshop-tag">Buying a Car</span>
-            <div class="workshop-name-row"><span class="workshop-name">Mr. Jeffrey Nelson</span></div>
+            <div class="workshop-name-row"><span class="workshop-name">Jeffrey Nelson</span></div>
             <div class="workshop-role">Managing Partner &middot; Richmond Hyundai (Harris Auto)</div>
             <p class="workshop-desc">Jeffrey brings 20 years of Canadian automotive experience across both OEM and retail. As Managing Partner at Richmond Hyundai he built it into the top EV dealer in BC, executed a successful buy/sell, and grew market share in under three months. Earlier roles include General Manager at Volkswagen with Go Auto and Auto Canada, where he led two award-winning dealers and a team of 70, and 13.5 years at Mercedes-Benz Canada as Region Operations Manager for Western Canada, overseeing 18 dealers while the brand maintained #1 luxury manufacturer status.</p>
             <div class="workshop-card-footer">
@@ -802,6 +880,85 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   </footer>
 </div>
 
+<!-- SCHEDULE VIEW -->
+<div id="view-schedule" class="view view--hidden">
+
+  <section class="schedule-section">
+    <div class="schedule-inner">
+      <div class="schedule-header" id="scheduleHeader">
+        <span class="schedule-eyebrow">June 23&ndash;25, 2026</span>
+        <h2 class="schedule-title">The <em>schedule.</em></h2>
+      </div>
+
+      <p class="schedule-disclaimer">
+        Workshop start and end times are set. Topics and leader assignments are subject to change. Please check back upon arrival for the finalized schedule.
+      </p>
+
+      <div class="schedule-chart" id="scheduleChart">
+
+        <div class="schedule-day-block">
+          <div class="schedule-day-title">Tuesday, June 23</div>
+          <div class="schedule-row"><div class="schedule-row-time">8:30 AM</div><div class="schedule-row-label">Registration</div></div>
+          <div class="schedule-row"><div class="schedule-row-time">9:00 &ndash; 10:30</div><div class="schedule-row-label">Session 1 &middot; Tracey Lee</div></div>
+          <div class="schedule-row"><div class="schedule-row-time">10:40 &ndash; 12:00</div><div class="schedule-row-label">Session 2 &middot; Jerry Hu &amp; Mr. Jee-Woon</div></div>
+          <div class="schedule-row"><div class="schedule-row-time">12:00 &ndash; 1:00</div><div class="schedule-row-label">Lunch provided</div></div>
+          <div class="schedule-row"><div class="schedule-row-time">1:00 &ndash; 3:00</div><div class="schedule-row-label">Session 3 &middot; Jerry Hu, Mr. Jee-Woon &amp; Rosa Lenihan</div></div>
+        </div>
+
+        <div class="schedule-day-block">
+          <div class="schedule-day-title">Wednesday, June 24</div>
+          <div class="schedule-row"><div class="schedule-row-time">9:00 &ndash; 10:30</div><div class="schedule-row-label">Session 4</div></div>
+          <div class="schedule-row"><div class="schedule-row-time">10:40 &ndash; 12:00</div><div class="schedule-row-label">Session 5</div></div>
+          <div class="schedule-row"><div class="schedule-row-time">12:00 &ndash; 1:00</div><div class="schedule-row-label">Lunch provided</div></div>
+          <div class="schedule-row"><div class="schedule-row-time">1:00 &ndash; 2:30</div><div class="schedule-row-label">Session 6</div></div>
+          <div class="schedule-row"><div class="schedule-row-time">2:40 &ndash; 3:00</div><div class="schedule-row-label">Session 7</div></div>
+          <div class="schedule-row"><div class="schedule-row-time">3:00 &ndash; 5:00</div><div class="schedule-row-label">Team simulation</div></div>
+          <div class="schedule-row"><div class="schedule-row-time">5:00 &ndash; 7:00</div><div class="schedule-row-label">Networking dinner with mentors</div></div>
+          <div class="schedule-row"><div class="schedule-row-time">7:00 &ndash; 9:00</div><div class="schedule-row-label">Keynote speaker &middot; Jeff MacLean</div></div>
+        </div>
+
+        <div class="schedule-day-block">
+          <div class="schedule-day-title">Thursday, June 25</div>
+          <div class="schedule-row"><div class="schedule-row-time">9:00 &ndash; 12:00</div><div class="schedule-row-label">Session 8 (intermittent breaks)</div></div>
+          <div class="schedule-row"><div class="schedule-row-time">12:00 &ndash; 1:00</div><div class="schedule-row-label">Lunch</div></div>
+          <div class="schedule-row"><div class="schedule-row-time">1:00 &ndash; 3:00</div><div class="schedule-row-label">Session 9 (intermittent breaks)</div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="apply-section">
+    <div class="apply-inner">
+      <div class="apply-heading">
+        <span class="apply-word-apply">Apply</span>
+        <span class="apply-word-now">Now.</span>
+      </div>
+      <p class="apply-sub">A three-day personal finance summer program &mdash; equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8&ndash;10, the program covers real-world topics including budgeting, taxes, buying a home, and more &mdash; taught by working professionals who live these decisions every day.</p>
+      <p class="apply-cost"><strong>$25</strong> to apply &nbsp;&bull;&nbsp; <strong>$799 + GST</strong> program fee upon acceptance &nbsp;&bull;&nbsp; Spaces are limited</p>
+      <a href="https://pci.jotform.com/form/253202199664258" class="apply-btn">
+        Send In Your Application
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="black-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <a href="https://www.venturelift.org/#intro"><img src="venture.png" alt="VentureLift" class="footer-logo"></a>
+        <div class="footer-divider"></div>
+        <span class="footer-copy">&copy; 2025&ndash;2026 St. George's School</span>
+      </div>
+      <div class="footer-right">
+        <span class="footer-credits">Designed by Dylan Duan '28, Thomas Li '26 &amp; Evan Borodow '29</span>
+        <div class="footer-divider"></div>
+        <a href="https://static1.squarespace.com/static/690ce620a851f31c1c67d887/t/691b795b3409972cbc5443fd/1763408219638/PRIVACY+POLICY.pdf" class="footer-legal">Legal</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
 <script>
 /* ═══════════════════════════════════════════
    GSAP SETUP
@@ -810,6 +967,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const homeEl = document.getElementById('view-home');
 const wsEl   = document.getElementById('view-workshops');
+const schEl  = document.getElementById('view-schedule');
 
 ScrollTrigger.defaults({ scroller: homeEl });
 
@@ -824,35 +982,30 @@ const isMobile = () => window.innerWidth <= 600;
 let currentView = 'home';
 let switching   = false;
 
+const VIEWS = {
+  home:      { el: homeEl, tab: 'tab-home',      onEnter: null },
+  workshops: { el: wsEl,   tab: 'tab-workshops', onEnter: () => animateWorkshops() },
+  schedule:  { el: schEl,  tab: 'tab-schedule',  onEnter: () => animateSchedule() }
+};
+
 function showView(name) {
   if (name === currentView || switching) return;
+  if (!VIEWS[name]) return;
   switching = true;
 
-  const tabHome = document.getElementById('tab-home');
-  const tabWs   = document.getElementById('tab-workshops');
+  const from = VIEWS[currentView];
+  const to   = VIEWS[name];
 
-  if (name === 'workshops') {
-    homeEl.classList.add('view--hidden');
-    setTimeout(() => {
-      wsEl.scrollTop = 0;
-      wsEl.classList.remove('view--hidden');
-      tabHome.classList.remove('active');
-      tabWs.classList.add('active');
-      currentView = 'workshops';
-      switching = false;
-      animateWorkshops();
-    }, 290);
-  } else {
-    wsEl.classList.add('view--hidden');
-    setTimeout(() => {
-      homeEl.scrollTop = 0;
-      homeEl.classList.remove('view--hidden');
-      tabWs.classList.remove('active');
-      tabHome.classList.add('active');
-      currentView = 'home';
-      setTimeout(() => { switching = false; }, 300);
-    }, 290);
-  }
+  from.el.classList.add('view--hidden');
+  setTimeout(() => {
+    to.el.scrollTop = 0;
+    to.el.classList.remove('view--hidden');
+    document.getElementById(from.tab).classList.remove('active');
+    document.getElementById(to.tab).classList.add('active');
+    currentView = name;
+    if (to.onEnter) to.onEnter();
+    setTimeout(() => { switching = false; }, 300);
+  }, 290);
 }
 
 /* ═══════════════════════════════════════════
@@ -1052,6 +1205,20 @@ function animateWorkshops() {
   gsap.to('#workshopsHeader',      { opacity:1, y:0, duration:0.7, ease:'power3.out', delay:0.05 });
   gsap.to('#wRow1 .workshop-card', { opacity:1, y:0, duration:0.8, ease:'power3.out', stagger:0.1, delay:0.18 });
   gsap.to('#wRow2 .workshop-card', { opacity:1, y:0, duration:0.8, ease:'power3.out', stagger:0.1, delay:0.38 });
+}
+
+/* ═══════════════════════════════════════════
+   SCHEDULE ENTRY ANIMATION
+═══════════════════════════════════════════ */
+function animateSchedule() {
+  gsap.killTweensOf(['#scheduleHeader','.schedule-disclaimer','#scheduleChart .schedule-day-block']);
+  gsap.set('#scheduleHeader', { opacity:0, y:28 });
+  gsap.set('.schedule-disclaimer', { opacity:0, y:18 });
+  gsap.set('#scheduleChart .schedule-day-block', { opacity:0, y:24 });
+
+  gsap.to('#scheduleHeader',                     { opacity:1, y:0, duration:0.7, ease:'power3.out', delay:0.05 });
+  gsap.to('.schedule-disclaimer',                { opacity:1, y:0, duration:0.6, ease:'power3.out', delay:0.18 });
+  gsap.to('#scheduleChart .schedule-day-block',  { opacity:1, y:0, duration:0.7, ease:'power3.out', stagger:0.1, delay:0.28 });
 }
 </script>
 </body>
