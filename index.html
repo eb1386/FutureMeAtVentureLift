@@ -602,6 +602,92 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 .apply-btn:hover { background:var(--red); color:#fff; transform:translateY(-3px); box-shadow:0 14px 40px rgba(204,9,47,.4); }
 .apply-btn svg { width:14px; height:14px; stroke:currentColor; stroke-width:2.5; fill:none; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
 
+
+/* ─── CAPACITY POPUP ───────────────────────────── */
+.capacity-popup {
+  position:fixed;
+  right:clamp(16px,4vw,42px);
+  bottom:clamp(16px,4vw,42px);
+  z-index:2000;
+  width:min(360px, calc(100vw - 32px));
+  background:rgba(8,8,8,.94);
+  border:1px solid rgba(204,9,47,.55);
+  box-shadow:0 22px 70px rgba(0,0,0,.55), 0 0 45px rgba(204,9,47,.22);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  padding:24px 24px 22px;
+  color:#fff;
+  opacity:0;
+  transform:translateY(24px) scale(.96);
+  pointer-events:none;
+}
+.capacity-popup.show {
+  opacity:1;
+  transform:translateY(0) scale(1);
+  pointer-events:auto;
+  transition:opacity .45s ease, transform .45s cubic-bezier(.34,1.56,.64,1);
+}
+.capacity-close {
+  position:absolute;
+  top:10px;
+  right:12px;
+  background:none;
+  border:none;
+  color:rgba(255,255,255,.45);
+  font-size:1.4rem;
+  line-height:1;
+  cursor:pointer;
+  transition:color .2s, transform .2s;
+}
+.capacity-close:hover { color:#fff; transform:scale(1.08); }
+.capacity-label {
+  font-size:.55rem;
+  font-weight:900;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:10px;
+}
+.capacity-popup h2 {
+  font-family:'Abril Fatface',serif;
+  font-weight:400;
+  font-size:clamp(1.4rem,3vw,2rem);
+  line-height:1.05;
+  margin-bottom:10px;
+  color:#fff;
+}
+.capacity-popup p {
+  font-size:.88rem;
+  line-height:1.6;
+  color:rgba(255,255,255,.62);
+  margin-bottom:18px;
+}
+.capacity-btn {
+  display:inline-flex;
+  background:var(--red);
+  color:#fff;
+  font-size:.65rem;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  padding:12px 16px;
+  border-radius:2px;
+  transition:background .2s, transform .2s, box-shadow .2s;
+}
+.capacity-btn:hover {
+  background:#a8021f;
+  transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(204,9,47,.35);
+}
+@media(max-width:600px) {
+  .capacity-popup {
+    left:16px;
+    right:16px;
+    bottom:16px;
+    width:auto;
+  }
+}
+
 /* ─── CONTENT SECTION ACCENT LINE ─────────────── */
 .content-section::before {
   content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
@@ -645,6 +731,15 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 </head>
 <body>
 
+<!-- CAPACITY POPUP -->
+<div id="capacityPopup" class="capacity-popup">
+  <button class="capacity-close" onclick="closeCapacityPopup()" aria-label="Close capacity notice">×</button>
+  <div class="capacity-label">Limited Availability</div>
+  <h2>The FutureMe Program is reaching capacity.</h2>
+  <p>Secure your placement before registration closes.</p>
+  <a href="https://pci.jotform.com/form/253202199664258" class="capacity-btn">Apply Now</a>
+</div>
+
 <!-- NAV -->
 <nav id="topnav">
   <div class="nav-tabs">
@@ -664,7 +759,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
       A <strong>Three-Day</strong> Personal Finance Program for Rising Grades 8–10<br>
       Learn the real costs of buying a car, a home, and understanding your first paycheque<br>
       <strong>June 23–25 &nbsp;&bull;&nbsp; 8:00 AM – 3:00 PM</strong> &nbsp;&bull;&nbsp; St. George's School, Vancouver<br>
-      $25 application fee &nbsp;&bull;&nbsp; $799 + GST program fee &nbsp;&bull;&nbsp; The FutureMe Program is reaching capacity. Secure your placement before registration closes.
+      $25 application fee &nbsp;&bull;&nbsp; $799 + GST program fee
     </div>
     <div class="logo-container">
       <div class="red-box">
@@ -1220,6 +1315,24 @@ function animateSchedule() {
   gsap.to('.schedule-disclaimer',                { opacity:1, y:0, duration:0.6, ease:'power3.out', delay:0.18 });
   gsap.to('#scheduleChart .schedule-day-block',  { opacity:1, y:0, duration:0.7, ease:'power3.out', stagger:0.1, delay:0.28 });
 }
+
+/* ═══════════════════════════════════════════
+   CAPACITY POPUP
+═══════════════════════════════════════════ */
+function closeCapacityPopup() {
+  const popup = document.getElementById('capacityPopup');
+  popup.classList.remove('show');
+  localStorage.setItem('futuremeCapacityPopupClosed', 'true');
+}
+
+window.addEventListener('load', () => {
+  if (localStorage.getItem('futuremeCapacityPopupClosed') === 'true') return;
+
+  setTimeout(() => {
+    document.getElementById('capacityPopup')?.classList.add('show');
+  }, 1400);
+});
+
 </script>
 </body>
 </html>
