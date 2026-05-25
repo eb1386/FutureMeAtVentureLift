@@ -5,38 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FutureMe at VentureLift</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Abril+Fatface&family=Playfair+Display:ital,wght@1,700;1,900&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js">
-/* ═══════════════════════════════════════════
-   SOLD OUT POPUP
-═══════════════════════════════════════════ */
-function closeCapacityPopup() {
-  const popup = document.getElementById('capacityPopup');
-  if (popup) popup.classList.remove('show');
-}
-
-window.addEventListener('load', () => {
-  const popup = document.getElementById('capacityPopup');
-  if (!popup) return;
-  setTimeout(() => popup.classList.add('show'), 1200);
-});
-
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js">
-/* ═══════════════════════════════════════════
-   SOLD OUT POPUP
-═══════════════════════════════════════════ */
-function closeCapacityPopup() {
-  const popup = document.getElementById('capacityPopup');
-  if (popup) popup.classList.remove('show');
-}
-
-window.addEventListener('load', () => {
-  const popup = document.getElementById('capacityPopup');
-  if (!popup) return;
-  setTimeout(() => popup.classList.add('show'), 1200);
-});
-
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <link rel="icon" href="https://images.squarespace-cdn.com/content/v1/690ce620a851f31c1c67d887/1fa5ad78-459d-4174-8f27-3ee49b73bb4c/favicon.ico?format=100w">
 <style>
 /* ─── RESET & BASE ─────────────────────────────── */
@@ -90,36 +60,9 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 }
 .nav-apply-btn:hover { background:#a8021f; transform:translateY(-1px); }
 @media(max-width:600px) {
-  :root { --nav:78px; }
-  #topnav {
-    height:var(--nav);
-    flex-direction:column;
-    justify-content:center;
-    gap:6px;
-    padding:6px 8px 7px;
-  }
-  .nav-tabs {
-    width:100%;
-    height:34px;
-    display:flex;
-    justify-content:center;
-  }
-  .nav-tab {
-    flex:1 1 0;
-    justify-content:center;
-    padding:0 4px;
-    font-size:.43rem;
-    letter-spacing:.08em;
-    text-align:center;
-  }
-  .nav-apply-btn {
-    position:static;
-    right:auto;
-    padding:6px 12px;
-    font-size:.48rem;
-    letter-spacing:.12em;
-    line-height:1;
-  }
+  #topnav { justify-content:center; }
+  .nav-tabs { flex:0 0 auto; }
+  .nav-tab { padding:0 clamp(10px,4vw,20px); font-size:.52rem; }
 }
 
 /* ─── VIEW SYSTEM ─────────────────────────────── */
@@ -810,10 +753,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   .footer-copy { font-size:.48rem; }
 }
 
-
-
-
-/* SOLD OUT STATES */
+/* SOLD OUT BUTTON */
 .sold-out-btn {
   background:#5a5a5a !important;
   color:rgba(255,255,255,.92) !important;
@@ -830,16 +770,34 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   box-shadow:none !important;
 }
 
-@media(max-width:600px) {
-  .nav-apply-btn {
-    display:none;
-  }
+
 }
 
 
-.sold-out-text {
-  pointer-events:none;
-  cursor:default;
+.sold-out-btn {
+  background:#5a5a5a !important;
+  color:rgba(255,255,255,.9) !important;
+  border-color:rgba(255,255,255,.14) !important;
+  pointer-events:none !important;
+  cursor:default !important;
+  opacity:.72;
+  box-shadow:none !important;
+  transform:none !important;
+}
+.sold-out-btn:hover {
+  background:#5a5a5a !important;
+  color:rgba(255,255,255,.9) !important;
+  transform:none !important;
+  box-shadow:none !important;
+}
+.sold-out-link {
+  color:rgba(255,255,255,.55) !important;
+  pointer-events:none !important;
+  cursor:default !important;
+  opacity:.65 !important;
+}
+.sold-out-link:hover {
+  transform:none !important;
   opacity:.65 !important;
 }
 
@@ -847,16 +805,22 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 </head>
 <body>
 
-
-<!-- SOLD OUT POPUP -->
+<!-- CAPACITY POPUP -->
 <div id="capacityPopup" class="capacity-popup">
-  <button class="capacity-close" onclick="closeCapacityPopup()" aria-label="Close sold out notice">×</button>
+  <button class="capacity-close" onclick="closeCapacityPopup()" aria-label="Close capacity notice">×</button>
   <div class="capacity-label">Sold Out</div>
   <h2>The FutureMe Program is sold out.</h2>
   <p>Registration has now closed due to full capacity.</p>
 </div>
 
-
+<!-- NAV -->
+<nav id="topnav">
+  <div class="nav-tabs">
+    <div class="nav-tab active" id="tab-home"      onclick="showView('home')">Home</div>
+    <div class="nav-tab"        id="tab-workshops" onclick="showView('workshops')">Workshop Leaders</div>
+    <div class="nav-tab"        id="tab-schedule"  onclick="showView('schedule')">Schedule</div>
+  </div>
+  <a class="nav-apply-btn sold-out-btn">Sold Out</a>
 </nav>
 
 <!-- HOME VIEW -->
@@ -937,9 +901,9 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         <span class="apply-word-apply">Apply</span>
         <span class="apply-word-now">Now.</span>
       </div>
-      <p class="apply-sub">FutureMe 2026 is now sold out. Registration has closed due to full capacity.</p>
-      <p class="apply-cost"><strong>Sold out for 2026</strong> &nbsp;&bull;&nbsp; Thank you for the interest in FutureMe.</p>
-      <a class="apply-btn sold-out-btn">
+      <p class="apply-sub" id="applySub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8–10, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
+      <p class="apply-cost" id="applyCost"><strong>Sold out.</strong> Registration is now closed due to full capacity.</p>
+      <a class="apply-btn sold-out-btn" id="applyBtn" aria-disabled="true">
         Sold Out
       </a>
     </div>
@@ -1058,9 +1022,9 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         <span class="apply-word-apply">Apply</span>
         <span class="apply-word-now">Now.</span>
       </div>
-      <p class="apply-sub">FutureMe 2026 is now sold out. Registration has closed due to full capacity.</p>
-      <p class="apply-cost"><strong>Sold out for 2026</strong> &nbsp;&bull;&nbsp; Thank you for the interest in FutureMe.</p>
-      <a class="apply-btn sold-out-btn">
+      <p class="apply-sub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8–10, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
+      <p class="apply-cost"><strong>Sold out.</strong> Registration is now closed due to full capacity.</p>
+      <a class="apply-btn sold-out-btn" aria-disabled="true">
         Sold Out
       </a>
     </div>
@@ -1136,9 +1100,9 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         <span class="apply-word-apply">Apply</span>
         <span class="apply-word-now">Now.</span>
       </div>
-      <p class="apply-sub">FutureMe 2026 is now sold out. Registration has closed due to full capacity.</p>
-      <p class="apply-cost"><strong>Sold out for 2026</strong> &nbsp;&bull;&nbsp; Thank you for the interest in FutureMe.</p>
-      <a class="apply-btn sold-out-btn">
+      <p class="apply-sub">A three-day personal finance summer program &mdash; equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8&ndash;10, the program covers real-world topics including budgeting, taxes, buying a home, and more &mdash; taught by working professionals who live these decisions every day.</p>
+      <p class="apply-cost"><strong>Sold out.</strong> Registration is now closed due to full capacity.</p>
+      <a class="apply-btn sold-out-btn" aria-disabled="true">
         Sold Out
       </a>
     </div>
@@ -1161,19 +1125,282 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 </div>
 
 <script>
+/* ═══════════════════════════════════════════
+   GSAP SETUP
+═══════════════════════════════════════════ */
+gsap.registerPlugin(ScrollTrigger);
+
+const homeEl = document.getElementById('view-home');
+const wsEl   = document.getElementById('view-workshops');
+const schEl  = document.getElementById('view-schedule');
+
+ScrollTrigger.defaults({ scroller: homeEl });
 
 /* ═══════════════════════════════════════════
-   SOLD OUT POPUP
+   MOBILE DETECTION
+═══════════════════════════════════════════ */
+const isMobile = () => window.innerWidth <= 600;
+
+/* ═══════════════════════════════════════════
+   VIEW SWITCHER
+═══════════════════════════════════════════ */
+let currentView = 'home';
+let switching   = false;
+
+const VIEWS = {
+  home:      { el: homeEl, tab: 'tab-home',      onEnter: null },
+  workshops: { el: wsEl,   tab: 'tab-workshops', onEnter: () => animateWorkshops() },
+  schedule:  { el: schEl,  tab: 'tab-schedule',  onEnter: () => animateSchedule() }
+};
+
+function showView(name) {
+  if (name === currentView || switching) return;
+  if (!VIEWS[name]) return;
+  switching = true;
+
+  const from = VIEWS[currentView];
+  const to   = VIEWS[name];
+
+  from.el.classList.add('view--hidden');
+  setTimeout(() => {
+    to.el.scrollTop = 0;
+    to.el.classList.remove('view--hidden');
+    document.getElementById(from.tab).classList.remove('active');
+    document.getElementById(to.tab).classList.add('active');
+    currentView = name;
+    if (to.onEnter) to.onEnter();
+    setTimeout(() => { switching = false; }, 300);
+  }, 290);
+}
+
+/* ═══════════════════════════════════════════
+   HERO ENTRANCE — one-time only, nothing loops after
+═══════════════════════════════════════════ */
+gsap.timeline({ defaults:{ ease:'power3.out' } })
+  .from('.hero-bg',           { scale:1.08, duration:2.8, ease:'power2.out' })
+  .from('.red-box',           { scaleY:0, transformOrigin:'bottom center', duration:1.6, ease:'expo.inOut' }, '-=2.3')
+  .from('.hero-logo',         { y:40, opacity:0, duration:1.4, ease:'back.out(1.2)' }, '-=1.0')
+  .from('.sub-logos',         { opacity:0, duration:1.0 }, '-=0.75')
+  .from('.hero-top-text',     { opacity:0, duration:0.8 }, '-=0.9')
+  .from('.hero-bottom-links', { opacity:0, duration:0.9 }, '-=0.7');
+
+/* ═══════════════════════════════════════════
+   QUESTIONS + HYPHEN INDICATOR
+═══════════════════════════════════════════ */
+const QUESTIONS = [
+  { label:'NEW CAR',     text:'How do I save up for a new car?' },
+  { label:'CLOTHES',     text:'How much can I splurge on these clothes today?' },
+  { label:'TAX CREDIT',  text:'What is a tax credit?' },
+  { label:'OPTIMIZE',    text:'How do I optimize my tax credits?' },
+  { label:'RENT OR BUY', text:'Should I rent, buy, or mortgage my home?' },
+  { label:'MORTGAGE',    text:'Is right now even a good time to get a mortgage?' },
+];
+const TOTAL     = QUESTIONS.length;
+const PIN_EXTRA = TOTAL * 0.22;
+const qEl       = document.getElementById('questionText');
+
+/* Build hyphen indicators — desktop only */
+const hyphenEl = document.getElementById('hyphenIndicator');
+if (!isMobile()) {
+  QUESTIONS.forEach(() => {
+    const s = document.createElement('span');
+    hyphenEl.appendChild(s);
+  });
+}
+const hyphens = Array.from(hyphenEl.querySelectorAll('span'));
+
+(function initQuestionScroll() {
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const wrapper    = document.getElementById('introWrapper');
+    const scrollRoom = PIN_EXTRA * window.innerHeight;
+    wrapper.style.height = (window.innerHeight + scrollRoom) + 'px';
+
+    let lastIdx = -1;
+
+    function onScroll() {
+      const wrapTop  = wrapper.offsetTop;
+      const scrolled = homeEl.scrollTop - wrapTop;
+      const progress = Math.max(0, Math.min(1, scrolled / scrollRoom));
+
+      if (progress <= 0) {
+        if (lastIdx !== -1) {
+          lastIdx = -1;
+          qEl.style.transition = 'none';
+          qEl.style.opacity = '0';
+          qEl.textContent = '';
+          hyphens.forEach(h => h.classList.remove('active'));
+        }
+        return;
+      }
+
+      const textIdx = Math.min(Math.floor(progress * TOTAL), TOTAL - 1);
+
+      /* Update hyphen indicator */
+      hyphens.forEach((h, i) => h.classList.toggle('active', i === textIdx));
+
+      if (textIdx !== lastIdx) {
+        const prev = lastIdx;
+        lastIdx = textIdx;
+        if (prev < 0) {
+          qEl.textContent = QUESTIONS[textIdx].text;
+          qEl.style.transition = 'none';
+          qEl.style.opacity = '0';
+          qEl.style.filter = 'blur(8px)';
+          requestAnimationFrame(() => {
+            qEl.style.transition = 'opacity 0.35s ease, filter 0.35s ease';
+            qEl.style.opacity = '1';
+            qEl.style.filter = 'blur(0px)';
+          });
+        } else {
+          qEl.style.transition = 'opacity 0.12s ease, filter 0.12s ease';
+          qEl.style.opacity = '0';
+          qEl.style.filter = 'blur(6px)';
+          const next = QUESTIONS[textIdx].text;
+          setTimeout(() => {
+            qEl.textContent = next;
+            qEl.style.transition = 'opacity 0.22s ease, filter 0.22s ease';
+            qEl.style.opacity = '1';
+            qEl.style.filter = 'blur(0px)';
+          }, 120);
+        }
+        gsap.fromTo('#questionText', { scale:1.04 }, { scale:1, duration:0.5, ease:'power2.out' });
+      }
+    }
+
+    homeEl.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
+  }));
+})();
+
+/* ═══════════════════════════════════════════
+   EXTRA AMBIENT ANIMATIONS
+═══════════════════════════════════════════ */
+
+/* Floating particles in sticky section */
+(function() {
+  const intro = document.querySelector('.sticky-visuals');
+  const count = isMobile() ? 5 : 9;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'intro-particle';
+    const size = 6 + Math.random() * 18;
+    p.style.cssText = `width:${size}px;height:${size}px;
+      left:${5 + Math.random()*85}%;top:${10+Math.random()*75}%;`;
+    intro.appendChild(p);
+    gsap.to(p, {
+      y: -30 - Math.random()*50, x: (Math.random()-.5)*30,
+      opacity: 0,
+      duration: 3 + Math.random()*4, ease:'power1.inOut',
+      repeat:-1, yoyo:true, delay: Math.random()*4
+    });
+  }
+})();
+
+/* Parallax on hero background */
+homeEl.addEventListener('scroll', () => {
+  const bg = document.querySelector('.hero-bg');
+  if (bg) {
+    const factor = isMobile() ? 0.06 : 0.18;
+    bg.style.transform = `translateY(${homeEl.scrollTop * factor}px)`;
+  }
+}, { passive:true });
+
+/* Apply section word reveal */
+ScrollTrigger.create({
+  scroller: homeEl,
+  trigger: '#apply-home', start:'top 80%',
+  once: true,
+  onEnter: () => {
+    gsap.from('.apply-word-apply', { x:-30, opacity:0, duration:0.9, ease:'power3.out' });
+    gsap.from('.apply-word-now',   { x:30,  opacity:0, duration:0.9, ease:'power3.out', delay:0.12 });
+  }
+});
+
+gsap.set('#keynoteInner', { opacity:0, y:28 });
+ScrollTrigger.create({
+  scroller: homeEl,
+  trigger: '#keynote-section', start:'top 80%',
+  once: true,
+  onEnter: () => gsap.to('#keynoteInner', { opacity:1, y:0, duration:0.85, ease:'power3.out' })
+});
+
+/* Red accent line on copy section */
+ScrollTrigger.create({
+  scroller: homeEl,
+  trigger: '#copy-section', start:'top 75%',
+  once: true,
+  onEnter: () => document.querySelector('.content-section')?.classList.add('in-view')
+});
+
+/* Red-box glow pulse */
+gsap.to('.red-box', {
+  boxShadow:'0 0 60px 12px rgba(204,9,47,.45)', duration:2.2,
+  ease:'sine.inOut', repeat:-1, yoyo:true, delay:1.5
+});
+
+/* ═══════════════════════════════════════════
+   HOME SCROLL-IN ANIMATIONS
+═══════════════════════════════════════════ */
+gsap.set(['#copyEyebrow','#copyHeadline','#copyBody','#copyBtn'], { opacity:0, y:22 });
+ScrollTrigger.create({
+  trigger:'#copyLeft', start:'top 82%',
+  onEnter: () => gsap.to(
+    ['#copyEyebrow','#copyHeadline','#copyBody','#copyBtn'],
+    { opacity:1, y:0, duration:0.75, ease:'power3.out', stagger:0.1 }
+  )
+});
+
+gsap.set(['#applyHeading','#applySub','#applyBtn'], { opacity:0, y:32 });
+ScrollTrigger.create({
+  trigger:'#apply-home', start:'top 78%',
+  onEnter: () => gsap.to(
+    ['#applyHeading','#applySub','#applyBtn'],
+    { opacity:1, y:0, duration:0.85, ease:'power3.out', stagger:0.13 }
+  )
+});
+
+/* ═══════════════════════════════════════════
+   WORKSHOPS ENTRY ANIMATION
+═══════════════════════════════════════════ */
+function animateWorkshops() {
+  gsap.killTweensOf(['#workshopsHeader','#wRow1 .workshop-card','#wRow2 .workshop-card']);
+  gsap.set('#workshopsHeader', { opacity:0, y:28 });
+  gsap.set(['#wRow1 .workshop-card','#wRow2 .workshop-card'], { opacity:0, y:44 });
+
+  gsap.to('#workshopsHeader',      { opacity:1, y:0, duration:0.7, ease:'power3.out', delay:0.05 });
+  gsap.to('#wRow1 .workshop-card', { opacity:1, y:0, duration:0.8, ease:'power3.out', stagger:0.1, delay:0.18 });
+  gsap.to('#wRow2 .workshop-card', { opacity:1, y:0, duration:0.8, ease:'power3.out', stagger:0.1, delay:0.38 });
+}
+
+/* ═══════════════════════════════════════════
+   SCHEDULE ENTRY ANIMATION
+═══════════════════════════════════════════ */
+function animateSchedule() {
+  gsap.killTweensOf(['#scheduleHeader','.schedule-disclaimer','#scheduleChart .schedule-day-block']);
+  gsap.set('#scheduleHeader', { opacity:0, y:28 });
+  gsap.set('.schedule-disclaimer', { opacity:0, y:18 });
+  gsap.set('#scheduleChart .schedule-day-block', { opacity:0, y:24 });
+
+  gsap.to('#scheduleHeader',                     { opacity:1, y:0, duration:0.7, ease:'power3.out', delay:0.05 });
+  gsap.to('.schedule-disclaimer',                { opacity:1, y:0, duration:0.6, ease:'power3.out', delay:0.18 });
+  gsap.to('#scheduleChart .schedule-day-block',  { opacity:1, y:0, duration:0.7, ease:'power3.out', stagger:0.1, delay:0.28 });
+}
+
+/* ═══════════════════════════════════════════
+   CAPACITY POPUP
 ═══════════════════════════════════════════ */
 function closeCapacityPopup() {
   const popup = document.getElementById('capacityPopup');
-  if (popup) popup.classList.remove('show');
+  popup.classList.remove('show');
+  localStorage.setItem('futuremeCapacityPopupClosed', 'true');
 }
 
 window.addEventListener('load', () => {
-  const popup = document.getElementById('capacityPopup');
-  if (!popup) return;
-  setTimeout(() => popup.classList.add('show'), 1200);
+  if (localStorage.getItem('futuremeCapacityPopupClosed') === 'true') return;
+
+  setTimeout(() => {
+    document.getElementById('capacityPopup')?.classList.add('show');
+  }, 1400);
 });
 
 </script>
