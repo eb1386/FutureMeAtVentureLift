@@ -779,6 +779,47 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   .footer-credits { display:none; }
   .footer-copy { font-size:.48rem; }
 }
+
+/* SOLD OUT BUTTON */
+.sold-out-btn {
+  background:#5a5a5a !important;
+  color:rgba(255,255,255,.92) !important;
+  pointer-events:none;
+  cursor:default;
+  opacity:.82;
+  box-shadow:none !important;
+  transform:none !important;
+}
+
+.sold-out-btn:hover {
+  background:#5a5a5a !important;
+  transform:none !important;
+  box-shadow:none !important;
+}
+
+.mobile-sold-out{
+  display:none;
+}
+
+@media(max-width:600px){
+
+  .nav-apply-btn{
+    display:none;
+  }
+
+  .mobile-sold-out{
+    display:block;
+    margin-top:14px;
+    text-align:center;
+    font-size:.72rem;
+    font-weight:900;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#ff5c76;
+    line-height:1.4;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -798,7 +839,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
     <div class="nav-tab"        id="tab-workshops" onclick="showView('workshops')">Workshop Leaders</div>
     <div class="nav-tab"        id="tab-schedule"  onclick="showView('schedule')">Schedule</div>
   </div>
-  <a class="nav-apply-btn sold-out-btn" aria-disabled="true">Sold Out</a>
+  <a class="nav-apply-btn sold-out-btn">Sold Out</a>
 </nav>
 
 <!-- HOME VIEW -->
@@ -811,6 +852,10 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
       Learn the real costs of buying a car, a home, and understanding your first paycheque<br>
       <strong>June 23–25 &nbsp;&bull;&nbsp; 8:00 AM – 3:00 PM</strong> &nbsp;&bull;&nbsp; St. George's School, Vancouver<br>
       $25 application fee &nbsp;&bull;&nbsp; $799 + GST program fee
+
+      <div class="mobile-sold-out">
+        SOLD OUT FOR 2026
+      </div>
     </div>
     <div class="logo-container">
       <div class="red-box">
