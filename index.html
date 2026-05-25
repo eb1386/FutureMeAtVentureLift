@@ -60,9 +60,36 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 }
 .nav-apply-btn:hover { background:#a8021f; transform:translateY(-1px); }
 @media(max-width:600px) {
-  #topnav { justify-content:center; }
-  .nav-tabs { flex:0 0 auto; }
-  .nav-tab { padding:0 clamp(10px,4vw,20px); font-size:.52rem; }
+  :root { --nav:78px; }
+  #topnav {
+    height:var(--nav);
+    flex-direction:column;
+    justify-content:center;
+    gap:6px;
+    padding:6px 8px 7px;
+  }
+  .nav-tabs {
+    width:100%;
+    height:34px;
+    display:flex;
+    justify-content:center;
+  }
+  .nav-tab {
+    flex:1 1 0;
+    justify-content:center;
+    padding:0 4px;
+    font-size:.43rem;
+    letter-spacing:.08em;
+    text-align:center;
+  }
+  .nav-apply-btn {
+    position:static;
+    right:auto;
+    padding:6px 12px;
+    font-size:.48rem;
+    letter-spacing:.12em;
+    line-height:1;
+  }
 }
 
 /* ─── VIEW SYSTEM ─────────────────────────────── */
@@ -762,7 +789,6 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   <div class="capacity-label">Sold Out</div>
   <h2>The FutureMe Program is sold out.</h2>
   <p>Registration has now closed due to full capacity.</p>
-  <a class="capacity-btn sold-out-btn" aria-disabled="true">Sold Out</a>
 </div>
 
 <!-- NAV -->
