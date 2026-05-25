@@ -146,6 +146,14 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 .hero-bottom-links a:hover { opacity:1; }
 .link-left:hover  { transform:translateX(-6px); }
 .link-right:hover { transform:translateX(6px); }
+
+.sold-out-link {
+  color:rgba(255,255,255,.55) !important;
+  pointer-events:none !important;
+  cursor:default !important;
+  opacity:.65 !important;
+}
+.sold-out-link:hover { transform:none !important; opacity:.65 !important; }
 @media(max-width:768px) { .hero-bottom-links { display:none; } }
 
 /* ─── INTRO ──────────────────────────────────────── */
@@ -602,6 +610,23 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 .apply-btn:hover { background:var(--red); color:#fff; transform:translateY(-3px); box-shadow:0 14px 40px rgba(204,9,47,.4); }
 .apply-btn svg { width:14px; height:14px; stroke:currentColor; stroke-width:2.5; fill:none; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
 
+.sold-out-btn {
+  background:#5a5a5a !important;
+  color:rgba(255,255,255,.9) !important;
+  border-color:rgba(255,255,255,.14) !important;
+  pointer-events:none !important;
+  cursor:default !important;
+  opacity:.72;
+  box-shadow:none !important;
+  transform:none !important;
+}
+.sold-out-btn:hover {
+  background:#5a5a5a !important;
+  color:rgba(255,255,255,.9) !important;
+  transform:none !important;
+  box-shadow:none !important;
+}
+
 
 /* ─── CAPACITY POPUP ───────────────────────────── */
 .capacity-popup {
@@ -734,10 +759,10 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 <!-- CAPACITY POPUP -->
 <div id="capacityPopup" class="capacity-popup">
   <button class="capacity-close" onclick="closeCapacityPopup()" aria-label="Close capacity notice">×</button>
-  <div class="capacity-label">Limited Availability</div>
-  <h2>The FutureMe Program is reaching capacity.</h2>
-  <p>Secure your placement before registration closes.</p>
-  <a href="https://pci.jotform.com/form/253202199664258" class="capacity-btn">Apply Now</a>
+  <div class="capacity-label">Sold Out</div>
+  <h2>The FutureMe Program is sold out.</h2>
+  <p>Registration has now closed due to full capacity.</p>
+  <a class="capacity-btn sold-out-btn" aria-disabled="true">Sold Out</a>
 </div>
 
 <!-- NAV -->
@@ -747,7 +772,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
     <div class="nav-tab"        id="tab-workshops" onclick="showView('workshops')">Workshop Leaders</div>
     <div class="nav-tab"        id="tab-schedule"  onclick="showView('schedule')">Schedule</div>
   </div>
-  <a href="https://pci.jotform.com/form/253202199664258" class="nav-apply-btn">Apply</a>
+  <a class="nav-apply-btn sold-out-btn" aria-disabled="true">Sold Out</a>
 </nav>
 
 <!-- HOME VIEW -->
@@ -774,7 +799,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
     <div class="hero-bottom-links">
       <a href="https://www.stgeorges.bc.ca" class="link-left">← St. George's School</a>
       <a href="#introWrapper" class="link-down" onclick="event.preventDefault();(function(){var w=document.getElementById('introWrapper');var room=w.offsetHeight-window.innerHeight;homeEl.scrollTo({top:w.offsetTop+room*0.08,behavior:'smooth'});})();">Learn More ↓</a>
-      <a href="https://pci.jotform.com/form/253202199664258" class="link-right">Send in Your Application Today →</a>
+      <a class="link-right sold-out-link" aria-disabled="true">Sold Out →</a>
     </div>
   </section>
 
@@ -829,10 +854,9 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         <span class="apply-word-now">Now.</span>
       </div>
       <p class="apply-sub" id="applySub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8–10, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
-      <p class="apply-cost" id="applyCost"><strong>$25</strong> to apply &nbsp;&bull;&nbsp; <strong>$799 + GST</strong> program fee upon acceptance &nbsp;&bull;&nbsp; Spaces are limited</p>
-      <a href="https://pci.jotform.com/form/253202199664258" class="apply-btn" id="applyBtn">
-        Send In Your Application
-        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <p class="apply-cost" id="applyCost"><strong>Sold out.</strong> Registration is now closed due to full capacity.</p>
+      <a class="apply-btn sold-out-btn" id="applyBtn" aria-disabled="true">
+        Sold Out
       </a>
     </div>
   </section>
@@ -951,10 +975,9 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         <span class="apply-word-now">Now.</span>
       </div>
       <p class="apply-sub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8–10, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
-      <p class="apply-cost"><strong>$25</strong> to apply &nbsp;&bull;&nbsp; <strong>$799 + GST</strong> program fee upon acceptance &nbsp;&bull;&nbsp; Spaces are limited</p>
-      <a href="https://pci.jotform.com/form/253202199664258" class="apply-btn">
-        Send In Your Application
-        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <p class="apply-cost"><strong>Sold out.</strong> Registration is now closed due to full capacity.</p>
+      <a class="apply-btn sold-out-btn" aria-disabled="true">
+        Sold Out
       </a>
     </div>
   </section>
@@ -1030,10 +1053,9 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
         <span class="apply-word-now">Now.</span>
       </div>
       <p class="apply-sub">A three-day personal finance summer program &mdash; equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8&ndash;10, the program covers real-world topics including budgeting, taxes, buying a home, and more &mdash; taught by working professionals who live these decisions every day.</p>
-      <p class="apply-cost"><strong>$25</strong> to apply &nbsp;&bull;&nbsp; <strong>$799 + GST</strong> program fee upon acceptance &nbsp;&bull;&nbsp; Spaces are limited</p>
-      <a href="https://pci.jotform.com/form/253202199664258" class="apply-btn">
-        Send In Your Application
-        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <p class="apply-cost"><strong>Sold out.</strong> Registration is now closed due to full capacity.</p>
+      <a class="apply-btn sold-out-btn" aria-disabled="true">
+        Sold Out
       </a>
     </div>
   </section>
