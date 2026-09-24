@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>FutureMe at VentureLift</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Abril+Fatface&family=Playfair+Display:ital,wght@1,700;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<link rel="icon" href="https://images.squarespace-cdn.com/content/v1/690ce620a851f31c1c67d887/1fa5ad78-459d-4174-8f27-3ee49b73bb4c/favicon.ico?format=100w">
+<link href="https://images.squarespace-cdn.com/content/v1/690ce620a851f31c1c67d887/1fa5ad78-459d-4174-8f27-3ee49b73bb4c/favicon.ico?format=100w" rel="icon"/>
 <style>
 /* ─── RESET & BASE ─────────────────────────────── */
 :root {
@@ -771,9 +772,6 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 }
 
 
-}
-
-
 .sold-out-btn {
   background:#5a5a5a !important;
   color:rgba(255,255,255,.9) !important;
@@ -808,340 +806,900 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   }
 }
 
+
+/* ======================================================================
+   FUTUREME — ORIGINAL LAYOUT / VISUAL POLISH ONLY
+   This block changes type, colour, borders and emphasis. Original section
+   hero composition, grids, copy and image references are retained.
+   Navigation and the 2026 archive are updated in the focused block below.
+   ====================================================================== */
+:root {
+  --red: #cc092f;
+  --dark: #161719;
+  --font: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading: 'Manrope', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --paper: #f7f7f8;
+  --ink: #242629;
+  --accent-text: var(--red); /* One original brand red, never orange or pink. */
+  --font-accent: 'Times New Roman', Times, 'Liberation Serif', serif;
+  --line: rgba(255,255,255,.14);
+  --muted: rgba(255,255,255,.72);
+}
+body { -webkit-font-smoothing: antialiased; }
+::selection { background: #cc092f; color: #fff; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 5px;
+}
+
+/* Same fixed bar, same centred tabs, same right-hand status button. */
+#topnav {
+  background: rgba(22,23,25,.96);
+  border-bottom-color: var(--line);
+  box-shadow: 0 3px 18px rgba(0,0,0,.12);
+}
+.nav-tab {
+  font-size: .69rem;
+  font-weight: 600;
+  letter-spacing: .065em;
+  color: rgba(255,255,255,.72);
+}
+.nav-tab:hover { color: #fff; background: rgba(255,255,255,.035); }
+.nav-tab.active { background: rgba(255,255,255,.05); }
+.nav-tab::after { left: 18%; right: 18%; background: var(--accent-text); }
+.nav-apply-btn { font-size: .62rem; letter-spacing: .08em; border-radius: 5px; }
+
+/* Existing image and logo arrangement, with quieter panel treatments. */
+.hero-bg { background-color: #242629; }
+.hero-top-text {
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  margin-inline: auto;
+  padding: 12px clamp(16px,3vw,32px);
+  background: rgba(20,23,26,.74);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 8px;
+  color: rgba(255,255,255,.86);
+  font-weight: 500;
+  line-height: 1.8;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.hero-top-text strong { font-weight: 700; }
+.hero-top-text > strong { font-weight: 700; }
+.hero-top-text .fm-fee { color: rgba(255,255,255,.76); }
+.red-box {
+  background: #cc092f;
+  border-radius: 6px;
+  outline: 1px solid rgba(255,255,255,.12);
+  /* Suppress the original animated glow without changing its script. */
+  box-shadow: 0 12px 32px rgba(0,0,0,.2) !important;
+}
+.hero-bottom-links a { font-weight: 600; }
+.hero-bottom-links .link-down {
+  text-decoration: underline;
+  text-underline-offset: .4em;
+  text-decoration-color: rgba(255,255,255,.45);
+}
+
+/* Identical sticky question section and scroll sequence; no red wall. */
+.intro-wrapper, .intro-section, .content-section { background: var(--paper); }
+#questionText {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem,6.3vw,6.5rem);
+  font-weight: 700;
+  line-height: 1.13;
+  letter-spacing: -.045em;
+  text-transform: none;
+  color: var(--ink);
+}
+#questionText::after { color: rgba(204,9,47,.65); }
+.hyphen-indicator span { background: rgba(36,38,41,.2); }
+.hyphen-indicator span.active { background: var(--red); }
+.intro-particle { background: rgba(36,38,41,.04); }
+
+/* Existing centred copy block. No added columns or rewritten text. */
+.copy-eyebrow { color: #cc092f; letter-spacing: .18em; }
+.copy-headline {
+  font-family: var(--font-heading);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -.035em;
+  color: var(--ink);
+}
+.copy-body { color: #55575c; }
+.content-section::before { background: var(--red); }
+.copy-workshops-btn {
+  background: transparent;
+  color: var(--ink);
+  border-color: rgba(36,38,41,.3);
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: .08em;
+}
+.copy-workshops-btn:hover { background: #ebebed; border-color: var(--ink); }
+.copy-workshops-btn:focus-visible { outline-color: var(--red); }
+.fm-emphasis { font-weight: 600; color: inherit; }
+.fm-underline {
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: .055em;
+  text-underline-offset: .19em;
+  text-decoration-skip-ink: auto;
+}
+.copy-body .fm-emphasis, .copy-body .fm-underline { color: var(--ink); }
+
+/* Original keynote split and workshop card grid. */
+.keynote-name, .workshop-name, .workshops-title, .schedule-title,
+.apply-word-apply, .capacity-popup h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -.035em;
+}
+.workshops-title, .schedule-title { line-height: 1.08; }
+.workshops-title em, .schedule-title em, .apply-word-now {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--accent-text);
+  text-decoration: none;
+}
+.keynote-photo { border-radius: 8px; filter: none; }
+.keynote-eyebrow-line1, .keynote-eyebrow-line2,
+.workshops-eyebrow, .schedule-eyebrow { color: var(--muted); letter-spacing: .18em; }
+.keynote-eyebrow-line1 .red { color: var(--accent-text); }
+.keynote-eyebrow-line2 { color: rgba(255,255,255,.78); }
+.keynote-role { color: rgba(255,255,255,.75); letter-spacing: .04em; }
+.keynote-divider { background: var(--accent-text); }
+.keynote-bio { color: var(--muted); }
+.workshops-section::after { opacity: .3; }
+.workshop-card {
+  background: #202124;
+  border-color: var(--line);
+  border-radius: 9px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.1);
+}
+.workshop-card:hover { border-color: rgba(204,9,47,.65); }
+.workshop-photo { filter: none; background: #282a2e; }
+.workshop-tag {
+  color: var(--accent-text);
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+}
+.workshop-name { line-height: 1.2; }
+.workshop-role { color: rgba(255,255,255,.78); font-size: .74rem; line-height: 1.55; letter-spacing: 0; text-transform: none; }
+.workshop-desc { color: rgba(255,255,255,.74); font-size: clamp(.78rem,.88vw,.88rem); }
+.workshop-card-footer { border-top-color: var(--line); }
+.workshop-company-logo { opacity: .95; }
+
+/* Same three-day schedule, with a subtle box around each existing column. */
+.schedule-disclaimer {
+  color: var(--muted);
+  background: #202124;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 12px 16px;
+}
+.schedule-day-block {
+  background: #202124;
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent-text);
+  border-radius: 8px;
+  padding: clamp(16px,1.8vw,22px);
+}
+.schedule-day-title { color: #fff; font-family: var(--font-heading); }
+.schedule-row + .schedule-row { border-top-color: rgba(255,255,255,.1); }
+.schedule-row-time { color: rgba(255,255,255,.76); }
+.schedule-row-label { color: rgba(255,255,255,.88); }
+
+/* Existing application blocks, notice and footer — styling only. */
+.apply-section::after { opacity: .22; }
+.apply-sub, .apply-cost { color: var(--muted); }
+.apply-sub .fm-emphasis { color: #fff; }
+.apply-sub .fm-underline { text-decoration-color: var(--accent-text); }
+.apply-btn, .capacity-btn { border-radius: 6px; letter-spacing: .075em; }
+.sold-out-btn, .sold-out-btn:hover {
+  background: #36383d !important;
+  color: rgba(255,255,255,.86) !important;
+  border: 1px solid rgba(255,255,255,.2) !important;
+  opacity: 1;
+}
+.capacity-popup {
+  background: rgba(29,30,33,.98);
+  border-color: rgba(204,9,47,.4);
+  border-radius: 10px;
+  box-shadow: 0 16px 48px rgba(0,0,0,.3);
+}
+.capacity-label { color: var(--accent-text); letter-spacing: .12em; }
+.capacity-popup p { color: rgba(255,255,255,.76); }
+.capacity-close { color: rgba(255,255,255,.72); }
+.black-footer { border-top-color: var(--line); }
+.footer-divider { background: var(--line); }
+.footer-copy, .footer-credits, .footer-legal { color: rgba(255,255,255,.64); letter-spacing: .065em; }
+
+/* Keep the original mobile stacking rules and tabbed navigation. */
+@media(max-width:600px) {
+  .nav-tab { font-size: .6rem; letter-spacing: .04em; }
+  #questionText { font-size: clamp(1.5rem,8vw,3rem); letter-spacing: -.035em; }
+}
+
+
+
+/* ─── 2027 UPDATE — EXISTING LAYOUT, REUSABLE EMPHASIS & ARCHIVE ───
+   Headings / question phrases: the same italic serif used throughout.
+   Key facts in body text: restrained red underlines, never a second font.
+   Charcoal, off-white and red only; no pink accent colours.
+*/
+.fm-serif {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -.035em;
+  text-decoration: none;
+}
+.copy-headline .fm-serif, #questionText .fm-serif { color: var(--red); }
+.workshops-title em, .schedule-title em, .apply-word-now,
+.workshops-tba-title em { font-family: var(--font-accent); font-style: italic; }
+.fm-underline { text-decoration-color: var(--red); }
+.hero-top-text .fm-underline { text-decoration-color: var(--accent-text); }
+.workshop-tag, .workshop-role, .keynote-role {
+  text-transform: none;
+  letter-spacing: 0;
+}
+.workshop-tag { font-size: .72rem; line-height: 1.45; }
+.workshop-role { margin-top: 4px; margin-bottom: 12px; font-weight: 500; }
+.keynote-role { line-height: 1.65; }
+.workshop-card:hover { border-color: var(--red); }
+.copy-eyebrow { color: var(--red); }
+.nav-tab { border: 0; background: transparent; font-family: var(--font); }
+.nav-tab:focus-visible, .archive-toggle:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: -4px;
+}
+.nav-status {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: rgba(255,255,255,.8);
+  cursor: default;
+}
+.nav-status:hover { background: transparent; transform: none; }
+
+/* A compact announcement replaces this year's unconfirmed leader grid. */
+.workshops-tba {
+  width: min(620px, 100%);
+  margin: 0 auto;
+  padding: clamp(30px,5vw,52px) 24px;
+  background: #202124;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--red);
+  border-radius: 9px;
+  text-align: center;
+}
+.workshops-tba-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem,5vw,4.3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -.04em;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.workshops-tba-title em { color: var(--accent-text); font-weight: 700; }
+.workshops-tba p {
+  font-size: clamp(.85rem,1.2vw,1rem);
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; }
+}
+
+
+/* ==============================================================
+   REQUESTED REFINEMENT — BRAND, FOUR LINKS, CONTACT & 2026 ARCHIVE
+   Original brand red: #cc092f. No substitute orange/pink accent.
+   The source logo remains untouched; a lighter Times-style italic
+   is used consistently for the contrasting words in headings.
+   ============================================================== */
+:root { --red: #cc092f; --accent-text: var(--red); }
+.fm-serif, .workshops-title em, .schedule-title em, .apply-word-now,
+.workshops-tba-title em, .contact-title em {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -.035em;
+}
+.view--hidden { visibility: hidden; }
+#view-contact { z-index: 9; }
+#topnav { padding-inline: clamp(8px, 2vw, 28px); }
+.nav-tabs { max-width: 100%; }
+.nav-tab {
+  justify-content: center;
+  padding-inline: clamp(12px, 2vw, 28px);
+  text-transform: none;
+  letter-spacing: .01em;
+  font-size: .75rem;
+  font-weight: 600;
+  min-height: var(--nav);
+}
+.nav-status {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .28em;
+  font-size: .67rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  text-transform: none;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: rgba(255,255,255,.72);
+}
+.nav-status::before { content: none; }
+.nav-status em {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.18em;
+  line-height: 1;
+  color: #fff;
+}
+.hero-top-text .fm-fee { color: rgba(255,255,255,.76); }
+#program { scroll-margin-top: 0; }
+#program .apply-inner { min-height: calc(100svh - var(--nav)); }
+#program .apply-cost { margin-bottom: 26px; }
+#program .apply-cost strong { display: block; }
+#program .apply-btn { border: 0; cursor: pointer; text-transform: none; letter-spacing: .01em; }
+.workshops-tba-title { font-size: clamp(2.05rem, 4.6vw, 4rem); }
+.workshops-tba-title em { display: block; line-height: 1.12; }
+.workshops-section > .workshops-inner { padding-bottom: 0; }
+
+/* Reference-inspired light archive: centered heading, red subtitle,
+   white inset panel, thin rules and a single full-width chevron row. */
+.archives-section {
+  position: relative;
+  background: var(--paper);
+  color: var(--ink);
+  padding: clamp(44px, 5.5vw, 78px) clamp(18px, 4vw, 64px) clamp(56px, 7vw, 100px);
+}
+.archives-section::before, .archives-section::after { display: none; }
+.archive-intro {
+  padding: 0;
+  text-align: center;
+  max-width: 1040px;
+  margin: 0 auto clamp(34px, 4.5vw, 62px);
+}
+.archive-heading {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.65rem, 5.2vw, 5rem);
+  line-height: 1.08;
+  letter-spacing: -.045em;
+  color: #161719;
+  margin-bottom: clamp(20px, 2.6vw, 34px);
+}
+.archive-subtitle {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px;
+  color: var(--red);
+  font-size: clamp(.93rem, 1.5vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.55;
+}
+.archive-subtitle::before, .archive-subtitle::after { content: '—'; flex-shrink: 0; }
+.archive-panel {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(28px, 4vw, 56px) clamp(18px, 4.4vw, 64px);
+  background: #fff;
+  border: 1px solid #ececef;
+  border-radius: 5px;
+  box-shadow: 0 14px 40px rgba(17,19,24,.10);
+}
+.archive-details { position: relative; width: 100%; }
+.archive-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  list-style: none;
+  cursor: pointer;
+  padding: clamp(23px, 3vw, 36px) 0;
+  border-top: 1px solid #35373b;
+  border-bottom: 1px solid #35373b;
+  color: #161719;
+  background: transparent;
+  font-family: var(--font-heading);
+  font-size: clamp(.96rem, 1.65vw, 1.35rem);
+  font-weight: 750;
+  line-height: 1.4;
+  letter-spacing: -.025em;
+  transition: color .2s;
+}
+.archive-toggle::-webkit-details-marker { display: none; }
+.archive-toggle::marker { content: ''; }
+.archive-toggle:hover { color: var(--red); }
+.archive-toggle:focus-visible { outline: 2px solid var(--red); outline-offset: 6px; }
+.archive-toggle svg {
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  transition: transform .22s ease;
+}
+.archive-details[open] > .archive-toggle svg { transform: rotate(180deg); }
+.archive-content { padding-top: clamp(28px, 4vw, 52px); }
+.archive-year-note {
+  font-size: .82rem;
+  line-height: 1.75;
+  color: #60636a;
+  margin-bottom: clamp(24px, 3vw, 40px);
+  text-align: center;
+}
+.archive-year-note strong { font-weight: 600; color: #282a2e; }
+/* The existing keynote two-column layout and leader card grid are retained. */
+.archive-content .keynote-section {
+  border: 1px solid rgba(22,23,25,.1);
+  border-radius: 8px;
+}
+.archive-content .keynote-inner {
+  gap: clamp(24px, 3vw, 42px);
+  padding: clamp(22px, 3vw, 42px);
+}
+.archive-content .keynote-text { padding-right: 0; }
+.archive-content .keynote-photo-wrap { min-width: 0; }
+.archive-content .keynote-photo { border-radius: 6px; }
+.archive-content .keynote-eyebrow-line1 {
+  color: #fff;
+  text-transform: none;
+  font-size: .85rem;
+  letter-spacing: .01em;
+}
+.archive-content .keynote-eyebrow-line1 .red { color: inherit; }
+.archive-content .keynote-eyebrow-line1::before {
+  content: '';
+  display: inline-block;
+  height: 2px; width: 24px;
+  background: var(--red);
+  margin-right: 9px;
+  vertical-align: middle;
+}
+.archive-content .keynote-eyebrow-line2 {
+  text-transform: none;
+  font-size: .7rem;
+  letter-spacing: 0;
+}
+.archived-workshops { background: transparent; padding-bottom: 0; }
+.archived-workshops::before, .archived-workshops::after { display: none; }
+.archived-workshops .workshops-inner {
+  padding: clamp(42px, 5vw, 64px) 0 0;
+}
+.archived-workshops .workshops-header { margin-bottom: 28px; }
+.archived-workshops .workshops-eyebrow { color: #65676e; }
+.archived-workshops .workshops-title {
+  color: #161719;
+  font-size: clamp(1.85rem, 3.7vw, 3.3rem);
+}
+.archived-workshops .workshop-card { max-width: 380px; }
+.archived-workshops .workshop-tag {
+  color: rgba(255,255,255,.88);
+  border-left: 2px solid var(--red);
+  padding-left: 8px;
+}
+.archive-meta {
+  max-width: 820px;
+  margin: 18px auto 0;
+  color: #60636a;
+  font-size: .79rem;
+  line-height: 1.8;
+  text-align: center;
+}
+.archive-meta strong { color: #303238; font-weight: 600; }
+.archive-schedule-details {
+  margin-top: clamp(24px, 3vw, 40px);
+}
+.archive-schedule-toggle {
+  font-size: clamp(.88rem, 1.3vw, 1.05rem);
+  padding: 20px 0;
+  border-color: #d6d7db;
+}
+.archive-schedule-details .schedule-section {
+  background: transparent;
+  padding-bottom: 0;
+}
+.archive-schedule-details .schedule-inner { padding: 30px 0; }
+.archive-schedule-details .schedule-header { display: none; }
+.archive-note { display: block; font-weight: 600; margin-bottom: 8px; color: #fff; }
+.archive-close-row { margin-top: 30px; text-align: center; }
+.archive-close-btn {
+  border: 0;
+  background: transparent;
+  color: #393b42;
+  font: 600 .8rem var(--font);
+  min-height: 44px;
+  padding: 10px 16px;
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-underline-offset: .3em;
+  cursor: pointer;
+}
+.archive-close-btn:hover { color: var(--red); }
+
+/* A deliberately short Contact page: real details, no invented form. */
+#view-contact { display: flex; flex-direction: column; background: var(--paper); }
+.contact-section {
+  flex: 1;
+  width: 100%;
+  color: var(--ink);
+  padding: clamp(48px, 8vw, 110px) clamp(22px, 6vw, 72px);
+}
+.contact-inner { width: min(800px, 100%); margin: 0 auto; }
+.contact-eyebrow {
+  color: #64676f;
+  font-size: .72rem;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: .06em;
+  margin-bottom: 16px;
+}
+.contact-title {
+  color: #161719;
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -.045em;
+}
+.contact-title em { color: var(--red); }
+.contact-intro { color: #60636a; line-height: 1.7; font-size: .96rem; margin-top: 20px; }
+.contact-details { margin-top: 38px; border-top: 1px solid #d3d4d8; }
+.contact-row {
+  padding: 24px 0;
+  border-bottom: 1px solid #d3d4d8;
+  display: grid;
+  grid-template-columns: 150px minmax(0,1fr);
+  gap: 18px;
+  align-items: start;
+}
+.contact-row dt { color: #676a72; font-size: .83rem; line-height: 1.8; }
+.contact-row dd { color: var(--ink); font-size: 1rem; line-height: 1.7; }
+.contact-row a { color: inherit; text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .27em; }
+.contact-row a:hover { color: var(--red); }
+.contact-row .contact-email { font-size: clamp(1.12rem, 2.6vw, 1.65rem); font-weight: 600; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.contact-row small { display: block; color: #676a72; font-size: .85rem; margin-top: 5px; }
+@media(max-width:1050px) { #topnav .nav-status { display: none; } }
+@media(max-width:768px) {
+  .archived-workshops .workshop-card { width: 100%; max-width: 100%; }
+}
+@media(max-width:600px) {
+  .nav-tab { padding-inline: clamp(7px, 2.3vw, 14px); font-size: clamp(.61rem, 2.65vw, .71rem); }
+  .workshops-tba { padding: 30px 18px; }
+  .workshop-role { font-size: .77rem; }
+  .archive-subtitle { gap: 7px; font-size: .88rem; }
+  .archive-subtitle::before, .archive-subtitle::after { display: none; }
+  .archive-toggle { gap: 14px; }
+  .archive-content .keynote-inner { padding: 22px 18px; }
+  .archive-content .keynote-photo-wrap { min-height: 0; }
+  .contact-row { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
+  .contact-details { margin-top: 30px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
 </style>
 </head>
 <body>
 
-<!-- CAPACITY POPUP -->
-<div id="capacityPopup" class="capacity-popup">
-  <button class="capacity-close" onclick="closeCapacityPopup()" aria-label="Close capacity notice">×</button>
-  <div class="capacity-label">Sold Out</div>
-  <h2>The FutureMe Program is sold out.</h2>
-  <p>Registration has now closed due to full capacity.</p>
-</div>
-
 <!-- NAV -->
-<nav id="topnav">
-  <div class="nav-tabs">
-    <div class="nav-tab active" id="tab-home"      onclick="showView('home')">Home</div>
-    <div class="nav-tab"        id="tab-workshops" onclick="showView('workshops')">Workshop Leaders</div>
-    <div class="nav-tab"        id="tab-schedule"  onclick="showView('schedule')">Schedule</div>
-  </div>
-  <a class="nav-apply-btn sold-out-btn">Sold Out</a>
+<nav aria-label="Main navigation" id="topnav">
+<div class="nav-tabs">
+<a aria-controls="view-home" aria-current="page" class="nav-tab active" data-route="home" href="#home" id="tab-home">Home</a>
+<a aria-controls="program" class="nav-tab" data-route="program" href="#program" id="tab-program">Program</a>
+<a aria-controls="view-workshops" class="nav-tab" data-route="workshops" href="#workshops" id="tab-workshops">Workshop Leaders</a>
+<a aria-controls="view-contact" class="nav-tab" data-route="contact" href="#contact" id="tab-contact">Contact</a>
+</div>
+<span class="nav-apply-btn nav-status">Applications <em>open soon.</em></span>
 </nav>
-
 <!-- HOME VIEW -->
-<div id="view-home" class="view">
-
-  <section id="hero" class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-top-text">
-      A <strong>Three-Day</strong> Personal Finance Program for Rising Grades 8–10<br>
-      Learn the real costs of buying a car, a home, and understanding your first paycheque<br>
-      <strong>June 23–25 &nbsp;&bull;&nbsp; 8:00 AM – 3:00 PM</strong> &nbsp;&bull;&nbsp; St. George's School, Vancouver<br>
-      $25 application fee &nbsp;&bull;&nbsp; $799 + GST program fee
-    </div>
-    <div class="logo-container">
-      <div class="red-box">
-        <img src="future.png" alt="FutureMe at VentureLift" class="hero-logo">
-      </div>
-      <div class="sub-logos">
-        <a href="https://www.stgeorges.bc.ca"><img src="saint.png" alt="St. George's School" class="logo-saint"></a>
-        <div class="sub-logos-divider"></div>
-        <a href="https://www.venturelift.org/#intro"><img src="venture.png" alt="VentureLift" class="logo-venture"></a>
-      </div>
-    </div>
-    <div class="hero-bottom-links">
-      <a href="https://www.stgeorges.bc.ca" class="link-left">← St. George's School</a>
-      <a href="#introWrapper" class="link-down" onclick="event.preventDefault();(function(){var w=document.getElementById('introWrapper');var room=w.offsetHeight-window.innerHeight;homeEl.scrollTo({top:w.offsetTop+room*0.08,behavior:'smooth'});})();">Learn More ↓</a>
-      <a class="link-right sold-out-link" aria-disabled="true">Sold Out →</a>
-    </div>
-  </section>
-
-  <div class="intro-wrapper" id="introWrapper">
-    <section id="intro" class="intro-section">
-      <div class="sticky-visuals">
-        <div class="question-stage"><div id="questionText"></div></div>
-        <div class="hyphen-indicator" id="hyphenIndicator"></div>
-      </div>
-    </section>
-  </div>
-
-  <section id="copy-section" class="content-section">
-    <div class="content-inner">
-      <div class="copy-left" id="copyLeft">
-        <span class="copy-eyebrow" id="copyEyebrow">Why It Matters</span>
-        <p class="copy-headline" id="copyHeadline">These are all questions about personal finance that seem daunting to someone who's just starting to handle being self-reliant for the first time.</p>
-        <p class="copy-body" id="copyBody">Life after graduation comes with opportunities — and price tags. Does your child know the real costs, fine print, and hidden expenses behind buying a car or a home? When they land their first job, would you like them to understand how a paycheque really works?</p>
-        <button class="copy-workshops-btn" id="copyBtn" onclick="showView('workshops')">
+<div aria-hidden="false" class="view" id="view-home">
+<section class="hero" id="hero">
+<div class="hero-bg"></div>
+<div class="hero-top-text">A <strong>Three-Day</strong> Personal Finance Program for <span class="fm-emphasis fm-underline">Rising Grades 8–10</span><br/>
+Learn the real costs of buying a car, a home, and understanding your first paycheque<br/>
+<strong class="fm-underline">Applications open soon</strong>  •  Hosted by St. George's School, Vancouver<br/>
+<span class="fm-fee">2027 program details will be announced here</span></div>
+<div class="logo-container">
+<div class="red-box">
+<img alt="FutureMe at VentureLift" class="hero-logo" src="future.png"/>
+</div>
+<div class="sub-logos">
+<a href="https://www.stgeorges.bc.ca"><img alt="St. George's School" class="logo-saint" src="saint.png"/></a>
+<div class="sub-logos-divider"></div>
+<a href="https://www.venturelift.org/#intro"><img alt="VentureLift" class="logo-venture" src="venture.png"/></a>
+</div>
+</div>
+<div class="hero-bottom-links">
+<a class="link-left" href="https://www.stgeorges.bc.ca">← St. George's School</a>
+<a class="link-down" data-route="program" href="#program">Learn More ↓</a>
+<a class="link-right" data-route="archives" href="#archives">2026 Archive →</a>
+</div>
+</section>
+<div class="intro-wrapper" id="introWrapper">
+<section class="intro-section" id="intro">
+<div class="sticky-visuals">
+<div class="question-stage"><div id="questionText"></div></div>
+<div class="hyphen-indicator" id="hyphenIndicator"></div>
+</div>
+</section>
+</div>
+<section class="content-section" id="copy-section">
+<div class="content-inner">
+<div class="copy-left" id="copyLeft">
+<span class="copy-eyebrow" id="copyEyebrow">Why It Matters</span>
+<p class="copy-headline" id="copyHeadline">These are all questions about <span class="fm-serif">personal finance</span> that seem daunting to someone who's just starting to handle being self-reliant for the first time.</p>
+<p class="copy-body" id="copyBody">Life after graduation comes with opportunities — and price tags. Does your child know the <span class="fm-underline">real costs, fine print, and hidden expenses</span> behind buying a car or a home? When they land their first job, would you like them to understand <span class="fm-emphasis">how a paycheque really works?</span></p>
+<button class="copy-workshops-btn" id="copyBtn" onclick="showView('workshops')">
           Workshop Leaders
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
-      </div>
-    </div>
-  </section>
+          <svg viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+</button>
+</div>
+</div>
+</section>
 
-  <section id="keynote-section" class="keynote-section">
-    <div class="keynote-inner" id="keynoteInner">
-      <div class="keynote-photo-wrap">
-        <img src="jeff-maclean.png" alt="Jeff MacLean" class="keynote-photo">
-      </div>
-      <div class="keynote-text">
-        <span class="keynote-eyebrow-line1">Announcing our <span class="red">Keynote Speaker</span></span>
-        <span class="keynote-eyebrow-line2">7:00 P.M. &nbsp;&bull;&nbsp; Wednesday, June 24th</span>
-        <h3 class="keynote-name">Jeff MacLean</h3>
-        <div class="keynote-role">
-          Senior Vice President of Manufacturing, The Shaw Group<br>
+<section aria-labelledby="applyHeading" class="apply-section" id="program">
+<div class="apply-inner">
+<h2 class="apply-heading" id="applyHeading"><span class="apply-word-apply">The</span><span class="apply-word-now">program.</span></h2>
+<p class="apply-sub" id="applySub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for <span class="fm-emphasis">students entering Grades 8–10</span>, the program covers real-world topics including <span class="fm-underline">budgeting, taxes, buying a home</span>, and more — taught by working professionals who live these decisions every day.</p>
+<p class="apply-cost" id="applyCost"><strong>Applications open soon.</strong> 2027 dates and fees will be announced here.</p>
+<button class="apply-btn" id="applyBtn" onclick="showView('contact')" type="button">Contact us <svg aria-hidden="true" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
+</div>
+</section>
+<footer class="black-footer">
+<div class="footer-inner">
+<div class="footer-left">
+<a href="https://www.venturelift.org/#intro"><img alt="VentureLift" class="footer-logo" src="venture.png"/></a>
+<div class="footer-divider"></div>
+<span class="footer-copy">© 2025–2026 St. George's School</span>
+</div>
+<div class="footer-right">
+<span class="footer-credits">Designed by Dylan Duan '28, Thomas Li '26 &amp; Evan Borodow '29</span>
+<div class="footer-divider"></div>
+<a class="footer-legal" href="https://static1.squarespace.com/static/690ce620a851f31c1c67d887/t/691b795b3409972cbc5443fd/1763408219638/PRIVACY+POLICY.pdf">Legal</a>
+</div>
+</div>
+</footer>
+</div>
+<!-- WORKSHOPS VIEW -->
+<div aria-hidden="true" class="view view--hidden" id="view-workshops" inert="">
+<section class="workshops-section">
+<div class="workshops-inner">
+<div class="workshops-header" id="workshopsHeader">
+<span class="workshops-eyebrow">Workshop Leaders · 2027</span>
+<h2 class="workshops-title">Led by <em>experts.</em></h2>
+</div>
+<div class="workshops-tba" id="workshopsTBA">
+<h3 class="workshops-tba-title">Applications <em>open soon.</em></h3>
+<p>Our 2027 workshop leaders will be announced here.</p>
+</div>
+</div>
+</section>
+<section aria-labelledby="archivesHeading" class="archives-section" id="archives">
+<div class="archive-intro"><h2 class="archive-heading" id="archivesHeading">Archives</h2>
+<p class="archive-subtitle">Past keynote speakers &amp; workshop leaders</p></div>
+<div class="archive-panel"><details class="archive-details" id="archive2026">
+<summary aria-controls="archive2026Content" class="archive-toggle" id="archiveToggle"><span>Our 2026 program lineup</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
+<div class="archive-content" id="archive2026Content"><p class="archive-year-note"><strong>June 23–25, 2026 · St. George’s School, Vancouver</strong><br/>Past program — this is not the 2027 lineup.</p><section aria-label="2026 keynote speaker" class="keynote-section" id="keynote-section">
+<div class="keynote-inner" id="keynoteInner">
+<div class="keynote-photo-wrap">
+<img alt="Jeff MacLean" class="keynote-photo" src="jeff-maclean.png"/>
+</div>
+<div class="keynote-text">
+<span class="keynote-eyebrow-line1">2026  •  <span class="red">Keynote Speaker</span></span>
+<span class="keynote-eyebrow-line2">7:00 P.M.  •  Wednesday, June 24th, 2026</span>
+<h3 class="keynote-name">Jeff MacLean</h3>
+<div class="keynote-role">
+          Senior Vice President of Manufacturing, The Shaw Group<br/>
           Former President, Michelin North America (Canada) Inc.
         </div>
-        <div class="keynote-divider"></div>
-        <p class="keynote-bio">A seasoned industrial leader, Jeff MacLean brings over 30 years of global manufacturing and corporate governance experience to his role. As Senior Vice President of Manufacturing for The Shaw Group, he provides strategic oversight for eight divisions within one of Eastern Canada's leading community developers, residential builders and natural resource manufacturers.</p>
-        <p class="keynote-bio">A former President of Michelin North America (Canada) Inc., Mr. MacLean's career began in engineering as a co-op student in 1988 and expanded into international executive leadership in North America and Europe. He is an alumnus of Halifax's Saint Mary's University (Bachelor of Science) and Dalhousie University, where he completed his Engineering degree.</p>
-        <p class="keynote-bio">Beyond his professional life, Jeff remains deeply committed to his community, known for coaching youth sports, serving as Chair of Nova Scotia Business Inc., and as a passionate supporter of the Special Olympics. In his leisure time, he enjoys fishing and mountain biking.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="apply-home" class="apply-section">
-    <div class="apply-inner">
-      <div class="apply-heading" id="applyHeading">
-        <span class="apply-word-apply">Apply</span>
-        <span class="apply-word-now">Now.</span>
-      </div>
-      <p class="apply-sub" id="applySub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8–10, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
-      <p class="apply-cost" id="applyCost"><strong>Sold out.</strong> Registration is now closed due to full capacity.</p>
-      <a class="apply-btn sold-out-btn" id="applyBtn" aria-disabled="true">
-        Sold Out
-      </a>
-    </div>
-  </section>
-
-  <footer class="black-footer">
-    <div class="footer-inner">
-      <div class="footer-left">
-        <a href="https://www.venturelift.org/#intro"><img src="venture.png" alt="VentureLift" class="footer-logo"></a>
-        <div class="footer-divider"></div>
-        <span class="footer-copy">&copy; 2025–2026 St. George's School</span>
-      </div>
-      <div class="footer-right">
-        <span class="footer-credits">Designed by Dylan Duan '28, Thomas Li '26 &amp; Evan Borodow '29</span>
-        <div class="footer-divider"></div>
-        <a href="https://static1.squarespace.com/static/690ce620a851f31c1c67d887/t/691b795b3409972cbc5443fd/1763408219638/PRIVACY+POLICY.pdf" class="footer-legal">Legal</a>
-      </div>
-    </div>
-  </footer>
+<div class="keynote-divider"></div>
+<p class="keynote-bio">A seasoned industrial leader, Jeff MacLean brings over 30 years of global manufacturing and corporate governance experience to his role. As Senior Vice President of Manufacturing for The Shaw Group, he provides strategic oversight for eight divisions within one of Eastern Canada's leading community developers, residential builders and natural resource manufacturers.</p>
+<p class="keynote-bio">A former President of Michelin North America (Canada) Inc., Mr. MacLean's career began in engineering as a co-op student in 1988 and expanded into international executive leadership in North America and Europe. He is an alumnus of Halifax's Saint Mary's University (Bachelor of Science) and Dalhousie University, where he completed his Engineering degree.</p>
+<p class="keynote-bio">Beyond his professional life, Jeff remains deeply committed to his community, known for coaching youth sports, serving as Chair of Nova Scotia Business Inc., and as a passionate supporter of the Special Olympics. In his leisure time, he enjoys fishing and mountain biking.</p>
 </div>
-
-<!-- WORKSHOPS VIEW -->
-<div id="view-workshops" class="view view--hidden">
-
-  <section class="workshops-section">
-    <div class="workshops-inner">
-      <div class="workshops-header" id="workshopsHeader">
-        <span class="workshops-eyebrow">The Program</span>
-        <h2 class="workshops-title">Led by <em>experts.</em></h2>
-      </div>
-
-      <div class="workshops-row row-1" id="wRow1">
-        <div class="workshop-card">
-          <img src="jee-woon.png" alt="Mr. Jee-Woon" class="workshop-photo" style="object-position:center 12%;">
-          <div class="workshop-info">
-            <span class="workshop-tag">Financial Literacy Counsel</span>
-            <div class="workshop-name-row"><span class="workshop-name">Mr. Jee-Woon</span></div>
-            <div class="workshop-role">Financial Advisor &amp; Investment Specialist</div>
-            <p class="workshop-desc">Jee-Woon brings specialized experience having provided financial education to Olympic athletes, the UBC School of Medicine, and major healthcare organizations. He empowers young professionals to master foundational money principles, helping them regain total control over their time and energy. A recognized voice in the industry, he has appeared in The Globe and Mail and amassed over half a million views for his digital content on financial literacy.</p>
-            <div class="workshop-card-footer">
-              <img src="logo-financial-literacy.png" alt="Financial Literacy Counsel" class="workshop-company-logo">
-            </div>
-          </div>
-        </div>
-
-        <div class="workshop-card">
-          <img src="rosa.png" alt="Rosa Lenihan" class="workshop-photo" style="object-position:center 8%;">
-          <div class="workshop-info">
-            <span class="workshop-tag">Budget Formatting</span>
-            <div class="workshop-name-row"><span class="workshop-name">Rosa Lenihan</span></div>
-            <div class="workshop-role">Founder / Owner &middot; Quantum Academy &amp; Quantum College</div>
-            <p class="workshop-desc">Born into a family of educators in Taiwan and a scholarship recipient at SUNY Buffalo, Rosa founded Quantum Academy in 2009 after building a reputation for high standards in Richmond and Vancouver. Her philosophy, that rigorous academics and community responsibility are inseparable, shaped an institution focused on university preparation alongside deep civic engagement.</p>
-            <div class="workshop-card-footer">
-              <img src="logo-quantum.png" alt="Quantum Academy" class="workshop-company-logo">
-            </div>
-          </div>
-        </div>
-
-        <div class="workshop-card">
-          <img src="paisley.png" alt="Paisley Agnesini" class="workshop-photo" style="object-position:center 6%;">
-          <div class="workshop-info">
-            <span class="workshop-tag">Buying a House</span>
-            <div class="workshop-name-row"><span class="workshop-name">Paisley Agnesini</span></div>
-            <div class="workshop-role">REALTOR&reg; &middot; RE/MAX City Realty</div>
-            <p class="workshop-desc">Raised in New Westminster within a real estate family, Paisley developed hands-on mastery of property management long before earning her licence from the UBC Sauder School of Business. By 21 she had purchased her first home and successfully house hacked to build early equity. With a background in high-stakes contract negotiation from Vancouver's film industry, she now helps clients build long-term wealth through smart and transparent real estate decisions.</p>
-            <div class="workshop-card-footer">
-              <img src="logo-remax.png" alt="RE/MAX City Realty" class="workshop-company-logo">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="workshops-row row-2" id="wRow2">
-        <div class="workshop-card">
-          <img src="jerry.png" alt="Jerry Hu" class="workshop-photo" style="object-position:center 8%;">
-          <div class="workshop-info">
-            <span class="workshop-tag">Tax &amp; Finance</span>
-            <div class="workshop-name-row"><span class="workshop-name">Jerry Hu</span></div>
-            <div class="workshop-role">CPA &middot; Co-founder, Everplus CPA Ltd.</div>
-            <p class="workshop-desc">With nearly a decade of public practice experience including time at Ernst &amp; Young, Jerry advises individuals and small businesses on tax compliance, financial reporting, and estate planning. A 2023 graduate of the CPA In-Depth Tax Program, he specializes in Canadian corporate and personal tax planning, regularly supporting corporate reorganizations and succession planning for entrepreneurs and high-net-worth individuals.</p>
-            <div class="workshop-card-footer">
-              <img src="logo-everplus.png" alt="Everplus CPA Ltd." class="workshop-company-logo">
-            </div>
-          </div>
-        </div>
-
-        <div class="workshop-card">
-          <img src="tracey.png" alt="Tracey Lee" class="workshop-photo" style="object-position:center 20%;">
-          <div class="workshop-info">
-            <span class="workshop-tag">In-depth Research</span>
-            <div class="workshop-name-row"><span class="workshop-name">Tracey Lee</span></div>
-            <div class="workshop-role">M.Ed &middot; Registered Clinical Counsellor</div>
-            <p class="workshop-desc">Tracey is a registered clinical counsellor with over 30 years of experience supporting youth and mentoring emerging professionals. Her extensive background in BC's public and independent schools is bolstered by her ability to teach in-depth research from diverse perspectives. Tracey has designed K&ndash;12 wellness programs, supervises university interns, and remains a dedicated advocate for student mental health. Beyond her clinical practice, Tracey is a lifelong mentor and elite debate coach, having led Team Canada to a World Schools Debate Championship in 2010. Her community impact has earned her the CSDF McLeese Award, the Vancouver Quadra Hidden Heroes Award, and Stanford University's J.E. Wallace Sterling Award.</p>
-          </div>
-        </div>
-
-        <div class="workshop-card">
-          <img src="jeffrey.png" alt="Jeffrey Nelson" class="workshop-photo" style="object-position:center 15%;">
-          <div class="workshop-info">
-            <span class="workshop-tag">Buying a Car</span>
-            <div class="workshop-name-row"><span class="workshop-name">Jeffrey Nelson</span></div>
-            <div class="workshop-role">Managing Partner &middot; Richmond Hyundai (Harris Auto)</div>
-            <p class="workshop-desc">Jeffrey brings 20 years of Canadian automotive experience across both OEM and retail. As Managing Partner at Richmond Hyundai he built it into the top EV dealer in BC, executed a successful buy/sell, and grew market share in under three months. Earlier roles include General Manager at Volkswagen with Go Auto and Auto Canada, where he led two award-winning dealers and a team of 70, and 13.5 years at Mercedes-Benz Canada as Region Operations Manager for Western Canada, overseeing 18 dealers while the brand maintained #1 luxury manufacturer status.</p>
-            <div class="workshop-card-footer">
-              <img src="logo-harris.png" alt="Harris Auto Group" class="workshop-company-logo">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="apply-section">
-    <div class="apply-inner">
-      <div class="apply-heading">
-        <span class="apply-word-apply">Apply</span>
-        <span class="apply-word-now">Now.</span>
-      </div>
-      <p class="apply-sub">A three-day personal finance summer program — equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8–10, the program covers real-world topics including budgeting, taxes, buying a home, and more — taught by working professionals who live these decisions every day.</p>
-      <p class="apply-cost"><strong>Sold out.</strong> Registration is now closed due to full capacity.</p>
-      <a class="apply-btn sold-out-btn" aria-disabled="true">
-        Sold Out
-      </a>
-    </div>
-  </section>
-
-  <footer class="black-footer">
-    <div class="footer-inner">
-      <div class="footer-left">
-        <a href="https://www.venturelift.org/#intro"><img src="venture.png" alt="VentureLift" class="footer-logo"></a>
-        <div class="footer-divider"></div>
-        <span class="footer-copy">&copy; 2025–2026 St. George's School</span>
-      </div>
-      <div class="footer-right">
-        <span class="footer-credits">Designed by Dylan Duan '28, Thomas Li '26 &amp; Evan Borodow '29</span>
-        <div class="footer-divider"></div>
-        <a href="https://static1.squarespace.com/static/690ce620a851f31c1c67d887/t/691b795b3409972cbc5443fd/1763408219638/PRIVACY+POLICY.pdf" class="footer-legal">Legal</a>
-      </div>
-    </div>
-  </footer>
 </div>
+</section>
+<section aria-labelledby="archivedLeadersTitle" class="workshops-section archived-workshops">
+<div class="workshops-inner">
+<div class="workshops-header">
+<span class="workshops-eyebrow">June 23–25, 2026 · Past program</span>
+<h3 class="workshops-title" id="archivedLeadersTitle">Workshop <em>leaders.</em></h3>
 
-<!-- SCHEDULE VIEW -->
-<div id="view-schedule" class="view view--hidden">
-
-  <section class="schedule-section">
-    <div class="schedule-inner">
-      <div class="schedule-header" id="scheduleHeader">
-        <span class="schedule-eyebrow">June 23&ndash;25, 2026</span>
-        <h2 class="schedule-title">The <em>schedule.</em></h2>
-      </div>
-
-      <p class="schedule-disclaimer">
-        Workshop start and end times are set. Topics and leader assignments are subject to change. Please check back upon arrival for the finalized schedule.
-      </p>
-
-      <div class="schedule-chart" id="scheduleChart">
-
-        <div class="schedule-day-block">
-          <div class="schedule-day-title">Tuesday, June 23</div>
-          <div class="schedule-row"><div class="schedule-row-time">8:30 AM</div><div class="schedule-row-label">Registration</div></div>
-          <div class="schedule-row"><div class="schedule-row-time">9:00 &ndash; 10:30</div><div class="schedule-row-label">Session 1 &middot; Tracey Lee</div></div>
-          <div class="schedule-row"><div class="schedule-row-time">10:40 &ndash; 12:00</div><div class="schedule-row-label">Session 2 &middot; Jerry Hu &amp; Mr. Jee-Woon</div></div>
-          <div class="schedule-row"><div class="schedule-row-time">12:00 &ndash; 1:00</div><div class="schedule-row-label">Lunch provided</div></div>
-          <div class="schedule-row"><div class="schedule-row-time">1:00 &ndash; 3:00</div><div class="schedule-row-label">Session 3 &middot; Jerry Hu, Mr. Jee-Woon &amp; Rosa Lenihan</div></div>
-        </div>
-
-        <div class="schedule-day-block">
-          <div class="schedule-day-title">Wednesday, June 24</div>
-          <div class="schedule-row"><div class="schedule-row-time">9:00 &ndash; 10:30</div><div class="schedule-row-label">Session 4</div></div>
-          <div class="schedule-row"><div class="schedule-row-time">10:40 &ndash; 12:00</div><div class="schedule-row-label">Session 5</div></div>
-          <div class="schedule-row"><div class="schedule-row-time">12:00 &ndash; 1:00</div><div class="schedule-row-label">Lunch provided</div></div>
-          <div class="schedule-row"><div class="schedule-row-time">1:00 &ndash; 2:30</div><div class="schedule-row-label">Session 6</div></div>
-          <div class="schedule-row"><div class="schedule-row-time">2:40 &ndash; 3:00</div><div class="schedule-row-label">Session 7</div></div>
-          <div class="schedule-row"><div class="schedule-row-time">3:00 &ndash; 5:00</div><div class="schedule-row-label">Team simulation</div></div>
-          <div class="schedule-row"><div class="schedule-row-time">5:00 &ndash; 7:00</div><div class="schedule-row-label">Networking dinner with mentors</div></div>
-          <div class="schedule-row"><div class="schedule-row-time">7:00 &ndash; 9:00</div><div class="schedule-row-label">Keynote speaker &middot; Jeff MacLean</div></div>
-        </div>
-
-        <div class="schedule-day-block">
-          <div class="schedule-day-title">Thursday, June 25</div>
-          <div class="schedule-row"><div class="schedule-row-time">9:00 &ndash; 12:00</div><div class="schedule-row-label">Session 8 (intermittent breaks)</div></div>
-          <div class="schedule-row"><div class="schedule-row-time">12:00 &ndash; 1:00</div><div class="schedule-row-label">Lunch</div></div>
-          <div class="schedule-row"><div class="schedule-row-time">1:00 &ndash; 3:00</div><div class="schedule-row-label">Session 9 (intermittent breaks)</div></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="apply-section">
-    <div class="apply-inner">
-      <div class="apply-heading">
-        <span class="apply-word-apply">Apply</span>
-        <span class="apply-word-now">Now.</span>
-      </div>
-      <p class="apply-sub">A three-day personal finance summer program &mdash; equipping you with the knowledge to make confident money decisions for life. Designed for students entering Grades 8&ndash;10, the program covers real-world topics including budgeting, taxes, buying a home, and more &mdash; taught by working professionals who live these decisions every day.</p>
-      <p class="apply-cost"><strong>Sold out.</strong> Registration is now closed due to full capacity.</p>
-      <a class="apply-btn sold-out-btn" aria-disabled="true">
-        Sold Out
-      </a>
-    </div>
-  </section>
-
-  <footer class="black-footer">
-    <div class="footer-inner">
-      <div class="footer-left">
-        <a href="https://www.venturelift.org/#intro"><img src="venture.png" alt="VentureLift" class="footer-logo"></a>
-        <div class="footer-divider"></div>
-        <span class="footer-copy">&copy; 2025&ndash;2026 St. George's School</span>
-      </div>
-      <div class="footer-right">
-        <span class="footer-credits">Designed by Dylan Duan '28, Thomas Li '26 &amp; Evan Borodow '29</span>
-        <div class="footer-divider"></div>
-        <a href="https://static1.squarespace.com/static/690ce620a851f31c1c67d887/t/691b795b3409972cbc5443fd/1763408219638/PRIVACY+POLICY.pdf" class="footer-legal">Legal</a>
-      </div>
-    </div>
-  </footer>
 </div>
+<div class="workshops-row row-1" id="wRow1">
+<div class="workshop-card">
+<img alt="Mr. Jee-Woon" class="workshop-photo" src="jee-woon.png" style="object-position:center 12%;"/>
+<div class="workshop-info">
+<span class="workshop-tag">Financial Literacy Counsel</span>
+<div class="workshop-name-row"><span class="workshop-name">Mr. Jee-Woon</span></div>
+<div class="workshop-role">Financial Advisor &amp; Investment Specialist</div>
+<p class="workshop-desc">Jee-Woon brings specialized experience having provided financial education to Olympic athletes, the UBC School of Medicine, and major healthcare organizations. He empowers young professionals to master foundational money principles, helping them regain total control over their time and energy. A recognized voice in the industry, he has appeared in The Globe and Mail and amassed over half a million views for his digital content on financial literacy.</p>
+<div class="workshop-card-footer">
+<img alt="Financial Literacy Counsel" class="workshop-company-logo" src="logo-financial-literacy.png"/>
+</div>
+</div>
+</div>
+<div class="workshop-card">
+<img alt="Rosa Lenihan" class="workshop-photo" src="rosa.png" style="object-position:center 8%;"/>
+<div class="workshop-info">
+<span class="workshop-tag">Budget Formatting</span>
+<div class="workshop-name-row"><span class="workshop-name">Rosa Lenihan</span></div>
+<div class="workshop-role">Founder / Owner · Quantum Academy &amp; Quantum College</div>
+<p class="workshop-desc">Born into a family of educators in Taiwan and a scholarship recipient at SUNY Buffalo, Rosa founded Quantum Academy in 2009 after building a reputation for high standards in Richmond and Vancouver. Her philosophy, that rigorous academics and community responsibility are inseparable, shaped an institution focused on university preparation alongside deep civic engagement.</p>
+<div class="workshop-card-footer">
+<img alt="Quantum Academy" class="workshop-company-logo" src="logo-quantum.png"/>
+</div>
+</div>
+</div>
+<div class="workshop-card">
+<img alt="Paisley Agnesini" class="workshop-photo" src="paisley.png" style="object-position:center 6%;"/>
+<div class="workshop-info">
+<span class="workshop-tag">Buying a House</span>
+<div class="workshop-name-row"><span class="workshop-name">Paisley Agnesini</span></div>
+<div class="workshop-role">REALTOR® · RE/MAX City Realty</div>
+<p class="workshop-desc">Raised in New Westminster within a real estate family, Paisley developed hands-on mastery of property management long before earning her licence from the UBC Sauder School of Business. By 21 she had purchased her first home and successfully house hacked to build early equity. With a background in high-stakes contract negotiation from Vancouver's film industry, she now helps clients build long-term wealth through smart and transparent real estate decisions.</p>
+<div class="workshop-card-footer">
+<img alt="RE/MAX City Realty" class="workshop-company-logo" src="logo-remax.png"/>
+</div>
+</div>
+</div>
+</div><div class="workshops-row row-2" id="wRow2">
+<div class="workshop-card">
+<img alt="Jerry Hu" class="workshop-photo" src="jerry.png" style="object-position:center 8%;"/>
+<div class="workshop-info">
+<span class="workshop-tag">Tax &amp; Finance</span>
+<div class="workshop-name-row"><span class="workshop-name">Jerry Hu</span></div>
+<div class="workshop-role">CPA · Co-founder, Everplus CPA Ltd.</div>
+<p class="workshop-desc">With nearly a decade of public practice experience including time at Ernst &amp; Young, Jerry advises individuals and small businesses on tax compliance, financial reporting, and estate planning. A 2023 graduate of the CPA In-Depth Tax Program, he specializes in Canadian corporate and personal tax planning, regularly supporting corporate reorganizations and succession planning for entrepreneurs and high-net-worth individuals.</p>
+<div class="workshop-card-footer">
+<img alt="Everplus CPA Ltd." class="workshop-company-logo" src="logo-everplus.png"/>
+</div>
+</div>
+</div>
+<div class="workshop-card">
+<img alt="Tracey Lee" class="workshop-photo" src="tracey.png" style="object-position:center 20%;"/>
+<div class="workshop-info">
+<span class="workshop-tag">In-depth Research</span>
+<div class="workshop-name-row"><span class="workshop-name">Tracey Lee</span></div>
+<div class="workshop-role">M.Ed · Registered Clinical Counsellor</div>
+<p class="workshop-desc">Tracey is a registered clinical counsellor with over 30 years of experience supporting youth and mentoring emerging professionals. Her extensive background in BC's public and independent schools is bolstered by her ability to teach in-depth research from diverse perspectives. Tracey has designed K–12 wellness programs, supervises university interns, and remains a dedicated advocate for student mental health. Beyond her clinical practice, Tracey is a lifelong mentor and elite debate coach, having led Team Canada to a World Schools Debate Championship in 2010. Her community impact has earned her the CSDF McLeese Award, the Vancouver Quadra Hidden Heroes Award, and Stanford University's J.E. Wallace Sterling Award.</p>
+</div>
+</div>
+<div class="workshop-card">
+<img alt="Jeffrey Nelson" class="workshop-photo" src="jeffrey.png" style="object-position:center 15%;"/>
+<div class="workshop-info">
+<span class="workshop-tag">Buying a Car</span>
+<div class="workshop-name-row"><span class="workshop-name">Jeffrey Nelson</span></div>
+<div class="workshop-role">Managing Partner · Richmond Hyundai (Harris Auto)</div>
+<p class="workshop-desc">Jeffrey brings 20 years of Canadian automotive experience across both OEM and retail. As Managing Partner at Richmond Hyundai he built it into the top EV dealer in BC, executed a successful buy/sell, and grew market share in under three months. Earlier roles include General Manager at Volkswagen with Go Auto and Auto Canada, where he led two award-winning dealers and a team of 70, and 13.5 years at Mercedes-Benz Canada as Region Operations Manager for Western Canada, overseeing 18 dealers while the brand maintained #1 luxury manufacturer status.</p>
+<div class="workshop-card-footer">
+<img alt="Harris Auto Group" class="workshop-company-logo" src="logo-harris.png"/>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<details class="archive-details archive-schedule-details" id="archiveSchedule2026"><summary class="archive-toggle archive-schedule-toggle"><span>2026 program schedule</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary><p class="archive-meta"><strong>St. George’s School, Vancouver</strong><br/>
+              The 2026 program was advertised as 8:00 AM – 3:00 PM, with a $25 application fee and a $799 + GST program fee.<br/>
+<span class="fm-underline">Archived information only</span> — 2027 details are to be announced.</p><section class="schedule-section">
+<div class="schedule-inner">
+<div class="schedule-header" id="scheduleHeader">
+<span class="schedule-eyebrow">June 23–25, 2026</span>
+<h2 class="schedule-title">The <em>schedule.</em></h2>
+</div>
+<p class="schedule-disclaimer"><span class="archive-note">2026 archive — not the 2027 schedule.</span>Original 2026 notice: Workshop start and end times are set. Topics and leader assignments are subject to change. Please check back upon arrival for the finalized schedule.</p>
+<div class="schedule-chart" id="scheduleChart">
+<div class="schedule-day-block">
+<div class="schedule-day-title">Tuesday, June 23</div>
+<div class="schedule-row"><div class="schedule-row-time">8:30 AM</div><div class="schedule-row-label">Registration</div></div>
+<div class="schedule-row"><div class="schedule-row-time">9:00 – 10:30</div><div class="schedule-row-label">Session 1 · Tracey Lee</div></div>
+<div class="schedule-row"><div class="schedule-row-time">10:40 – 12:00</div><div class="schedule-row-label">Session 2 · Jerry Hu &amp; Mr. Jee-Woon</div></div>
+<div class="schedule-row"><div class="schedule-row-time">12:00 – 1:00</div><div class="schedule-row-label">Lunch provided</div></div>
+<div class="schedule-row"><div class="schedule-row-time">1:00 – 3:00</div><div class="schedule-row-label">Session 3 · Jerry Hu, Mr. Jee-Woon &amp; Rosa Lenihan</div></div>
+</div>
+<div class="schedule-day-block">
+<div class="schedule-day-title">Wednesday, June 24</div>
+<div class="schedule-row"><div class="schedule-row-time">9:00 – 10:30</div><div class="schedule-row-label">Session 4</div></div>
+<div class="schedule-row"><div class="schedule-row-time">10:40 – 12:00</div><div class="schedule-row-label">Session 5</div></div>
+<div class="schedule-row"><div class="schedule-row-time">12:00 – 1:00</div><div class="schedule-row-label">Lunch provided</div></div>
+<div class="schedule-row"><div class="schedule-row-time">1:00 – 2:30</div><div class="schedule-row-label">Session 6</div></div>
+<div class="schedule-row"><div class="schedule-row-time">2:40 – 3:00</div><div class="schedule-row-label">Session 7</div></div>
+<div class="schedule-row"><div class="schedule-row-time">3:00 – 5:00</div><div class="schedule-row-label">Team simulation</div></div>
+<div class="schedule-row"><div class="schedule-row-time">5:00 – 7:00</div><div class="schedule-row-label">Networking dinner with mentors</div></div>
+<div class="schedule-row"><div class="schedule-row-time">7:00 – 9:00</div><div class="schedule-row-label">Keynote speaker · Jeff MacLean</div></div>
+</div>
+<div class="schedule-day-block">
+<div class="schedule-day-title">Thursday, June 25</div>
+<div class="schedule-row"><div class="schedule-row-time">9:00 – 12:00</div><div class="schedule-row-label">Session 8 (intermittent breaks)</div></div>
+<div class="schedule-row"><div class="schedule-row-time">12:00 – 1:00</div><div class="schedule-row-label">Lunch</div></div>
+<div class="schedule-row"><div class="schedule-row-time">1:00 – 3:00</div><div class="schedule-row-label">Session 9 (intermittent breaks)</div></div>
+</div>
+</div>
+</div>
+</section></details><div class="archive-close-row">
+<button class="archive-close-btn" onclick="closeArchive()" type="button">Close archive ↑</button>
+</div>
+</div>
+</details></div>
+</section>
+<footer class="black-footer">
+<div class="footer-inner">
+<div class="footer-left">
+<a href="https://www.venturelift.org/#intro"><img alt="VentureLift" class="footer-logo" src="venture.png"/></a>
+<div class="footer-divider"></div>
+<span class="footer-copy">© 2025–2026 St. George's School</span>
+</div>
+<div class="footer-right">
+<span class="footer-credits">Designed by Dylan Duan '28, Thomas Li '26 &amp; Evan Borodow '29</span>
+<div class="footer-divider"></div>
+<a class="footer-legal" href="https://static1.squarespace.com/static/690ce620a851f31c1c67d887/t/691b795b3409972cbc5443fd/1763408219638/PRIVACY+POLICY.pdf">Legal</a>
+</div>
+</div>
+</footer>
+</div><div aria-hidden="true" class="view view--hidden" id="view-contact" inert=""><!-- Public program email: https://www.venturelift.org/ — CONTACT footer, checked 2026-09-19. No dates, grades, fees or program claims were imported from that site. -->
+<section aria-labelledby="contactTitle" class="contact-section">
+<div class="contact-inner">
+<p class="contact-eyebrow">FutureMe at VentureLift · St. George’s School</p>
+<h1 class="contact-title" id="contactTitle">Get in <em>touch.</em></h1>
+<p class="contact-intro">Questions about FutureMe? Contact the program team.</p>
+<dl class="contact-details">
+<div class="contact-row">
+<dt>Program enquiries</dt>
+<dd><a class="contact-email" href="mailto:info@venturelift.org?subject=FutureMe%20enquiry">info@venturelift.org</a></dd>
+</div>
+<div class="contact-row">
+<dt>Hosted by</dt>
+<dd><a href="https://www.stgeorges.bc.ca">St. George’s School</a><small>Vancouver, British Columbia</small></dd>
+</div>
+</dl>
+</div>
+</section>
+<footer class="black-footer">
+<div class="footer-inner">
+<div class="footer-left">
+<a href="https://www.venturelift.org/#intro"><img alt="VentureLift" class="footer-logo" src="venture.png"/></a>
+<div class="footer-divider"></div>
+<span class="footer-copy">© 2025–2026 St. George's School</span>
+</div>
+<div class="footer-right">
+<span class="footer-credits">Designed by Dylan Duan '28, Thomas Li '26 &amp; Evan Borodow '29</span>
+<div class="footer-divider"></div>
+<a class="footer-legal" href="https://static1.squarespace.com/static/690ce620a851f31c1c67d887/t/691b795b3409972cbc5443fd/1763408219638/PRIVACY+POLICY.pdf">Legal</a>
+</div>
+</div>
+</footer></div>
 
 <script>
 /* ═══════════════════════════════════════════
    GSAP SETUP
 ═══════════════════════════════════════════ */
-gsap.registerPlugin(ScrollTrigger);
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const hasMotion = !!(window.gsap && window.ScrollTrigger) && !prefersReducedMotion.matches;
+if (hasMotion) gsap.registerPlugin(ScrollTrigger);
 
 const homeEl = document.getElementById('view-home');
 const wsEl   = document.getElementById('view-workshops');
-const schEl  = document.getElementById('view-schedule');
+const contactEl = document.getElementById('view-contact');
 
-ScrollTrigger.defaults({ scroller: homeEl });
+if (hasMotion) ScrollTrigger.defaults({ scroller: homeEl });
 
 /* ═══════════════════════════════════════════
    MOBILE DETECTION
@@ -1152,38 +1710,111 @@ const isMobile = () => window.innerWidth <= 600;
    VIEW SWITCHER
 ═══════════════════════════════════════════ */
 let currentView = 'home';
-let switching   = false;
+const VIEWS = { home: homeEl, workshops: wsEl, contact: contactEl };
+const ROUTES = new Set(['home', 'program', 'workshops', 'contact', 'archives']);
+let programScrolling = false;
+let navScrollTimer;
+let routeSequence = 0;
 
-const VIEWS = {
-  home:      { el: homeEl, tab: 'tab-home',      onEnter: null },
-  workshops: { el: wsEl,   tab: 'tab-workshops', onEnter: () => animateWorkshops() },
-  schedule:  { el: schEl,  tab: 'tab-schedule',  onEnter: () => animateSchedule() }
-};
+function markNavigation(route) {
+  const tabRoute = route === 'archives' ? 'workshops' : route;
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    const active = tab.dataset.route === tabRoute;
+    tab.classList.toggle('active', active);
+    if (active) tab.setAttribute('aria-current', tabRoute === 'program' ? 'location' : 'page');
+    else tab.removeAttribute('aria-current');
+  });
+}
 
-function showView(name) {
-  if (name === currentView || switching) return;
-  if (!VIEWS[name]) return;
-  switching = true;
+function scrollWithin(view, target, behavior = 'smooth') {
+  const top = target
+    ? target.getBoundingClientRect().top - view.getBoundingClientRect().top + view.scrollTop
+    : 0;
+  view.scrollTo({ top, behavior: prefersReducedMotion.matches ? 'auto' : behavior });
+}
 
-  const from = VIEWS[currentView];
-  const to   = VIEWS[name];
+/* The Program link scrolls the SAME Home container. Workshop Leaders and
+   Contact are separate views, as before, inside this single HTML file. */
+function navigate(route, { push = true, behavior = 'smooth' } = {}) {
+  if (!ROUTES.has(route)) route = 'home';
+  const sequence = ++routeSequence;
+  const name = route === 'program' ? 'home' : route === 'archives' ? 'workshops' : route;
+  const changedView = currentView !== name;
+  currentView = name;
+  Object.entries(VIEWS).forEach(([key, view]) => {
+    const hidden = key !== name;
+    view.classList.toggle('view--hidden', hidden);
+    view.inert = hidden;
+    view.setAttribute('aria-hidden', String(hidden));
+  });
+  markNavigation(route);
+  if (push && window.location.hash !== '#' + route) {
+    try { history.pushState({ route }, '', '#' + route); } catch (_) { /* Local-file fallback. */ }
+  }
+  clearTimeout(navScrollTimer);
+  programScrolling = route === 'program';
+  if (changedView) VIEWS[name].scrollTop = 0;
+  requestAnimationFrame(() => {
+    if (sequence !== routeSequence) return;
+    if (hasMotion) ScrollTrigger.refresh();
+    const target = route === 'program' ? document.getElementById('program')
+      : route === 'archives' ? document.getElementById('archives') : null;
+    scrollWithin(VIEWS[name], target, changedView ? 'auto' : behavior);
+    if (changedView && name === 'workshops') animateWorkshops();
+    if (document.activeElement && document.activeElement.closest('.view--hidden')) {
+      document.getElementById('tab-' + (route === 'archives' ? 'workshops' : route))?.focus({ preventScroll: true });
+    }
+    navScrollTimer = setTimeout(() => { programScrolling = false; updateHomeNavigation(); }, 1000);
+  });
+}
 
-  from.el.classList.add('view--hidden');
-  setTimeout(() => {
-    to.el.scrollTop = 0;
-    to.el.classList.remove('view--hidden');
-    document.getElementById(from.tab).classList.remove('active');
-    document.getElementById(to.tab).classList.add('active');
-    currentView = name;
-    if (to.onEnter) to.onEnter();
-    setTimeout(() => { switching = false; }, 300);
-  }, 290);
+// Retain the existing inline button interface, now backed by the four routes.
+function showView(name, afterEnter) {
+  navigate(name);
+  if (afterEnter) requestAnimationFrame(afterEnter);
+}
+
+document.querySelectorAll('[data-route]').forEach(link => {
+  link.addEventListener('click', event => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    navigate(link.dataset.route);
+  });
+});
+
+function updateHomeNavigation() {
+  if (currentView !== 'home' || programScrolling) return;
+  const program = document.getElementById('program');
+  const relativeTop = program.getBoundingClientRect().top - homeEl.getBoundingClientRect().top;
+  const inProgram = relativeTop <= Math.min(180, homeEl.clientHeight * .3);
+  markNavigation(inProgram ? 'program' : 'home');
+}
+homeEl.addEventListener('scroll', updateHomeNavigation, { passive: true });
+
+function restoreRoute() {
+  const hash = window.location.hash.slice(1);
+  navigate(ROUTES.has(hash) ? hash : 'home', { push: false, behavior: 'auto' });
+}
+window.addEventListener('popstate', restoreRoute);
+window.addEventListener('hashchange', restoreRoute);
+window.addEventListener('load', () => requestAnimationFrame(() => requestAnimationFrame(restoreRoute)));
+
+/* The archive is CLOSED in the markup. Its full-width summary opens it.
+   Old #archives links only scroll to the archive; they do not auto-expand. */
+function openArchive() { navigate('archives'); }
+function closeArchive() {
+  document.getElementById('archive2026').open = false;
+  document.getElementById('archiveSchedule2026').open = false;
+  requestAnimationFrame(() => {
+    scrollWithin(wsEl, document.getElementById('archives'), 'auto');
+    document.getElementById('archiveToggle').focus({ preventScroll: true });
+  });
 }
 
 /* ═══════════════════════════════════════════
    HERO ENTRANCE — one-time only, nothing loops after
 ═══════════════════════════════════════════ */
-gsap.timeline({ defaults:{ ease:'power3.out' } })
+if (hasMotion) gsap.timeline({ defaults:{ ease:'power3.out' } })
   .from('.hero-bg',           { scale:1.08, duration:2.8, ease:'power2.out' })
   .from('.red-box',           { scaleY:0, transformOrigin:'bottom center', duration:1.6, ease:'expo.inOut' }, '-=2.3')
   .from('.hero-logo',         { y:40, opacity:0, duration:1.4, ease:'back.out(1.2)' }, '-=1.0')
@@ -1195,16 +1826,29 @@ gsap.timeline({ defaults:{ ease:'power3.out' } })
    QUESTIONS + HYPHEN INDICATOR
 ═══════════════════════════════════════════ */
 const QUESTIONS = [
-  { label:'NEW CAR',     text:'How do I save up for a new car?' },
-  { label:'CLOTHES',     text:'How much can I splurge on these clothes today?' },
-  { label:'TAX CREDIT',  text:'What is a tax credit?' },
-  { label:'OPTIMIZE',    text:'How do I optimize my tax credits?' },
-  { label:'RENT OR BUY', text:'Should I rent, buy, or mortgage my home?' },
-  { label:'MORTGAGE',    text:'Is right now even a good time to get a mortgage?' },
+  { label:'NEW CAR',     text:'How do I save up for a new car?' , accent:'new car' },
+  { label:'CLOTHES',     text:'How much can I splurge on these clothes today?' , accent:'these clothes' },
+  { label:'TAX CREDIT',  text:'What is a tax credit?' , accent:'tax credit' },
+  { label:'OPTIMIZE',    text:'How do I optimize my tax credits?' , accent:'tax credits' },
+  { label:'RENT OR BUY', text:'Should I rent, buy, or mortgage my home?' , accent:'my home' },
+  { label:'MORTGAGE',    text:'Is right now even a good time to get a mortgage?' , accent:'a mortgage' },
 ];
 const TOTAL     = QUESTIONS.length;
 const PIN_EXTRA = TOTAL * 0.22;
 const qEl       = document.getElementById('questionText');
+
+function renderQuestion(question) {
+  const index = question.text.indexOf(question.accent);
+  if (index < 0) { qEl.textContent = question.text; return; }
+  const accent = document.createElement('em');
+  accent.className = 'fm-serif';
+  accent.textContent = question.accent;
+  qEl.replaceChildren(
+    document.createTextNode(question.text.slice(0, index)),
+    accent,
+    document.createTextNode(question.text.slice(index + question.accent.length))
+  );
+}
 
 /* Build hyphen indicators — desktop only */
 const hyphenEl = document.getElementById('hyphenIndicator');
@@ -1219,7 +1863,7 @@ const hyphens = Array.from(hyphenEl.querySelectorAll('span'));
 (function initQuestionScroll() {
   requestAnimationFrame(() => requestAnimationFrame(() => {
     const wrapper    = document.getElementById('introWrapper');
-    const scrollRoom = PIN_EXTRA * window.innerHeight;
+    let scrollRoom = PIN_EXTRA * window.innerHeight;
     wrapper.style.height = (window.innerHeight + scrollRoom) + 'px';
 
     let lastIdx = -1;
@@ -1249,7 +1893,7 @@ const hyphens = Array.from(hyphenEl.querySelectorAll('span'));
         const prev = lastIdx;
         lastIdx = textIdx;
         if (prev < 0) {
-          qEl.textContent = QUESTIONS[textIdx].text;
+          renderQuestion(QUESTIONS[textIdx]);
           qEl.style.transition = 'none';
           qEl.style.opacity = '0';
           qEl.style.filter = 'blur(8px)';
@@ -1262,19 +1906,25 @@ const hyphens = Array.from(hyphenEl.querySelectorAll('span'));
           qEl.style.transition = 'opacity 0.12s ease, filter 0.12s ease';
           qEl.style.opacity = '0';
           qEl.style.filter = 'blur(6px)';
-          const next = QUESTIONS[textIdx].text;
+          const next = QUESTIONS[textIdx];
           setTimeout(() => {
-            qEl.textContent = next;
+            renderQuestion(next);
             qEl.style.transition = 'opacity 0.22s ease, filter 0.22s ease';
             qEl.style.opacity = '1';
             qEl.style.filter = 'blur(0px)';
           }, 120);
         }
-        gsap.fromTo('#questionText', { scale:1.04 }, { scale:1, duration:0.5, ease:'power2.out' });
+        if (hasMotion) gsap.fromTo('#questionText', { scale:1.04 }, { scale:1, duration:0.5, ease:'power2.out' });
       }
     }
 
     homeEl.addEventListener('scroll', onScroll, { passive:true });
+    window.addEventListener('resize', () => {
+      scrollRoom = PIN_EXTRA * window.innerHeight;
+      wrapper.style.height = (window.innerHeight + scrollRoom) + 'px';
+      lastIdx = -1;
+      onScroll();
+    });
     onScroll();
   }));
 })();
@@ -1294,7 +1944,7 @@ const hyphens = Array.from(hyphenEl.querySelectorAll('span'));
     p.style.cssText = `width:${size}px;height:${size}px;
       left:${5 + Math.random()*85}%;top:${10+Math.random()*75}%;`;
     intro.appendChild(p);
-    gsap.to(p, {
+    if (hasMotion) gsap.to(p, {
       y: -30 - Math.random()*50, x: (Math.random()-.5)*30,
       opacity: 0,
       duration: 3 + Math.random()*4, ease:'power1.inOut',
@@ -1313,26 +1963,18 @@ homeEl.addEventListener('scroll', () => {
 }, { passive:true });
 
 /* Apply section word reveal */
-ScrollTrigger.create({
+if (hasMotion) ScrollTrigger.create({
   scroller: homeEl,
-  trigger: '#apply-home', start:'top 80%',
+  trigger: '#program', start:'top 80%',
   once: true,
   onEnter: () => {
-    gsap.from('.apply-word-apply', { x:-30, opacity:0, duration:0.9, ease:'power3.out' });
-    gsap.from('.apply-word-now',   { x:30,  opacity:0, duration:0.9, ease:'power3.out', delay:0.12 });
+    if (hasMotion) gsap.from('#program .apply-word-apply', { x:-30, opacity:0, duration:0.9, ease:'power3.out' });
+    if (hasMotion) gsap.from('#program .apply-word-now',   { x:30,  opacity:0, duration:0.9, ease:'power3.out', delay:0.12 });
   }
 });
 
-gsap.set('#keynoteInner', { opacity:0, y:28 });
-ScrollTrigger.create({
-  scroller: homeEl,
-  trigger: '#keynote-section', start:'top 80%',
-  once: true,
-  onEnter: () => gsap.to('#keynoteInner', { opacity:1, y:0, duration:0.85, ease:'power3.out' })
-});
-
 /* Red accent line on copy section */
-ScrollTrigger.create({
+if (hasMotion) ScrollTrigger.create({
   scroller: homeEl,
   trigger: '#copy-section', start:'top 75%',
   once: true,
@@ -1340,7 +1982,7 @@ ScrollTrigger.create({
 });
 
 /* Red-box glow pulse */
-gsap.to('.red-box', {
+if (hasMotion) gsap.to('.red-box', {
   boxShadow:'0 0 60px 12px rgba(204,9,47,.45)', duration:2.2,
   ease:'sine.inOut', repeat:-1, yoyo:true, delay:1.5
 });
@@ -1348,8 +1990,8 @@ gsap.to('.red-box', {
 /* ═══════════════════════════════════════════
    HOME SCROLL-IN ANIMATIONS
 ═══════════════════════════════════════════ */
-gsap.set(['#copyEyebrow','#copyHeadline','#copyBody','#copyBtn'], { opacity:0, y:22 });
-ScrollTrigger.create({
+if (hasMotion) gsap.set(['#copyEyebrow','#copyHeadline','#copyBody','#copyBtn'], { opacity:0, y:22 });
+if (hasMotion) ScrollTrigger.create({
   trigger:'#copyLeft', start:'top 82%',
   onEnter: () => gsap.to(
     ['#copyEyebrow','#copyHeadline','#copyBody','#copyBtn'],
@@ -1357,9 +1999,9 @@ ScrollTrigger.create({
   )
 });
 
-gsap.set(['#applyHeading','#applySub','#applyBtn'], { opacity:0, y:32 });
-ScrollTrigger.create({
-  trigger:'#apply-home', start:'top 78%',
+if (hasMotion) gsap.set(['#applyHeading','#applySub','#applyBtn'], { opacity:0, y:32 });
+if (hasMotion) ScrollTrigger.create({
+  trigger:'#program', start:'top 78%',
   onEnter: () => gsap.to(
     ['#applyHeading','#applySub','#applyBtn'],
     { opacity:1, y:0, duration:0.85, ease:'power3.out', stagger:0.13 }
@@ -1370,46 +2012,12 @@ ScrollTrigger.create({
    WORKSHOPS ENTRY ANIMATION
 ═══════════════════════════════════════════ */
 function animateWorkshops() {
-  gsap.killTweensOf(['#workshopsHeader','#wRow1 .workshop-card','#wRow2 .workshop-card']);
-  gsap.set('#workshopsHeader', { opacity:0, y:28 });
-  gsap.set(['#wRow1 .workshop-card','#wRow2 .workshop-card'], { opacity:0, y:44 });
-
-  gsap.to('#workshopsHeader',      { opacity:1, y:0, duration:0.7, ease:'power3.out', delay:0.05 });
-  gsap.to('#wRow1 .workshop-card', { opacity:1, y:0, duration:0.8, ease:'power3.out', stagger:0.1, delay:0.18 });
-  gsap.to('#wRow2 .workshop-card', { opacity:1, y:0, duration:0.8, ease:'power3.out', stagger:0.1, delay:0.38 });
+  if (!hasMotion) return;
+  const targets = ['#workshopsHeader', '#workshopsTBA'];
+  if (hasMotion) gsap.killTweensOf(targets);
+  if (hasMotion) gsap.fromTo(targets, { opacity: 0, y: 28 },
+    { opacity: 1, y: 0, duration: .7, stagger: .12, ease: 'power3.out' });
 }
-
-/* ═══════════════════════════════════════════
-   SCHEDULE ENTRY ANIMATION
-═══════════════════════════════════════════ */
-function animateSchedule() {
-  gsap.killTweensOf(['#scheduleHeader','.schedule-disclaimer','#scheduleChart .schedule-day-block']);
-  gsap.set('#scheduleHeader', { opacity:0, y:28 });
-  gsap.set('.schedule-disclaimer', { opacity:0, y:18 });
-  gsap.set('#scheduleChart .schedule-day-block', { opacity:0, y:24 });
-
-  gsap.to('#scheduleHeader',                     { opacity:1, y:0, duration:0.7, ease:'power3.out', delay:0.05 });
-  gsap.to('.schedule-disclaimer',                { opacity:1, y:0, duration:0.6, ease:'power3.out', delay:0.18 });
-  gsap.to('#scheduleChart .schedule-day-block',  { opacity:1, y:0, duration:0.7, ease:'power3.out', stagger:0.1, delay:0.28 });
-}
-
-/* ═══════════════════════════════════════════
-   CAPACITY POPUP
-═══════════════════════════════════════════ */
-function closeCapacityPopup() {
-  const popup = document.getElementById('capacityPopup');
-  popup.classList.remove('show');
-  localStorage.setItem('futuremeCapacityPopupClosed', 'true');
-}
-
-window.addEventListener('load', () => {
-  if (localStorage.getItem('futuremeCapacityPopupClosed') === 'true') return;
-
-  setTimeout(() => {
-    document.getElementById('capacityPopup')?.classList.add('show');
-  }, 1400);
-});
-
 </script>
 </body>
 </html>
