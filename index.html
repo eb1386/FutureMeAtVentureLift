@@ -95,7 +95,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 }
 .hero-bg {
   position:absolute; inset:0;
-  background:url('./Background.png') center/cover; z-index:0;
+  background:url('./cover.jpg') center top/cover; z-index:0;
 }
 .hero-bg::after {
   content:''; position:absolute; inset:0;
@@ -225,8 +225,6 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
   }
 }
 @media(min-width:769px){ #questionText { letter-spacing:-2px; max-width:70vw; } }
-#questionText::after { content:'|'; display:inline-block; color:rgba(255,255,255,.38); animation:blink .85s step-end infinite; margin-left:6px; }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
 /* ─── KEYNOTE SECTION ───────────────────────────── */
 /*
@@ -237,11 +235,6 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 
 .keynote-section {
   position:relative; background:var(--dark); width:100%; z-index:4; overflow:hidden;
-}
-.keynote-section::before {
-  content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
-  background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);
-  background-size:28px 28px;
 }
 .keynote-inner {
   position:relative; z-index:1;
@@ -348,16 +341,6 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 .workshops-section {
   position:relative; background:var(--dark); width:100%; overflow:hidden;
   padding-bottom:clamp(60px,8vw,100px);
-}
-.workshops-section::before {
-  content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
-  background-image:radial-gradient(rgba(255,255,255,.035) 1px,transparent 1px);
-  background-size:28px 28px;
-}
-.workshops-section::after {
-  content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
-  width:min(800px,120vw); height:280px; z-index:0; pointer-events:none;
-  background:radial-gradient(ellipse at 50% 0%,rgba(204,9,47,.15) 0%,transparent 70%);
 }
 .workshops-inner {
   position:relative; z-index:1;
@@ -567,15 +550,6 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 
 /* ─── APPLY SECTION ────────────────────────────── */
 .apply-section { position:relative; background:var(--dark); width:100%; overflow:hidden; }
-.apply-section::before {
-  content:''; position:absolute; inset:0; z-index:0;
-  background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px); background-size:32px 32px;
-}
-.apply-section::after {
-  content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%);
-  width:min(1000px,130vw); height:500px; z-index:0; pointer-events:none;
-  background:radial-gradient(ellipse at 50% 100%,rgba(204,9,47,.3) 0%,transparent 68%);
-}
 .apply-inner {
   position:relative; z-index:1;
   display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
@@ -724,11 +698,6 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 .content-section.in-view::before { transform:scaleY(1); }
 
 /* ─── PARTICLES ─────────────────────────────────── */
-.intro-particle {
-  position:absolute; border-radius:50%;
-  background:rgba(255,255,255,.06);
-  pointer-events:none; will-change:transform;
-}
 
 /* ─── FOOTER ───────────────────────────────────── */
 .black-footer {
@@ -807,12 +776,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 }
 
 
-/* ======================================================================
-   FUTUREME — ORIGINAL LAYOUT / VISUAL POLISH ONLY
-   This block changes type, colour, borders and emphasis. Original section
-   hero composition, grids, copy and image references are retained.
-   Navigation and the 2026 archive are updated in the focused block below.
-   ====================================================================== */
+/* ─── THEME ─────────────────────────────────────── */
 :root {
   --red: #cc092f;
   --dark: #161719;
@@ -832,7 +796,7 @@ a:focus-visible, button:focus-visible {
   outline-offset: 5px;
 }
 
-/* Same fixed bar, same centred tabs, same right-hand status button. */
+/* Nav */
 #topnav {
   background: rgba(22,23,25,.96);
   border-bottom-color: var(--line);
@@ -849,31 +813,37 @@ a:focus-visible, button:focus-visible {
 .nav-tab::after { left: 18%; right: 18%; background: var(--accent-text); }
 .nav-apply-btn { font-size: .62rem; letter-spacing: .08em; border-radius: 5px; }
 
-/* Existing image and logo arrangement, with quieter panel treatments. */
-.hero-bg { background-color: #242629; }
+/* Hero photo: scaled and offset in units of the hero's own height (100svh)
+   so the two students sit lower-left with their hands just under the logos,
+   pointing up at the red lockup, on any landscape screen. */
+.hero-bg {
+  background-color: #0b2f57;
+  background-size: auto 150%;
+  background-position: -19.5svh -11.9svh;
+}
+@media (min-aspect-ratio: 37/20) {
+  .hero-bg { background-size: cover; background-position: 0 30%; }
+}
+@media (max-aspect-ratio: 4/3) {
+  .hero-bg { background-size: auto 125%; background-position: 15% 0; }
+}
 .hero-top-text {
-  width: fit-content;
-  max-width: calc(100% - 32px);
+  max-width: 760px;
   margin-inline: auto;
-  padding: 12px clamp(16px,3vw,32px);
-  background: rgba(20,23,26,.74);
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 8px;
-  color: rgba(255,255,255,.86);
+  color: rgba(255,255,255,.9);
+  font-size: clamp(.78rem, 1.1vw, .92rem);
   font-weight: 500;
-  line-height: 1.8;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  line-height: 1.7;
+  text-shadow: 0 1px 14px rgba(0,0,0,.35);
 }
 .hero-top-text strong { font-weight: 700; }
+.hero-top-text .fm-emphasis { white-space: nowrap; }
 .hero-top-text > strong { font-weight: 700; }
 .hero-top-text .fm-fee { color: rgba(255,255,255,.76); }
 .red-box {
   background: #cc092f;
-  border-radius: 6px;
-  outline: 1px solid rgba(255,255,255,.12);
-  /* Suppress the original animated glow without changing its script. */
-  box-shadow: 0 12px 32px rgba(0,0,0,.2) !important;
+  border-radius: 0;
+  box-shadow: 0 18px 50px rgba(0,0,0,.28);
 }
 .hero-bottom-links a { font-weight: 600; }
 .hero-bottom-links .link-down {
@@ -882,7 +852,7 @@ a:focus-visible, button:focus-visible {
   text-decoration-color: rgba(255,255,255,.45);
 }
 
-/* Identical sticky question section and scroll sequence; no red wall. */
+/* Questions */
 .intro-wrapper, .intro-section, .content-section { background: var(--paper); }
 #questionText {
   font-family: var(--font-heading);
@@ -893,12 +863,10 @@ a:focus-visible, button:focus-visible {
   text-transform: none;
   color: var(--ink);
 }
-#questionText::after { color: rgba(204,9,47,.65); }
 .hyphen-indicator span { background: rgba(36,38,41,.2); }
 .hyphen-indicator span.active { background: var(--red); }
-.intro-particle { background: rgba(36,38,41,.04); }
 
-/* Existing centred copy block. No added columns or rewritten text. */
+/* Why it matters */
 .copy-eyebrow { color: #cc092f; }
 .copy-headline {
   font-family: var(--font-heading);
@@ -929,7 +897,7 @@ a:focus-visible, button:focus-visible {
 }
 .copy-body .fm-emphasis, .copy-body .fm-underline { color: var(--ink); }
 
-/* Original keynote split and workshop card grid. */
+/* Keynote & workshop cards */
 .keynote-name, .workshop-name, .workshops-title, .schedule-title,
 .apply-word-apply, .capacity-popup h2 {
   font-family: var(--font-heading);
@@ -952,7 +920,6 @@ a:focus-visible, button:focus-visible {
 .keynote-role { color: rgba(255,255,255,.75); letter-spacing: .04em; }
 .keynote-divider { background: var(--accent-text); }
 .keynote-bio { color: var(--muted); }
-.workshops-section::after { opacity: .3; }
 .workshop-card {
   background: #202124;
   border-color: var(--line);
@@ -973,7 +940,7 @@ a:focus-visible, button:focus-visible {
 .workshop-card-footer { border-top-color: var(--line); }
 .workshop-company-logo { opacity: .85; filter: brightness(0) invert(1); }
 
-/* Same three-day schedule, with a subtle box around each existing column. */
+/* Schedule */
 .schedule-disclaimer {
   color: var(--muted);
   background: #202124;
@@ -993,8 +960,7 @@ a:focus-visible, button:focus-visible {
 .schedule-row-time { color: rgba(255,255,255,.76); }
 .schedule-row-label { color: rgba(255,255,255,.88); }
 
-/* Existing application blocks, notice and footer — styling only. */
-.apply-section::after { opacity: .22; }
+/* Program, buttons & footer */
 .apply-sub, .apply-cost { color: var(--muted); }
 .apply-sub .fm-emphasis { color: #fff; }
 .apply-sub .fm-underline { text-decoration-color: var(--accent-text); }
@@ -1018,7 +984,7 @@ a:focus-visible, button:focus-visible {
 .footer-divider { background: var(--line); }
 .footer-copy, .footer-credits, .footer-legal { color: rgba(255,255,255,.64); letter-spacing: 0; }
 
-/* Keep the original mobile stacking rules and tabbed navigation. */
+/* Small screens */
 @media(max-width:600px) {
   .nav-tab { font-size: .6rem; letter-spacing: .04em; }
   #questionText { font-size: clamp(1.5rem,8vw,3rem); letter-spacing: -.035em; }
@@ -1026,11 +992,7 @@ a:focus-visible, button:focus-visible {
 
 
 
-/* ─── 2027 UPDATE — EXISTING LAYOUT, REUSABLE EMPHASIS & ARCHIVE ───
-   Headings / question phrases: the same italic serif used throughout.
-   Key facts in body text: restrained red underlines, never a second font.
-   Charcoal, off-white and red only; no pink accent colours.
-*/
+/* ─── EMPHASIS ──────────────────────────────────── */
 .fm-serif {
   font-family: var(--font-accent);
   font-style: italic;
@@ -1042,7 +1004,7 @@ a:focus-visible, button:focus-visible {
 .workshops-title em, .schedule-title em, .apply-word-now,
 .workshops-tba-title em { font-family: var(--font-accent); font-style: italic; }
 .fm-underline { text-decoration-color: var(--red); }
-.hero-top-text .fm-underline { text-decoration-color: var(--accent-text); }
+.hero-top-text .fm-underline { text-decoration-color: rgba(255,255,255,.55); }
 .workshop-tag, .workshop-role, .keynote-role {
   text-transform: none;
   letter-spacing: 0;
@@ -1065,7 +1027,7 @@ a:focus-visible, button:focus-visible {
 }
 .nav-status:hover { background: transparent; transform: none; }
 
-/* A compact announcement replaces this year's unconfirmed leader grid. */
+/* Leaders TBA */
 .workshops-tba {
   width: min(620px, 100%);
   margin: 0 auto;
@@ -1097,12 +1059,7 @@ a:focus-visible, button:focus-visible {
 }
 
 
-/* ==============================================================
-   REQUESTED REFINEMENT — BRAND, FOUR LINKS, CONTACT & 2026 ARCHIVE
-   Original brand red: #cc092f. No substitute orange/pink accent.
-   The source logo remains untouched; a lighter Times-style italic
-   is used consistently for the contrasting words in headings.
-   ============================================================== */
+/* ─── NAV, ARCHIVE & CONTACT ────────────────────── */
 :root { --red: #cc092f; --accent-text: var(--red); }
 .fm-serif, .workshops-title em, .schedule-title em, .apply-word-now,
 .workshops-tba-title em, .contact-title em {
@@ -1156,8 +1113,7 @@ a:focus-visible, button:focus-visible {
 .workshops-tba-title em { display: block; line-height: 1.12; }
 .workshops-section > .workshops-inner { padding-bottom: 0; }
 
-/* Reference-inspired light archive: centered heading, red subtitle,
-   white inset panel, thin rules and a single full-width chevron row. */
+/* Archive */
 .archives-section {
   position: relative;
   background: var(--paper);
@@ -1190,7 +1146,6 @@ a:focus-visible, button:focus-visible {
   font-weight: 600;
   line-height: 1.55;
 }
-.archive-subtitle::before, .archive-subtitle::after { content: '—'; flex-shrink: 0; }
 .archive-panel {
   max-width: 1320px;
   margin: 0 auto;
@@ -1245,7 +1200,7 @@ a:focus-visible, button:focus-visible {
   text-align: center;
 }
 .archive-year-note strong { font-weight: 600; color: #282a2e; }
-/* The existing keynote two-column layout and leader card grid are retained. */
+/* Archived keynote & leaders */
 .archive-content .keynote-section {
   border: 1px solid rgba(22,23,25,.1);
   border-radius: 8px;
@@ -1333,7 +1288,7 @@ a:focus-visible, button:focus-visible {
 }
 .archive-close-btn:hover { color: var(--red); }
 
-/* A deliberately short Contact page: real details, no invented form. */
+/* Contact */
 #view-contact { display: flex; flex-direction: column; background: var(--paper); }
 .contact-section {
   flex: 1;
@@ -1384,7 +1339,6 @@ a:focus-visible, button:focus-visible {
   .workshops-tba { padding: 30px 18px; }
   .workshop-role { font-size: .77rem; }
   .archive-subtitle { gap: 7px; font-size: .88rem; }
-  .archive-subtitle::before, .archive-subtitle::after { display: none; }
   .archive-toggle { gap: 14px; }
   .archive-content .keynote-inner { padding: 22px 18px; }
   .archive-content .keynote-photo-wrap { min-height: 0; }
@@ -1653,7 +1607,7 @@ Learn the real costs of buying a car, a home, and understanding your first paych
 </div>
 </div>
 </footer>
-</div><div aria-hidden="true" class="view view--hidden" id="view-contact" inert=""><!-- Public program email: https://www.venturelift.org/ — CONTACT footer, checked 2026-09-19. No dates, grades, fees or program claims were imported from that site. -->
+</div><div aria-hidden="true" class="view view--hidden" id="view-contact" inert="">
 <section aria-labelledby="contactTitle" class="contact-section">
 <div class="contact-inner">
 <p class="contact-eyebrow">FutureMe at VentureLift · St. George’s School</p>
@@ -1929,28 +1883,8 @@ const hyphens = Array.from(hyphenEl.querySelectorAll('span'));
 })();
 
 /* ═══════════════════════════════════════════
-   EXTRA AMBIENT ANIMATIONS
+   HERO PARALLAX & SECTION REVEALS
 ═══════════════════════════════════════════ */
-
-/* Floating particles in sticky section */
-(function() {
-  const intro = document.querySelector('.sticky-visuals');
-  const count = isMobile() ? 5 : 9;
-  for (let i = 0; i < count; i++) {
-    const p = document.createElement('div');
-    p.className = 'intro-particle';
-    const size = 6 + Math.random() * 18;
-    p.style.cssText = `width:${size}px;height:${size}px;
-      left:${5 + Math.random()*85}%;top:${10+Math.random()*75}%;`;
-    intro.appendChild(p);
-    if (hasMotion) gsap.to(p, {
-      y: -30 - Math.random()*50, x: (Math.random()-.5)*30,
-      opacity: 0,
-      duration: 3 + Math.random()*4, ease:'power1.inOut',
-      repeat:-1, yoyo:true, delay: Math.random()*4
-    });
-  }
-})();
 
 /* Parallax on hero background */
 homeEl.addEventListener('scroll', () => {
@@ -1980,11 +1914,6 @@ if (hasMotion) ScrollTrigger.create({
   onEnter: () => document.querySelector('.content-section')?.classList.add('in-view')
 });
 
-/* Red-box glow pulse */
-if (hasMotion) gsap.to('.red-box', {
-  boxShadow:'0 0 60px 12px rgba(204,9,47,.45)', duration:2.2,
-  ease:'sine.inOut', repeat:-1, yoyo:true, delay:1.5
-});
 
 /* ═══════════════════════════════════════════
    HOME SCROLL-IN ANIMATIONS
