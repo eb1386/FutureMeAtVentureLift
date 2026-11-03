@@ -147,8 +147,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 #questionText {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 6vw, 5.75rem); font-weight: 700;
-  line-height: 1.08; letter-spacing: -.035em;
+  line-height: 1.22; letter-spacing: -.035em;
   color: var(--ink); max-width: 15ch; opacity: 0;
+}
+.q-mark {
+  background: var(--red); color: #fff;
+  padding: .02em .14em .06em; margin: 0 .02em; white-space: nowrap;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
 .hyphen-indicator {
   position: absolute; right: var(--gutter); top: 50%; transform: translateY(-50%);
@@ -183,12 +188,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .btn-white:hover { background: var(--ink); color: #fff; }
 
 /* Program */
-.apply-section { background: var(--charcoal); color: #fff; position: relative; z-index: 4; }
+.apply-section { background: var(--red); color: #fff; position: relative; z-index: 4; }
 .apply-inner { padding-top: clamp(72px, 12vw, 140px); padding-bottom: clamp(72px, 12vw, 140px); display: flex; flex-direction: column; align-items: center; text-align: center; }
 .apply-heading { font-size: clamp(3rem, 10vw, 8rem); font-weight: 700; line-height: .95; letter-spacing: -.045em; margin-bottom: clamp(24px, 4vw, 44px); }
 .apply-copy { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 560px; }
-.apply-sub { font-size: clamp(.98rem, 1.3vw, 1.1rem); line-height: 1.8; color: rgba(255,255,255,.78); }
-.apply-cost { font-size: .98rem; line-height: 1.7; color: rgba(255,255,255,.72); }
+.apply-sub { font-size: clamp(1rem, 1.3vw, 1.12rem); line-height: 1.8; color: rgba(255,255,255,.92); }
+.apply-cost { font-size: .98rem; line-height: 1.7; color: rgba(255,255,255,.85); }
 .apply-cost strong { display: block; color: #fff; font-weight: 700; }
 .apply-copy .btn { align-self: center; margin-top: 6px; }
 
@@ -205,10 +210,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 
 /* Inner pages */
 .page-head { padding-top: clamp(56px, 8vw, 104px); padding-bottom: clamp(36px, 5vw, 56px); }
-.leaders-head { background: var(--charcoal); color: #fff; text-align: center; }
-.leaders-head .page-head { padding-bottom: clamp(56px, 8vw, 96px); }
+.leaders-head {
+  position: relative; color: #fff; text-align: center;
+  background: #0b2f57 url('./students.jpg') center 62%/cover no-repeat;
+  min-height: clamp(320px, 52svh, 520px); display: flex; align-items: flex-end;
+}
+.leaders-head::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.1) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.72) 100%); }
+.leaders-head > .wrap { position: relative; width: min(var(--wrap), 100%); }
+.leaders-head .page-head { padding-bottom: clamp(40px, 6vw, 72px); }
 .leaders-head .page-title { color: #fff; }
-.leaders-head .page-lede { color: rgba(255,255,255,.75); margin-left: auto; margin-right: auto; }
+.leaders-head .page-lede { color: rgba(255,255,255,.9); text-shadow: 0 1px 12px rgba(0,0,0,.4); margin-left: auto; margin-right: auto; }
 .archives-wrap { background: var(--paper); }
 .page-title { font-family: var(--font-heading); font-size: clamp(2.4rem, 5.5vw, 4.25rem); font-weight: 800; line-height: 1.02; letter-spacing: -.04em; color: var(--ink); }
 .page-lede { margin-top: 18px; max-width: 620px; font-size: clamp(1.02rem, 1.3vw, 1.2rem); line-height: 1.65; color: var(--text); }
@@ -354,7 +365,7 @@ Learn the real costs of buying a car, a home, and understanding your first paych
 <span class="footer-copy">© 2025–2026 St. George's School</span>
 </div>
 <div class="footer-right">
-<span class="footer-credits">Designed by Dylan Duan '28, Thomas Li '26 and Evan Borodow '29</span>
+<span class="footer-credits">Designed by Evan Borodow '29</span>
 <a class="footer-legal" href="https://static1.squarespace.com/static/690ce620a851f31c1c67d887/t/691b795b3409972cbc5443fd/1763408219638/PRIVACY+POLICY.pdf">Legal</a>
 </div>
 </div>
@@ -499,7 +510,7 @@ Learn the real costs of buying a car, a home, and understanding your first paych
 <span class="footer-copy">© 2025–2026 St. George's School</span>
 </div>
 <div class="footer-right">
-<span class="footer-credits">Designed by Dylan Duan '28, Thomas Li '26 and Evan Borodow '29</span>
+<span class="footer-credits">Designed by Evan Borodow '29</span>
 <a class="footer-legal" href="https://static1.squarespace.com/static/690ce620a851f31c1c67d887/t/691b795b3409972cbc5443fd/1763408219638/PRIVACY+POLICY.pdf">Legal</a>
 </div>
 </div>
@@ -532,7 +543,7 @@ Learn the real costs of buying a car, a home, and understanding your first paych
 <span class="footer-copy">© 2025–2026 St. George's School</span>
 </div>
 <div class="footer-right">
-<span class="footer-credits">Designed by Dylan Duan '28, Thomas Li '26 and Evan Borodow '29</span>
+<span class="footer-credits">Designed by Evan Borodow '29</span>
 <a class="footer-legal" href="https://static1.squarespace.com/static/690ce620a851f31c1c67d887/t/691b795b3409972cbc5443fd/1763408219638/PRIVACY+POLICY.pdf">Legal</a>
 </div>
 </div>
@@ -678,19 +689,26 @@ if (hasMotion) gsap.timeline({ defaults:{ ease:'power3.out' } })
    QUESTIONS + HYPHEN INDICATOR
 ═══════════════════════════════════════════ */
 const QUESTIONS = [
-  { text:'How do I save up for a new car?' },
-  { text:'How much can I splurge on these clothes today?' },
-  { text:'What is a tax credit?' },
-  { text:'How do I optimize my tax credits?' },
-  { text:'Should I rent, buy, or mortgage my home?' },
-  { text:'Is right now even a good time to get a mortgage?' },
+  { text:'How do I save up for a new car?', mark:'new car' },
+  { text:'How much can I splurge on these clothes today?', mark:'these clothes' },
+  { text:'What is a tax credit?', mark:'tax credit' },
+  { text:'How do I optimize my tax credits?', mark:'tax credits' },
+  { text:'Should I rent, buy, or mortgage my home?', mark:'my home' },
+  { text:'Is right now even a good time to get a mortgage?', mark:'mortgage' },
 ];
 const TOTAL     = QUESTIONS.length;
 const PIN_EXTRA = TOTAL * 0.22;
 const qEl       = document.getElementById('questionText');
 
 function renderQuestion(question) {
-  qEl.textContent = question.text;
+  const i = question.text.indexOf(question.mark);
+  if (i < 0) { qEl.textContent = question.text; return; }
+  const mark = document.createElement('span');
+  mark.className = 'q-mark';
+  mark.textContent = question.mark;
+  qEl.replaceChildren(
+    document.createTextNode(question.text.slice(0, i)), mark,
+    document.createTextNode(question.text.slice(i + question.mark.length)));
 }
 
 /* Build hyphen indicators — desktop only */
