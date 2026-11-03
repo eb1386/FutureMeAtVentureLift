@@ -320,8 +320,8 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 }
 .copy-left { display:flex; flex-direction:column; justify-content:center; gap:clamp(18px,2.8vw,36px); }
 .copy-eyebrow {
-  font-family:'Inter', sans-serif; font-size:.62rem; font-weight:700;
-  letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.45);
+  font-family:'Inter', sans-serif; font-size:.85rem; font-weight:600;
+  color:rgba(255,255,255,.45);
   display:block;
 }
 .copy-headline {
@@ -335,8 +335,8 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 .copy-workshops-btn {
   display:inline-flex; align-items:center; gap:8px;
   border:1px solid rgba(255,255,255,.25); border-radius:2px;
-  padding:12px 18px; color:#fff; font-size:.65rem; font-weight:700;
-  letter-spacing:.14em; text-transform:uppercase; font-family:var(--font);
+  padding:12px 18px; color:#fff; font-size:.82rem; font-weight:600;
+  font-family:var(--font);
   background:transparent; cursor:pointer; align-self:flex-start;
   margin-top:clamp(4px,1vw,12px); transition:background .2s, border-color .2s;
   min-height:44px;
@@ -371,7 +371,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 }
 .workshops-header { margin-bottom:clamp(32px,5vw,64px); text-align:center; }
 .workshops-eyebrow {
-  display:block; font-size:.6rem; font-weight:800; letter-spacing:.28em; text-transform:uppercase;
+  display:block; font-size:.85rem; font-weight:600;
   color:rgba(255,255,255,.3); margin-bottom:clamp(10px,1.8vw,18px);
 }
 .workshops-title { font-family:'Abril Fatface',serif; font-weight:400; font-size:clamp(2rem,5vw,5.5rem); line-height:.95; letter-spacing:-.02em; color:#fff; }
@@ -504,7 +504,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 }
 .schedule-header { margin-bottom:clamp(28px,4vw,52px); text-align:center; }
 .schedule-eyebrow {
-  display:block; font-size:.6rem; font-weight:800; letter-spacing:.28em; text-transform:uppercase;
+  display:block; font-size:.85rem; font-weight:600;
   color:rgba(255,255,255,.3); margin-bottom:clamp(10px,1.8vw,18px);
 }
 .schedule-title {
@@ -741,9 +741,9 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 .footer-logo  { height:22px; width:auto; filter:brightness(0) invert(1); opacity:.72; display:block; transition:opacity .3s; flex-shrink:0; }
 .footer-logo:hover { opacity:1; }
 .footer-divider { width:1px; height:13px; background:#222; flex-shrink:0; }
-.footer-copy    { font-size:.54rem; color:rgba(255,255,255,.48); letter-spacing:1.3px; text-transform:uppercase; white-space:nowrap; }
-.footer-credits { font-size:.54rem; color:rgba(255,255,255,.38); letter-spacing:1.1px; text-transform:uppercase; white-space:nowrap; }
-.footer-legal   { font-size:.54rem; color:rgba(255,255,255,.38); letter-spacing:1.3px; text-transform:uppercase; white-space:nowrap; position:relative; transition:color .25s; }
+.footer-copy    { font-size:.72rem; color:rgba(255,255,255,.48); white-space:nowrap; }
+.footer-credits { font-size:.72rem; color:rgba(255,255,255,.38); white-space:nowrap; }
+.footer-legal   { font-size:.72rem; color:rgba(255,255,255,.38); white-space:nowrap; position:relative; transition:color .25s; }
 .footer-legal::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:1px; background:rgba(255,255,255,.2); transform:scaleX(0); transform-origin:left; transition:transform .3s; }
 .footer-legal:hover { color:#fff; }
 .footer-legal:hover::after { transform:scaleX(1); }
@@ -751,7 +751,7 @@ a, a:visited, a:hover, a:active { text-decoration:none; }
 @media(max-width:640px){
   .footer-inner { flex-wrap:wrap; gap:8px; }
   .footer-credits { display:none; }
-  .footer-copy { font-size:.48rem; }
+  .footer-copy { font-size:.68rem; }
 }
 
 /* SOLD OUT BUTTON */
@@ -899,7 +899,7 @@ a:focus-visible, button:focus-visible {
 .intro-particle { background: rgba(36,38,41,.04); }
 
 /* Existing centred copy block. No added columns or rewritten text. */
-.copy-eyebrow { color: #cc092f; letter-spacing: .18em; }
+.copy-eyebrow { color: #cc092f; }
 .copy-headline {
   font-family: var(--font-heading);
   font-style: normal;
@@ -916,7 +916,6 @@ a:focus-visible, button:focus-visible {
   border-color: rgba(36,38,41,.3);
   border-radius: 6px;
   font-weight: 600;
-  letter-spacing: .08em;
 }
 .copy-workshops-btn:hover { background: #ebebed; border-color: var(--ink); }
 .copy-workshops-btn:focus-visible { outline-color: var(--red); }
@@ -947,7 +946,7 @@ a:focus-visible, button:focus-visible {
 }
 .keynote-photo { border-radius: 8px; filter: none; }
 .keynote-eyebrow-line1, .keynote-eyebrow-line2,
-.workshops-eyebrow, .schedule-eyebrow { color: var(--muted); letter-spacing: .18em; }
+.workshops-eyebrow, .schedule-eyebrow { color: var(--muted); }
 .keynote-eyebrow-line1 .red { color: var(--accent-text); }
 .keynote-eyebrow-line2 { color: rgba(255,255,255,.78); }
 .keynote-role { color: rgba(255,255,255,.75); letter-spacing: .04em; }
@@ -972,7 +971,7 @@ a:focus-visible, button:focus-visible {
 .workshop-role { color: rgba(255,255,255,.78); font-size: .74rem; line-height: 1.55; letter-spacing: 0; text-transform: none; }
 .workshop-desc { color: rgba(255,255,255,.74); font-size: clamp(.78rem,.88vw,.88rem); }
 .workshop-card-footer { border-top-color: var(--line); }
-.workshop-company-logo { opacity: .95; }
+.workshop-company-logo { opacity: .85; filter: brightness(0) invert(1); }
 
 /* Same three-day schedule, with a subtle box around each existing column. */
 .schedule-disclaimer {
@@ -1017,7 +1016,7 @@ a:focus-visible, button:focus-visible {
 .capacity-close { color: rgba(255,255,255,.72); }
 .black-footer { border-top-color: var(--line); }
 .footer-divider { background: var(--line); }
-.footer-copy, .footer-credits, .footer-legal { color: rgba(255,255,255,.64); letter-spacing: .065em; }
+.footer-copy, .footer-credits, .footer-legal { color: rgba(255,255,255,.64); letter-spacing: 0; }
 
 /* Keep the original mobile stacking rules and tabbed navigation. */
 @media(max-width:600px) {
@@ -1444,7 +1443,7 @@ Learn the real costs of buying a car, a home, and understanding your first paych
 <section class="content-section" id="copy-section">
 <div class="content-inner">
 <div class="copy-left" id="copyLeft">
-<span class="copy-eyebrow" id="copyEyebrow">Why It Matters</span>
+<span class="copy-eyebrow" id="copyEyebrow">Why it matters</span>
 <p class="copy-headline" id="copyHeadline">These are all questions about <span class="fm-serif">personal finance</span> that seem daunting to someone who's just starting to handle being self-reliant for the first time.</p>
 <p class="copy-body" id="copyBody">Life after graduation comes with opportunities — and price tags. Does your child know the <span class="fm-underline">real costs, fine print, and hidden expenses</span> behind buying a car or a home? When they land their first job, would you like them to understand <span class="fm-emphasis">how a paycheque really works?</span></p>
 <button class="copy-workshops-btn" id="copyBtn" onclick="showView('workshops')">
@@ -1483,7 +1482,7 @@ Learn the real costs of buying a car, a home, and understanding your first paych
 <section class="workshops-section">
 <div class="workshops-inner">
 <div class="workshops-header" id="workshopsHeader">
-<span class="workshops-eyebrow">Workshop Leaders · 2027</span>
+<span class="workshops-eyebrow">Workshop leaders · 2027</span>
 <h2 class="workshops-title">Led by <em>experts.</em></h2>
 </div>
 <div class="workshops-tba" id="workshopsTBA">
