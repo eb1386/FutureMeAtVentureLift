@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>FutureMe postcards</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+/* 6 x 4 in postcard + 0.125 in bleed on every side = 6.25 x 4.25 in.
+   1 in = 96 CSS px, so the canvas is 600 x 408 px. Trim line sits 12 px in,
+   and nothing important goes closer than 24 px to the canvas edge. */
+@page { size: 6.25in 4.25in; margin: 0; }
+:root {
+  --red: #cc092f; --ink: #141518; --text: #33363b; --muted: #676b73;
+  --paper: #f6f6f5; --charcoal: #15161a; --rule: #cfd0d4;
+  --font: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --head: 'Manrope', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: #888; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font); color: var(--text); }
+.card {
+  width: 600px; height: 408px; position: relative; overflow: hidden;
+  page-break-after: always; break-after: page;
+}
+.card + .card { margin-top: 0; }
+.safe { position: absolute; inset: 30px 32px; }
+
+/* Shared lockup: the logo in its red box */
+.lockup { display: inline-block; background: var(--red); padding: 7px 12px 5px; }
+.lockup img { display: block; width: 100%; height: auto; }
+
+/* ── Front A: the cover photo ───────────────────────────── */
+.front-photo {
+  background: #0b2f57 url('../cover.jpg') no-repeat;
+  background-size: 640px auto;
+  background-position: -14px -46px;
+  color: #fff;
+}
+.front-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 62%, rgba(0,0,0,.6) 100%);
+}
+.front-photo .lockup { position: absolute; z-index: 2; left: 50%; top: 66px; transform: translateX(-50%); width: 278px; box-shadow: 0 10px 28px rgba(0,0,0,.28); }
+.front-photo .tag {
+  position: absolute; z-index: 2; right: 32px; bottom: 30px; text-align: right;
+  font-size: 11.5px; line-height: 1.5; font-weight: 500; color: rgba(255,255,255,.92);
+  text-shadow: 0 1px 10px rgba(0,0,0,.4);
+}
+.front-photo .tag strong { display: block; font-family: var(--head); font-size: 15px; font-weight: 700; letter-spacing: -.01em; color: #fff; }
+
+/* ── Fronts B and C: one question, set like the website ── */
+.front-q { background: var(--paper); }
+.front-q.dark { background: var(--charcoal); }
+.q {
+  position: absolute; left: 32px; right: 84px; top: 50%; transform: translateY(-58%);
+  font-family: var(--head); font-weight: 700; letter-spacing: -.035em; line-height: 1.16;
+  font-size: 50px; color: var(--ink);
+}
+.front-q.dark .q { color: #fff; font-size: 44px; }
+.mark { display: inline-block; background: var(--red); color: #fff; line-height: .98; padding: .02em .08em .1em; white-space: nowrap; }
+.ticks { position: absolute; right: 34px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.ticks span { display: block; width: 12px; height: 1.5px; background: rgba(20,21,24,.2); }
+.ticks span.on { width: 24px; background: var(--red); }
+.front-q.dark .ticks span { background: rgba(255,255,255,.22); }
+.front-q.dark .ticks span.on { background: var(--red); }
+.front-q .foot { position: absolute; left: 32px; right: 32px; bottom: 30px; display: flex; align-items: flex-end; justify-content: space-between; }
+.front-q .lockup { width: 128px; padding: 5px 8px 4px; }
+.front-q .url { font-size: 11px; font-weight: 500; color: var(--muted); }
+.front-q.dark .url { color: rgba(255,255,255,.62); }
+
+/* ── Back ───────────────────────────────────────────────── */
+.back { background: #fff; }
+.back .left { position: absolute; left: 32px; top: 30px; bottom: 30px; width: 262px; display: flex; flex-direction: column; }
+.back h2 { font-family: var(--head); font-size: 25px; font-weight: 700; letter-spacing: -.035em; line-height: 1.1; color: var(--ink); }
+.back .lede { margin-top: 9px; font-size: 9.6px; line-height: 1.6; color: var(--text); }
+.facts { margin-top: 12px; border-top: 1px solid var(--rule); }
+.facts div { display: grid; grid-template-columns: 62px 1fr; gap: 8px; padding: 5.5px 0; border-bottom: 1px solid var(--rule); font-size: 9px; line-height: 1.4; }
+.facts dt { color: var(--muted); }
+.facts dd { color: var(--ink); font-weight: 500; }
+.back .cta { margin-top: auto; font-size: 9px; line-height: 1.5; color: var(--muted); }
+.back .cta strong { display: block; font-size: 11.5px; font-weight: 600; color: var(--ink); }
+.back .cta .red { color: var(--red); }
+.back .logos { margin-top: 10px; display: flex; align-items: center; gap: 12px; }
+.back .logos img { filter: brightness(0); opacity: .78; }
+.back .logos .saint { height: 25px; }
+.back .logos .divider { width: 1px; height: 24px; background: var(--rule); }
+.back .logos .venture { height: 36px; }
+.back .split { position: absolute; left: 318px; top: 42px; bottom: 42px; width: 1px; background: var(--rule); }
+.back .right { position: absolute; left: 340px; right: 32px; top: 30px; bottom: 30px; }
+.stamp { position: absolute; right: 0; top: 0; width: 54px; height: 64px; border: 1px solid var(--rule); }
+.address { position: absolute; left: 0; right: 0; bottom: 34px; }
+.address span { display: block; height: 30px; border-bottom: 1px solid var(--rule); }
+
+/* Trim marks for the proof sheet only (hidden when printing) */
+@media screen { body { padding: 20px; } .card { margin-bottom: 20px; box-shadow: 0 0 0 1px rgba(0,0,0,.2); } }
+@media print { html, body { background: none; } }
+</style>
+</head>
+<body>
+
+<section class="card front-photo" id="front-1">
+  <span class="lockup"><img alt="FutureMe at VentureLift" src="../future.png"/></span>
+  <p class="tag"><strong>A three-day personal finance program</strong>for students entering Grades 9–10<br/>at St. George's School, Vancouver</p>
+</section>
+
+<section class="card front-q" id="front-2">
+  <p class="q">What is a <span class="mark">tax credit</span>?</p>
+  <div class="ticks"><span></span><span></span><span class="on"></span><span></span><span></span><span></span></div>
+  <div class="foot"><span class="lockup"><img alt="FutureMe at VentureLift" src="../future.png"/></span><span class="url">futureme.venturelift.org</span></div>
+</section>
+
+<section class="card front-q dark" id="front-3">
+  <p class="q">Should I rent, buy, or mortgage <span class="mark">my home</span>?</p>
+  <div class="ticks"><span></span><span></span><span></span><span></span><span class="on"></span><span></span></div>
+  <div class="foot"><span class="lockup"><img alt="FutureMe at VentureLift" src="../future.png"/></span><span class="url">futureme.venturelift.org</span></div>
+</section>
+
+<section class="card back" id="back">
+  <div class="left">
+    <h2>The program</h2>
+    <p class="lede">A three-day personal finance summer program that gives students the knowledge to make confident money decisions for life. Budgeting, taxes, buying a car and a home, taught by working professionals who live these decisions every day.</p>
+    <dl class="facts">
+      <div><dt>For</dt><dd>Students entering Grades 9–10</dd></div>
+      <div><dt>Where</dt><dd>St. George's School, Vancouver</dd></div>
+      <div><dt>When</dt><dd>Summer 2027, with dates and fees announced when applications open</dd></div>
+    </dl>
+    <p class="cta"><strong>Applications open soon.</strong><span class="red">futureme.venturelift.org</span><br/>info@venturelift.org</p>
+    <div class="logos"><img alt="St. George's School" class="saint" src="../saint.png"/><span class="divider"></span><img alt="VentureLift" class="venture" src="../venture.png"/></div>
+  </div>
+  <span class="split"></span>
+  <div class="right">
+    <span class="stamp"></span>
+    <div class="address"><span></span><span></span><span></span><span></span></div>
+  </div>
+</section>
+
+</body>
+</html>
