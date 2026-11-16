@@ -19,8 +19,11 @@ body { font-family: 'Inter', sans-serif; }
 
 /* Front: the hero */
 .front { background: #0b2f57 url('../cover.jpg') no-repeat; background-size: 640px auto; background-position: -16px -40px; }
-.front::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0) 70%, rgba(0,0,0,.35) 100%); }
-.front .logo { position: absolute; z-index: 2; left: 50%; top: 74px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; }
+.front::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,0) 34%, rgba(0,0,0,0) 52%, rgba(0,0,0,.66) 100%); }
+.front .hero { position: absolute; z-index: 2; right: 36px; bottom: 32px; width: 300px; text-align: right; color: #fff; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+.front .hero h1 { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.15; letter-spacing: -.025em; }
+.front .hero p { margin-top: 7px; font-size: 10.5px; line-height: 1.5; font-weight: 500; color: rgba(255,255,255,.9); }
+.front .logo { position: absolute; z-index: 2; left: 50%; top: 52px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; }
 .front .red-box { background: var(--red); padding: 8px 13px 6px; box-shadow: 0 12px 30px rgba(0,0,0,.25); }
 .front .red-box img { display: block; width: 236px; height: auto; }
 .front .sub { display: flex; align-items: center; gap: 13px; margin-top: 12px; }
@@ -28,16 +31,29 @@ body { font-family: 'Inter', sans-serif; }
 .front .sub .divider { width: 1px; height: 24px; background: rgba(255,255,255,.4); }
 .front .sub .venture { height: 42px; }
 
-/* Back: one question, one paragraph, one way to find out more */
+/* Back: the details */
 .back { background: #fff; }
-.back .inner { position: absolute; left: 44px; right: 44px; top: 44px; bottom: 40px; display: flex; flex-direction: column; }
-.back .q { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 31px; letter-spacing: -.035em; line-height: 1.1; color: var(--ink); }
+.back .inner { position: absolute; left: 40px; right: 40px; top: 38px; bottom: 36px; display: flex; flex-direction: column; }
+.back .q { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 25px; letter-spacing: -.035em; line-height: 1.1; color: var(--ink); }
 .mark { display: inline-block; background: var(--red); color: #fff; line-height: .98; padding: .02em .08em .1em; }
-.back .body { margin-top: 16px; max-width: 352px; font-size: 10.6px; line-height: 1.65; color: var(--text); }
-.back .foot { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; }
-.back .foot strong { display: block; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: -.02em; color: var(--ink); }
-.back .foot p { font-size: 9.5px; line-height: 1.55; color: var(--muted); }
-.back .qr { width: 74px; height: 74px; display: block; }
+.back .body { margin-top: 11px; max-width: 420px; font-size: 10.2px; line-height: 1.62; color: var(--text); }
+.facts { margin-top: 18px; display: grid; grid-template-columns: 1.25fr 1fr 1fr; border-top: 1px solid var(--ink); }
+.facts div { padding: 9px 14px 0 0; }
+.facts div + div { padding-left: 14px; border-left: 1px solid #d6d7da; }
+.facts dt { font-size: 8.8px; color: var(--muted); }
+.facts dd { margin-top: 3px; font-size: 10.6px; line-height: 1.45; color: var(--ink); font-weight: 600; }
+.facts dd span { display: block; font-weight: 400; color: var(--text); }
+.back .foot { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
+.back .foot strong { display: block; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: -.02em; color: var(--ink); margin-bottom: 2px; }
+.back .foot p { font-size: 9.4px; line-height: 1.55; color: var(--muted); }
+.back .logos { display: flex; align-items: center; gap: 11px; margin-top: 12px; }
+.back .logos img { filter: brightness(0); opacity: .75; }
+.back .logos .saint { height: 21px; }
+.back .logos .divider { width: 1px; height: 21px; background: #d6d7da; }
+.back .logos .venture { height: 31px; }
+.back .qrbox { text-align: center; }
+.back .qr { width: 78px; height: 78px; display: block; }
+.back .qrbox span { display: block; margin-top: 5px; font-size: 8px; color: var(--muted); }
 
 @media screen { body { padding: 20px; } .card { margin-bottom: 20px; } }
 @media print { html, body { background: none; } }
@@ -50,15 +66,27 @@ body { font-family: 'Inter', sans-serif; }
     <span class="red-box"><img alt="FutureMe at VentureLift" src="../future.png"/></span>
     <span class="sub"><img alt="St. George's School" class="saint" src="../saint.png"/><span class="divider"></span><img alt="VentureLift" class="venture" src="../venture.png"/></span>
   </div>
+  <div class="hero">
+    <h1>A three-day personal finance program for <span style="white-space:nowrap">Grades 9–10</span></h1>
+    <p>June 29 to July 1, 2027<br/>St. George's School, Vancouver</p>
+  </div>
 </section>
 
 <section class="card back" id="back">
   <div class="inner">
     <p class="q">What is a <span class="mark">tax credit</span>?</p>
-    <p class="body">FutureMe is a three-day personal finance summer program for students entering Grades 9–10 at St. George's School in Vancouver. Working professionals teach budgeting, taxes, how a first paycheque works, and the real costs of buying a car and a home.</p>
+    <p class="body">Life after graduation comes with opportunities and price tags. FutureMe is a three-day personal finance program for students entering Grades 9–10. Working professionals teach budgeting, taxes, how a first paycheque really works, and the real costs and fine print behind buying a car and a home.</p>
+    <dl class="facts">
+      <div><dt>When</dt><dd>June 29 to July 1, 2027<span>Tuesday to Thursday</span></dd></div>
+      <div><dt>Where</dt><dd>St. George's School<span>Vancouver, BC</span></dd></div>
+      <div><dt>Cost</dt><dd>$799 + GST<span>$25 application fee</span></dd></div>
+    </dl>
     <div class="foot">
-      <p><strong>Applications open soon</strong>Scan for program details.<br/>Questions: info@venturelift.org</p>
-      <img alt="QR code for futureme.venturelift.org" class="qr" src="qr.svg"/>
+      <div>
+        <p><strong>Applications open soon</strong>Questions: info@venturelift.org</p>
+        <div class="logos"><img alt="St. George's School" class="saint" src="../saint.png"/><span class="divider"></span><img alt="VentureLift" class="venture" src="../venture.png"/></div>
+      </div>
+      <div class="qrbox"><img alt="QR code for futureme.venturelift.org" class="qr" src="qr.svg"/><span>Scan for details</span></div>
     </div>
   </div>
 </section>
