@@ -19,14 +19,12 @@ body { font-family: 'Inter', sans-serif; }
 
 /* Front: the hero */
 .front { background: #0b2f57 url('../cover.jpg') no-repeat; background-size: 640px auto; background-position: -16px -40px; }
-.front::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,0) 34%, rgba(0,0,0,0) 52%, rgba(0,0,0,.66) 100%); }
-.front .hero { position: absolute; z-index: 2; right: 36px; bottom: 32px; width: 300px; text-align: right; color: #fff; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
-.front .hero h1 { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.15; letter-spacing: -.025em; }
-.front .hero p { margin-top: 7px; font-size: 10.5px; line-height: 1.5; font-weight: 500; color: rgba(255,255,255,.9); }
-.front .logo { position: absolute; z-index: 2; left: 50%; top: 52px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; }
-.front .red-box { background: var(--red); padding: 8px 13px 6px; box-shadow: 0 12px 30px rgba(0,0,0,.25); }
+.front::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.18) 55%, rgba(0,0,0,0) 72%, rgba(0,0,0,.25) 100%); }
+.front .headline { margin-top: 13px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 17px; line-height: 1.2; letter-spacing: -.02em; color: #fff; text-align: center; white-space: nowrap; }
+.front .logo { position: absolute; z-index: 2; left: 50%; top: 40px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; }
+.front .red-box { background: var(--red); padding: 8px 13px 6px; }
 .front .red-box img { display: block; width: 236px; height: auto; }
-.front .sub { display: flex; align-items: center; gap: 13px; margin-top: 12px; }
+.front .sub { display: flex; align-items: center; gap: 13px; margin-top: 14px; }
 .front .sub .saint { height: 25px; }
 .front .sub .divider { width: 1px; height: 24px; background: rgba(255,255,255,.4); }
 .front .sub .venture { height: 42px; }
@@ -62,10 +60,8 @@ body { font-family: 'Inter', sans-serif; }
 <section class="card front" id="front">
   <div class="logo">
     <span class="red-box"><img alt="FutureMe at VentureLift" src="../future.png"/></span>
+    <h1 class="headline">Personal finance for students entering Grades 9–10</h1>
     <span class="sub"><img alt="St. George's School" class="saint" src="../saint.png"/><span class="divider"></span><img alt="VentureLift" class="venture" src="../venture.png"/></span>
-  </div>
-  <div class="hero">
-    <h1>Personal finance for students entering <span style="white-space:nowrap">Grades 9–10</span></h1>
   </div>
 </section>
 
