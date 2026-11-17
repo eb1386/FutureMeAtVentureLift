@@ -17,17 +17,16 @@ html, body { background: #888; -webkit-font-smoothing: antialiased; }
 body { font-family: 'Inter', sans-serif; }
 .card { width: 600px; height: 408px; position: relative; overflow: hidden; page-break-after: always; break-after: page; }
 
-/* Front: the hero */
-.front { background: #0b2f57 url('../cover.jpg') no-repeat; background-size: 640px auto; background-position: -16px -40px; }
-.front::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.18) 55%, rgba(0,0,0,0) 72%, rgba(0,0,0,.25) 100%); }
-.front .headline { margin-top: 13px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 17px; line-height: 1.2; letter-spacing: -.02em; color: #fff; text-align: center; white-space: nowrap; }
-.front .logo { position: absolute; z-index: 2; left: 50%; top: 40px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; }
+/* Front */
+.front { background: #0f2c4f; }
+.front .headline { margin-top: 16px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 18px; line-height: 1.2; letter-spacing: -.02em; color: #fff; text-align: center; white-space: nowrap; }
+.front .logo { position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -54%); display: flex; flex-direction: column; align-items: center; }
 .front .red-box { background: var(--red); padding: 8px 13px 6px; }
-.front .red-box img { display: block; width: 236px; height: auto; }
-.front .sub { display: flex; align-items: center; gap: 13px; margin-top: 14px; }
-.front .sub .saint { height: 25px; }
-.front .sub .divider { width: 1px; height: 24px; background: rgba(255,255,255,.4); }
-.front .sub .venture { height: 42px; }
+.front .red-box img { display: block; width: 300px; height: auto; }
+.front .sub { display: flex; align-items: center; gap: 18px; margin-top: 26px; }
+.front .sub .saint { height: 38px; }
+.front .sub .divider { width: 1px; height: 36px; background: rgba(255,255,255,.55); }
+.front .sub .venture { height: 58px; }
 
 /* Back: the details */
 .back { background: #fff; }
