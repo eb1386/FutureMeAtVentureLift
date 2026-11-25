@@ -7,7 +7,7 @@
 <meta name="description" content="A three-day personal finance summer program for students entering Grades 9–10, hosted by St. George's School in Vancouver."/>
 <meta property="og:title" content="FutureMe at VentureLift"/>
 <meta property="og:description" content="A three-day personal finance summer program for students entering Grades 9–10, hosted by St. George's School in Vancouver."/>
-<meta property="og:image" content="https://futureme.venturelift.org/cover.jpg"/>
+<meta property="og:image" content="https://futureme.venturelift.org/hero-photo.jpg"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -99,17 +99,33 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
-  background: #0b2f57 url('./cover.jpg') no-repeat;
-  /* Scaled to the hero's height so the two students sit lower-left with
-     their hands just under the logos, pointing up at the lockup. */
-  background-size: auto 150%;
-  background-position: -19.5svh -11.9svh;
+  /* Two student cut-outs on a blue sky: the boy bottom-left looking up,
+     the girl bottom-right pointing up, with the logo between them.
+     --gx is the centre of each side gutter beside the red logo box;
+     --h is the boy's height (the girl is drawn at the same scale). */
+  --gx: calc((100vw - min(62vw, 700px) - 72px) / 4);
+  --h: min(70svh, calc(var(--gx) * 4.9));
+  background-color: #0b2f57;
+  background-image:
+    url('./hero-girl.webp'),
+    url('./hero-boy.webp'),
+    radial-gradient(115% 100% at 8% -5%, #96bade 0%, #3470ac 39%, #062c5a 100%);
+  background-repeat: no-repeat;
+  background-size: auto calc(var(--h) * .8128), auto var(--h), 100% 100%;
+  background-position:
+    right calc(var(--gx) - var(--h) * .3451) bottom,
+    left calc(var(--gx) - var(--h) * .3519) bottom,
+    0 0;
 }
-@media (min-aspect-ratio: 37/20) { .hero-bg { background-size: cover; background-position: 0 30%; } }
-@media (max-aspect-ratio: 4/3) { .hero-bg { background-size: auto 125%; background-position: 15% 0; } }
+@media (max-aspect-ratio: 1/1) {
+  .hero-bg {
+    --h: min(46svh, 72vw);
+    background-position: right -4vw bottom, left -6vw bottom, 0 0;
+  }
+}
 .hero-bg::after {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 32%, rgba(0,0,0,0) 62%, rgba(0,0,0,.7) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,.32) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 66%, rgba(0,0,0,.5) 100%);
 }
 .hero-top-text {
   position: absolute; top: clamp(22px, 4vw, 40px); left: 0; right: 0; z-index: 2;
@@ -135,7 +151,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .sub-logos-divider { width: 1px; height: clamp(28px, 6vw, 66px); background: rgba(255,255,255,.35); }
 .hero-bottom-links {
   position: absolute; bottom: clamp(60px, 7vw, 76px); left: 0; right: 0; z-index: 2;
-  display: flex; justify-content: space-between;
+  display: flex; justify-content: center;
   padding: 0 var(--gutter);
   font-size: .9rem; font-weight: 500;
 }
@@ -342,9 +358,7 @@ Learn the real costs of buying a car, a home, and understanding your first paych
 </span>
 </h1>
 <div class="hero-bottom-links">
-<a class="link-left" href="https://www.stgeorges.bc.ca">← St. George's School</a>
 <a class="link-down" data-route="program" href="#program">Learn more ↓</a>
-<a class="link-right" data-route="archives" href="#archives">2026 program →</a>
 </div>
 </section>
 
