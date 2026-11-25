@@ -244,11 +244,24 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .page-head { padding-top: clamp(56px, 8vw, 104px); padding-bottom: clamp(36px, 5vw, 56px); }
 .leaders-head {
   position: relative; color: #fff; text-align: center;
-  background: #0b2f57 url('./students.jpg') center 62%/cover no-repeat;
+  background-color: #0b2f57;
+  background-image:
+    url('./hero-girl.webp'),
+    url('./hero-boy.webp'),
+    radial-gradient(115% 100% at 8% -5%, #96bade 0%, #3470ac 39%, #062c5a 100%);
+  background-repeat: no-repeat;
+  background-size: auto 75%, auto 92%, 100% 100%;
+  background-position: right 5% bottom, left 5% bottom, 0 0;
   min-height: clamp(320px, 52svh, 520px); display: flex; align-items: flex-end;
 }
-.leaders-head::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.1) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.72) 100%); }
+.leaders-head::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,.42) 100%); }
 .leaders-head > .wrap { position: relative; width: min(var(--wrap), 100%); }
+@media (max-width: 1180px) {
+  .leaders-head {
+    background-image: radial-gradient(115% 100% at 8% -5%, #96bade 0%, #3470ac 39%, #062c5a 100%);
+    background-size: 100% 100%; background-position: 0 0;
+  }
+}
 .leaders-head .page-head { padding-bottom: clamp(40px, 6vw, 72px); }
 .leaders-head .page-title { color: #fff; }
 .leaders-head .page-lede { color: rgba(255,255,255,.9); text-shadow: 0 1px 12px rgba(0,0,0,.4); margin-left: auto; margin-right: auto; }
