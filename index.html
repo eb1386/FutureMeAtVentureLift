@@ -7,7 +7,7 @@
 <meta name="description" content="A three-day personal finance summer program for students entering Grades 9–10, hosted by St. George's School in Vancouver."/>
 <meta property="og:title" content="FutureMe at VentureLift"/>
 <meta property="og:description" content="A three-day personal finance summer program for students entering Grades 9–10, hosted by St. George's School in Vancouver."/>
-<meta property="og:image" content="https://futureme.venturelift.org/hero-photo.jpg"/>
+<meta property="og:image" content="https://futureme.venturelift.org/hero.jpg"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -99,33 +99,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
-  /* Two student cut-outs on a blue sky: the boy bottom-left looking up,
-     the girl bottom-right pointing up, with the logo between them.
-     --gx is the centre of each side gutter beside the red logo box;
-     --h is the boy's height (the girl is drawn at the same scale). */
-  --gx: calc((100vw - min(62vw, 700px) - 72px) / 4);
-  --h: min(70svh, calc(var(--gx) * 4.9));
-  background-color: #0b2f57;
-  background-image:
-    url('./hero-girl.webp'),
-    url('./hero-boy.webp'),
-    radial-gradient(115% 100% at 8% -5%, #96bade 0%, #3470ac 39%, #062c5a 100%);
-  background-repeat: no-repeat;
-  background-size: auto calc(var(--h) * .8128), auto var(--h), 100% 100%;
-  background-position:
-    right calc(var(--gx) - var(--h) * .3451) bottom,
-    left calc(var(--gx) - var(--h) * .3519) bottom,
-    0 0;
+  /* The two students stand lower-right looking up at the sky; the logo
+     sits in the open sky above them. */
+  background: #2a6cc0 url('./hero.jpg') no-repeat 70% 28% / cover;
 }
 @media (max-aspect-ratio: 1/1) {
-  .hero-bg {
-    --h: min(46svh, 72vw);
-    background-position: right -4vw bottom, left -6vw bottom, 0 0;
-  }
+  .hero-bg { background-position: 76% 100%; }
 }
 .hero-bg::after {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.32) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 66%, rgba(0,0,0,.5) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 78%, rgba(0,0,0,.22) 100%);
 }
 .hero-top-text {
   position: absolute; top: clamp(22px, 4vw, 40px); left: 0; right: 0; z-index: 2;
@@ -138,17 +121,20 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .hero-top-text strong { font-weight: 700; color: #fff; }
 .hero-top-text .nowrap { white-space: nowrap; }
 .logo-container { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
+.hero { align-items: flex-start; }
+.logo-container { margin-top: clamp(96px, 15svh, 190px); }
+@media (max-width: 600px) { .logo-container { margin-top: 190px; } .hero-top-text { font-size: .8rem; } }
 .red-box {
   background: var(--red);
-  padding: clamp(10px, 3vw, 20px) clamp(14px, 5vw, 36px) clamp(8px, 2.5vw, 16px);
+  padding: clamp(8px, 2vw, 14px) clamp(12px, 3vw, 24px) clamp(6px, 1.6vw, 11px);
   box-shadow: 0 18px 50px rgba(0,0,0,.28);
 }
-.hero-logo { width: clamp(220px, 62vw, 700px); }
+.hero-logo { width: clamp(200px, 58vw, 520px); }
 .sub-logos { display: flex; align-items: center; justify-content: center; gap: clamp(12px, 3.5vw, 28px); margin-top: clamp(12px, 2.2vw, 18px); }
-.logo-saint { height: clamp(30px, 7vw, 76px); width: auto; transition: opacity .2s; }
-.logo-venture { height: clamp(52px, 11vw, 128px); width: auto; transition: opacity .2s; }
+.logo-saint { height: clamp(26px, 6vw, 52px); width: auto; transition: opacity .2s; }
+.logo-venture { height: clamp(44px, 9vw, 88px); width: auto; transition: opacity .2s; }
 .logo-saint:hover, .logo-venture:hover { opacity: .8; }
-.sub-logos-divider { width: 1px; height: clamp(28px, 6vw, 66px); background: rgba(255,255,255,.35); }
+.sub-logos-divider { width: 1px; height: clamp(24px, 6vw, 46px); background: rgba(255,255,255,.35); }
 .hero-bottom-links {
   position: absolute; bottom: clamp(60px, 7vw, 76px); left: 0; right: 0; z-index: 2;
   display: flex; justify-content: center;
@@ -244,24 +230,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .page-head { padding-top: clamp(56px, 8vw, 104px); padding-bottom: clamp(36px, 5vw, 56px); }
 .leaders-head {
   position: relative; color: #fff; text-align: center;
-  background-color: #0b2f57;
-  background-image:
-    url('./hero-girl.webp'),
-    url('./hero-boy.webp'),
-    radial-gradient(115% 100% at 8% -5%, #96bade 0%, #3470ac 39%, #062c5a 100%);
-  background-repeat: no-repeat;
-  background-size: auto 75%, auto 92%, 100% 100%;
-  background-position: right 5% bottom, left 5% bottom, 0 0;
+  /* the sky and contrail from the hero photo, no people, so the title has clear space */
+  background: #2a6cc0 url('./hero.jpg') no-repeat 16% 0 / 160% auto;
   min-height: clamp(320px, 52svh, 520px); display: flex; align-items: flex-end;
 }
 .leaders-head::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,.42) 100%); }
 .leaders-head > .wrap { position: relative; width: min(var(--wrap), 100%); }
-@media (max-width: 1180px) {
-  .leaders-head {
-    background-image: radial-gradient(115% 100% at 8% -5%, #96bade 0%, #3470ac 39%, #062c5a 100%);
-    background-size: 100% 100%; background-position: 0 0;
-  }
-}
+@media (max-width: 700px) { .leaders-head { background-size: auto 250%; background-position: 22% 0; } }
+
 .leaders-head .page-head { padding-bottom: clamp(40px, 6vw, 72px); }
 .leaders-head .page-title { color: #fff; }
 .leaders-head .page-lede { color: rgba(255,255,255,.9); text-shadow: 0 1px 12px rgba(0,0,0,.4); margin-left: auto; margin-right: auto; }
