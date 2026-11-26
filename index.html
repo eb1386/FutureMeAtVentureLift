@@ -111,8 +111,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   background: linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 78%, rgba(0,0,0,.22) 100%);
 }
 .hero-top-text {
-  position: absolute; top: clamp(22px, 4vw, 40px); left: 0; right: 0; z-index: 2;
-  max-width: 760px; margin: 0 auto; padding: 0 20px;
+  /* In normal flow above the logo, so the logo always starts below it
+     however many lines the text wraps to. */
+  position: relative; z-index: 2;
+  max-width: 760px; margin: 0 auto clamp(18px, 3svh, 34px); padding: 0 20px;
+  text-wrap: balance;
   text-align: center;
   font-size: clamp(.82rem, 1.1vw, .95rem); font-weight: 400; line-height: 1.7;
   color: rgba(255,255,255,.92);
@@ -120,10 +123,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .hero-top-text strong { font-weight: 700; color: #fff; }
 .hero-top-text .nowrap { white-space: nowrap; }
+.hero-top-text .line { display: block; }
 .logo-container { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
-.hero { align-items: flex-start; }
-.logo-container { margin-top: clamp(96px, 15svh, 190px); }
-@media (max-width: 600px) { .logo-container { margin-top: 190px; } .hero-top-text { font-size: .8rem; } }
+.hero { flex-direction: column; align-items: center; justify-content: flex-start; padding-top: clamp(22px, 4vw, 40px); }
+@media (max-width: 600px) { .hero { padding-top: 24px; } .hero-top-text { font-size: .8rem; } .logo-container { margin-top: 16px; } }
 .red-box {
   background: var(--red);
   padding: clamp(8px, 2vw, 14px) clamp(12px, 3vw, 24px) clamp(6px, 1.6vw, 11px);
@@ -335,9 +338,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 <div aria-hidden="false" class="view" id="view-home">
 <section class="hero" id="hero">
 <div class="hero-bg"></div>
-<p class="hero-top-text">A <strong>three-day</strong> personal finance program for students entering <strong class="nowrap">Grades 9–10</strong>.<br/>
-Learn the real costs of buying a car, a home, and understanding your first paycheque.<br/>
-<strong>June 29 to July 1, 2027.</strong> Hosted by St. George's School, Vancouver.</p>
+<p class="hero-top-text"><span class="line">A <strong>three-day</strong> personal finance program for students entering <strong class="nowrap">Grades 9–10</strong>.</span>
+<span class="line">Learn the real costs of buying a car, a home, and understanding your first paycheque.</span>
+<span class="line"><strong class="nowrap">June 29 to July 1, 2027.</strong> Hosted by St. George's School, Vancouver.</span></p>
 <h1 class="logo-container">
 <span class="red-box"><img alt="FutureMe at VentureLift" class="hero-logo" src="future.png"/></span>
 <span class="sub-logos">
