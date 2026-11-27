@@ -75,8 +75,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .nav-tab.active::after { transform: scaleX(1); }
 .nav-status {
   position: absolute; right: clamp(12px, 3vw, 36px);
-  font-size: .8rem; font-weight: 500; color: rgba(255,255,255,.7); white-space: nowrap;
+  font-size: .8rem; font-weight: 600; color: #fff; white-space: nowrap;
+  background: var(--red); padding: 8px 16px; border-radius: 2px; transition: background .2s;
 }
+.nav-status:hover { background: var(--red-dark); }
 @media (max-width: 1050px) { .nav-status { display: none; } }
 @media (max-width: 600px) { .nav-tab { padding: 0 clamp(7px, 2.3vw, 14px); font-size: clamp(.68rem, 2.9vw, .78rem); } }
 
@@ -213,6 +215,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .program-facts dd { color: #fff; }
 .apply-cta { margin-top: clamp(28px, 3.5vw, 40px); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 .apply-cost { font-size: .95rem; color: rgba(255,255,255,.6); }
+.apply-contact { background: none; border: 0; padding: 0; font: 500 .95rem var(--font); color: rgba(255,255,255,.75); cursor: pointer; text-decoration: underline; text-underline-offset: .25em; }
+.apply-contact:hover { color: #fff; }
 @media (max-width: 820px) {
   .apply-inner { grid-template-columns: 1fr; }
   .program-facts div { grid-template-columns: 1fr; gap: 2px; }
@@ -243,6 +247,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 
 .leaders-head .page-head { padding-bottom: clamp(40px, 6vw, 72px); }
 .leaders-head .page-title { color: #fff; }
+.lede-link { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: .25em; }
+.lede-link:hover { color: rgba(255,255,255,.8); }
 .leaders-head .page-lede { color: rgba(255,255,255,.9); text-shadow: 0 1px 12px rgba(0,0,0,.4); margin-left: auto; margin-right: auto; }
 .archives-wrap { background: var(--paper); }
 .page-title { font-family: var(--font-heading); font-size: clamp(2.4rem, 5.5vw, 4.25rem); font-weight: 800; line-height: 1.02; letter-spacing: -.04em; color: var(--ink); }
@@ -332,7 +338,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 <a aria-controls="view-workshops" class="nav-tab" data-route="workshops" href="#workshops" id="tab-workshops">Workshop Leaders</a>
 <a aria-controls="view-contact" class="nav-tab" data-route="contact" href="#contact" id="tab-contact">Contact</a>
 </div>
-<span class="nav-status">June 29 to July 1, 2027</span>
+<a class="nav-status" href="https://stgeorgesschool.campbrainregistration.com/" rel="noopener" target="_blank">Register</a>
 </nav>
 
 <div aria-hidden="false" class="view" id="view-home">
@@ -385,8 +391,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 <div><dt>Fees</dt><dd>$25 to apply, then $799 + GST on acceptance</dd></div>
 </dl>
 <div class="apply-cta">
-<button class="btn btn-red" id="applyBtn" onclick="showView('contact')" type="button">Contact us</button>
-<p class="apply-cost">Applications open soon.</p>
+<a class="btn btn-red" href="https://stgeorgesschool.campbrainregistration.com/" id="applyBtn" rel="noopener" target="_blank">Register now</a>
+<button class="apply-contact" onclick="showView('contact')" type="button">Questions? Contact us</button>
 </div>
 </div>
 </div>
@@ -408,7 +414,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 <div aria-hidden="true" class="view view--hidden" id="view-workshops" inert="">
 <section class="leaders-head"><div class="wrap page-head" id="workshopsHeader">
 <h1 class="page-title">Workshop leaders</h1>
-<p class="page-lede" id="workshopsTBA">Our 2027 workshop leaders will be announced here. Applications open soon.</p>
+<p class="page-lede" id="workshopsTBA">Our 2027 workshop leaders will be announced here. <a class="lede-link" href="https://stgeorgesschool.campbrainregistration.com/" rel="noopener" target="_blank">Registration is open.</a></p>
 </div></section>
 <div class="archives-wrap">
 
@@ -561,6 +567,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 <div class="contact-row">
 <dt>Program enquiries</dt>
 <dd><a class="contact-email" href="mailto:info@venturelift.org?subject=FutureMe%20enquiry">info@venturelift.org</a></dd>
+</div>
+<div class="contact-row">
+<dt>Registration</dt>
+<dd><a href="https://stgeorgesschool.campbrainregistration.com/" rel="noopener" target="_blank">stgeorgesschool.campbrainregistration.com</a></dd>
 </div>
 <div class="contact-row">
 <dt>Hosted by</dt>
